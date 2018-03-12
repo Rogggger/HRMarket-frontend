@@ -63,13 +63,14 @@
 			margin-left:40%;
 			text-align: center;
 
-		}
+	}
 </style>
 </head>
 
 <body>
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
+
         <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
                 <i-menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
@@ -116,67 +117,75 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-                            <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
+                            <i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
                                 <h1>企业信息管理</h1>
                                 </br>
-                                    <Form-Item prop="region">
+                                    <Form-Item label="所属地区" prop="region">
                                         <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable disabled style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                                    <Form-Item prop="organizationcode">
+                                    <Form-Item label="组织机构代码" prop="organizationcode">
                                         <i-input type="organizationcode" v-model="formInline.organizationcode" placeholder="组织机构代码" clearable style="width: 300px">
                                             <icon type="ios-briefcase" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="enterprisename">
+									<Form-Item label="企业名称" prop="enterprisename">
                                         <i-input type="enterprisename" v-model="formInline.enterprisename" placeholder="企业名称" clearable style="width: 300px">
                                             <icon type="ios-home-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="enterprisetype">
+									
+									
+									<Form-Item label="企业性质" prop="enterprisetype">
 										<Cascader :data="formInline.enterprisetype" v-model="formInline.value1" placeholder="企业性质" clearable style="width: 300px">
 										</Cascader>
                                     </Form-Item>
-									<Form-Item prop="industry">
+									<Form-Item label="所属行业" prop="industry">
                                         <Cascader :data="formInline.industry" v-model="formInline.value1" placeholder="所属行业" clearable style="width: 300px">
 										</Cascader>
                                     </Form-Item>
-									<Form-Item prop="mainbusiness">
+									
+									
+									<Form-Item label="主要经营业务" prop="mainbusiness">
                                         <i-input type="mainbusiness" v-model="formInline.mainbusiness" placeholder="主要经营业务" clearable style="width: 300px">
                                             <icon type="ios-briefcase-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="contacts">
+									<Form-Item label="联系人" prop="contacts">
                                         <i-input type="contacts" v-model="formInline.contacts" placeholder="联系人" clearable style="width: 300px">
                                             <icon type="ios-person-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                                    <Form-Item prop="contactaddress">
+									
+									
+                                    <Form-Item label="联系地址" prop="contactaddress">
 										<Cascader :data="formInline.contactaddress" v-model="formInline.value1" placeholder="联系地址" clearable style="width: 300px">
 										</Cascader>
                                     </Form-Item>
-									<Form-Item prop="postcode">
+									
+									
+									<Form-Item label="邮政编码" prop="postcode">
                                         <i-input type="postcode" v-model="formInline.postcode" placeholder="邮政编码" clearable style="width: 300px">
                                             <icon type="android-mail" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="telephone">
-                                        <i-input type="telephone" v-model="formInline.telephone" placeholder="联系电话" clearable style="width: 300px">
+									<Form-Item label="联系电话" prop="telephone">
+                                        <i-input type="telephone" v-model="formInline.telephone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
                                             <icon type="ios-telephone-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="fax">
-                                        <i-input type="fax" v-model="formInline.fax" placeholder="传真" clearable style="width: 300px">
+									<Form-Item label="传真" prop="fax">
+                                        <i-input type="fax" v-model="formInline.fax" placeholder="格式为（区号）+电话" clearable style="width: 300px">
                                             <icon type="ios-printer-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item prop="email">
-                                        <i-input type="email" v-model="formInline.email" placeholder="EMAIL" clearable style="width: 300px">
+									<Form-Item label="EMAIL" prop="email">
+                                        <i-input type="email" v-model="formInline.email" placeholder="格式为xxx@xxx.xxx" clearable style="width: 300px">
                                             <icon type="ios-email-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-																		
+									
                                     <Form-Item>
                                         <i-button type="primary" @click="handleSubmit('formInline')">修改提交</i-button>
                                     </Form-Item>
@@ -189,6 +198,7 @@
             </i-col>
         </Row>
     </div>
+	<Back-Top></Back-Top>
   </div>
 
 <script>
@@ -305,6 +315,7 @@
 						fax: '',
 						email: ''
                     },
+					
                     ruleInline: {
                         region: [
                             { required: true, message: 'Please fill in the region.', trigger: 'blur' }
@@ -342,7 +353,8 @@
                             { required: true, message: 'Please fill in the fax.', trigger: 'blur' }
                         ],
 						email: [
-                            { required: true, message: 'Please fill in the email.', trigger: 'blur' }
+                            { required: true, message: 'Please fill in the email.', trigger: 'blur' },
+							{ type: 'email', message: 'Incorrect email format', trigger: 'blur' }
                         ]
                     }
                 }
