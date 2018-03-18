@@ -20,7 +20,7 @@
               background-repeat: no-repeat;
               background-position: left top;
               background-size: 100% 100%;*/
-              color:#fff;
+              color:black;
             }
             .layout{
                 *border: 1px solid #d7dde4;
@@ -87,17 +87,17 @@
                                     <h1>登录</h1>
                                 </br>
                                 <Form-Item prop="user">
-                                    <i-input type="text" v-model="formInline.user" placeholder="用户名" clearable style="width: 300px">
+                                    <i-input type="text" v-model="formInline.email" placeholder="用户名" clearable style="width: 300px">
                                         <icon type="ios-person-outline" slot="prepend"></icon>
                                     </i-input>
                                 </Form-Item>
                                 <Form-Item prop="password">
-                                    <i-input type="password" v-model="formInline.password" placeholder="密码" clearable style="width: 300px">
+                                    <i-input type="password" v-model="formInline.password_md5" placeholder="密码" clearable style="width: 300px">
                                         <icon type="ios-locked-outline" slot="prepend"></icon>
                                     </i-input>
                                 </Form-Item>
                                 <Form-Item>
-                                    <i-button type="primary" @click="handleSubmit('formInline')">登录</i-button>
+                                    <i-button type="primary" @click="getUsers(formInline)">登录</i-button>
                                 </Form-Item>
                             </i-form>
                         </div>
@@ -114,20 +114,19 @@
 <script type="text/javascript">
     var app = new Vue({
         el: '#app',
-
         data () {
             return {
                 spanRight: 24,
                 theme1: 'dark',
                 formInline: {
-                    user: '',
-                    password: ''
+                    email: '',
+                    password_md5: ''
                 },
                 ruleInline: {
-                    user: [
+                    email: [
                         { required: true, message: 'Please fill in the user name', trigger: 'blur' }
                     ],
-                    password: [
+                    password_md5: [
                         { required: true, message: 'Please fill in the password.', trigger: 'blur' },
                         { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
                     ]
@@ -143,6 +142,7 @@
     	},
         methods: {
             handleSubmit(name) {
+              console.log(name);
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         this.$Message.success('Success!');
@@ -151,33 +151,34 @@
                     }
                 })
             },
-            getUsers:function() {
+            getUsers:function(name)
               {
                 // GET /someUrl
-                var params = {
+                /*var params = {
 	                "email":"123@123.com",
 	                "password_md5":"pw"
-                };
+                };*/
+                console.log(name);
+                this.$http.post('http://localhost:5050/api/account/login',name).then(response => {
+                  console.log(response.body);
+                  // get body data
+                  //this.tasks = response.body;
 
-                this.$http.post('http://localhost:5050/api/',params).then(response => {
+                }, response => {
+                  console.log(response.body);
+                  // error callback
+                });
+
+                /*this.$http.get('http://localhost:5050/api/?email=1222&password_md5=pw').then(response => {
                   alert(response.body);
                   // get body data
                   //this.tasks = response.body;
 
                 }, response => {
                   // error callback
-                });
-
-                this.$http.get('http://localhost:5050/api/?email=1222&password_md5=pw').then(response => {
-                  alert(response.body);
-                  // get body data
-                  //this.tasks = response.body;
-
-                }, response => {
-                  // error callback
-                });
+                });*/
               }
-            }
+            
         }
     });
 

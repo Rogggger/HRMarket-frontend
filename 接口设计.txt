@@ -1,0 +1,21 @@
+登录、注册页面
+{
+	"email":"123@123.com",
+	"password_md5":"pw"
+}
+
+企业信息页面
+{
+	"area":"1",
+	"code":  "2",
+    "name":  "2",
+    "nature": "3",
+    "belong_to": "2",
+    "main_business":"5",
+    "contacts": "5",
+    "address": "5",
+    "postal_code":"5",
+    "phone": "5",
+    "fax": "5",
+    "email": "5"
+}
