@@ -3,6 +3,18 @@
 	"email":"123@123.com",
 	"password_md5":"pw"
 }
+最基本的登录视图，只能通过post发送登录信息
+    如果发送的参数不对返回400，用户不存在和密码错误返回401，
+    :return: HTTP状态码和json信息
+状态码400
+{
+  "code": 10000013,
+  "error": "password is not correct"
+}
+状态码200
+{
+  "is_admin": 0
+}
 
 企业信息页面
 {

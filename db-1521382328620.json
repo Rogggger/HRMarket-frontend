@@ -1,0 +1,11 @@
+{
+  "login": {
+    "is_admin": 1
+  },
+  "register": {
+    "is_admin": 2
+  },
+  "record": {
+    "is_admin": 3
+  }
+}

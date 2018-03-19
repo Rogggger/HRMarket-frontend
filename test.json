@@ -1,0 +1,13 @@
+{
+  "login": {
+    "email": "1234",
+    "password_md5": "1234",
+    "gmId": "account"
+  },
+  "register": {
+    "is_admin": 2
+  },
+  "record": {
+    "is_admin": 3
+  }
+}
