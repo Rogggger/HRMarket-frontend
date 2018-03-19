@@ -1,13 +1,26 @@
 {
   "login": {
-    "email": "1234",
-    "password_md5": "1234",
-    "gmId": "account"
+    "email": "266+6449+",
+    "password_md5": "4844888"
   },
   "register": {
     "is_admin": 2
   },
   "record": {
     "is_admin": 3
+  },
+  "companyinfo": {
+    "area": "1",
+    "code": "2",
+    "name": "2",
+    "nature": "3",
+    "belong_to": "2",
+    "main_business": "5",
+    "contacts": "5",
+    "address": "5",
+    "postal_code": "5",
+    "phone": "5",
+    "fax": "5",
+    "email": "5"
   }
 }
