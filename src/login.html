@@ -160,7 +160,8 @@
 	                "password_md5":"pw"
                 };*/
                 //var path='http://localhost:5050/api/account/login';
-                var path='http://localhost:5050/gm/account/login';
+                //var path='http://localhost:5050/gm/account/login';
+                var path='http://backend.yuanw.wang';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;

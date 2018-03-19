@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
 <!-- 先引入 Vue -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
 
@@ -54,7 +55,7 @@
     }
 	.system-title{
 		letter-spacing:10px;
-		font-size:28px; 
+		font-size:28px;
 		font-family:"LiSu",隶书;
 		line-height:50px;
     }
@@ -63,7 +64,7 @@
 		margin-left:40%;
 		text-align: center;
 	}
-	
+
 </style>
 </head>
 
@@ -120,12 +121,12 @@
                             <i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
                                 <h1>企业信息管理</h1>
                                 </br>
-                                    <Form-Item label="所属地区" prop="region" v-if =' commeNum > 0 '>
+                                    <!--<Form-Item label="所属地区" prop="region" v-if =' commeNum > 0 '>
                                         <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable disabled style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
-                                    </Form-Item>
-									<Form-Item label="所属地区" prop="region" v-if =' commeNum <= 0 '>
+                                    </Form-Item>-->
+									                  <Form-Item label="所属地区" prop="region">
                                         <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
@@ -135,7 +136,7 @@
                                             <icon type="ios-briefcase" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item label="企业名称" prop="enterprisename">
+									                  <Form-Item label="企业名称" prop="enterprisename">
                                         <i-input type="enterprisename" v-model="formInline.enterprisename" placeholder="企业名称" clearable style="width: 300px">
                                             <icon type="ios-home-outline" slot="prepend"></icon>
                                         </i-input>
@@ -186,9 +187,9 @@
                                             <icon type="ios-email-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									
+
                                     <Form-Item>
-                                        <i-button type="primary" @click="handleSubmit('formInline')">修改提交</i-button>
+                                        <i-button type="primary" @click="postUsers(formInline)">修改提交</i-button>
 										<i-button type="primary" @click="handleSubmit('formInline')">放弃修改并返回</i-button>
                                     </Form-Item>
                                 </i-form>
@@ -206,7 +207,7 @@
 <script>
 	new Vue({
         el: '#app',
-        
+
         data () {
                 return {
                     spanLeft: 5,
@@ -255,7 +256,7 @@
 								label: '涉外经济'
 							}
 						],
-						
+
 						industry: [{
 							value: 'a1',
 							label: '农、林、牧、渔业',
@@ -1128,7 +1129,7 @@
 							value: 'city16',
 							label: '滨州',
 							children: [
-								{        
+								{
 									value: '122',
 									label: '高新技术产业开发区'
 								},{
@@ -1193,15 +1194,15 @@
 						}
 
 						],
-						
-						
+
+
 						addressdetail: '',
 						postcode: '',
                         telephone: '',
 						fax: '',
 						email: ''
                     },
-					
+
                     ruleInline: {
                         region: [
                             { required: true, message: 'Please fill in the region.', trigger: 'blur' }
@@ -1211,7 +1212,7 @@
                             { type: 'string', max: 9, message: 'The organization code length cannot be more than 9 bits.', trigger: 'blur' }
                         ],
 						enterprisename: [
-                            { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }                            
+                            { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }
                         ],
 						enterprisetype: [
                             { required: true, message: 'Please fill in the enterprise type.', trigger: 'blur' }
@@ -1233,7 +1234,7 @@
                         ],
 						postcode: [
                             { required: true, message: 'Please fill in the postcode.', trigger: 'blur' },
-                            { type: 'string', max: 6, min: 6, message: 'The postcode length must be 6 bits.', trigger: 'blur' }                            
+                            { type: 'string', max: 6, min: 6, message: 'The postcode length must be 6 bits.', trigger: 'blur' }
                         ],
 						telephone: [
                             { required: true, message: 'Please fill in the telephone.', trigger: 'blur' },
@@ -1250,7 +1251,7 @@
                     }
                 }
             },
-            
+
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -1279,7 +1280,44 @@
                         this.$Message.error('Fail!');
                     }
                 })
-            }
+            },
+            postUsers:function(name)
+              {
+                // GET /someUrl
+                /*var params = {
+	                "email":"123@123.com",
+	                "password_md5":"pw"
+                };*/
+                //var path='http://localhost:5050/api/account/login';
+                var path='http://localhost:5050/gm/account/companyinfo';
+                console.log(name);
+                this.$http.post(path,name).then(response => {
+                  this.tasks=response.body;
+                  console.log(this.tasks);
+                  // get body data
+                  //this.tasks = response.body;
+
+                }, response => {
+                  console.log(error.response.status);
+                  console.log(response.body);
+                  // error callback
+                });
+
+
+              },
+              getUsers:function()
+              {
+                var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
+                this.$http.get(path).then(response => {
+                  this.tasks=response.body;
+                  console.log(this.tasks);
+                  // get body data
+                  //this.tasks = response.body;
+
+                }, response => {
+                  // error callback
+                });
+              }
         }
     })
 </script>
