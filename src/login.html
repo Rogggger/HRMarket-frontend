@@ -161,7 +161,7 @@
                 };*/
                 //var path='http://localhost:5050/api/account/login';
                 //var path='http://localhost:5050/gm/account/login';
-                var path='http://backend.yuanw.wang';
+                var path='http://hr.yuanw.wang:5000';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
