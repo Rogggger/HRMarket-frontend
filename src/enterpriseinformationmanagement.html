@@ -70,49 +70,18 @@
 <body>
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-
         <Row type="flex">
-            <i-col :span="spanLeft" class="layout-menu-left">
-                <i-menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-                    <Submenu name="1">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">导航一</span>
-                        </template>
-                        <Menu-item name="1-1">选项 1</Menu-item>
-                        <Menu-item name="1-2">选项 2</Menu-item>
-                        <Menu-item name="1-3">选项 3</Menu-item>
-                    </Submenu>
-                    <Submenu name="2">
-                        <template slot="title">
-                            <Icon type="ios-keypad" :size="iconSize"></Icon>
-                            <span class="layout-text">导航二</span>
-                        </template>
-                        <Menu-item name="2-1">选项 1</Menu-item>
-                        <Menu-item name="2-2">选项 2</Menu-item>
-                    </Submenu>
-                    <Submenu name="3">
-                        <template slot="title">
-                            <Icon type="ios-analytics" :size="iconSize"></Icon>
-                            <span class="layout-text">导航三</span>
-                        </template>
-                        <Menu-item name="3-1">选项 1</Menu-item>
-                        <Menu-item name="3-2">选项 2</Menu-item>
-                    </Submenu>
-                </i-menu>
-            </i-col>
-            <i-col :span="spanRight">
+            <i-col :span="24">
                 <div class="layout-header">
-                    <i-button type="text" @click="toggleClick">
+                    <i-button type="text">
                         <Icon type="navicon" size="32"></Icon>
                     </i-button>
 					<span class="system-title">山东省人力资源市场数据采集系统</span>
                 </div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb-item href="#">首页</Breadcrumb-item>
-                        <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
-                        <Breadcrumb-item>某应用</Breadcrumb-item>
+                        <Breadcrumb-item href="enterpriseuser.html">企业用户</Breadcrumb-item>
+                        <Breadcrumb-item>企业信息管理</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
@@ -186,10 +155,12 @@
                                             <icon type="ios-email-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									
+									<br>
                                     <Form-Item>
-                                        <i-button type="primary" @click="handleSubmit('formInline')">修改提交</i-button>
-										<i-button type="primary" @click="handleSubmit('formInline')">放弃修改并返回</i-button>
+                                        <i-button type="primary" @click="handleSubmit('formInline')" >修改提交</i-button>
+										<a href="enterpriseuser.html">
+											<i-button type="primary" >放弃修改并返回</i-button>
+										</a>
                                     </Form-Item>
                                 </i-form>
                     </div>
@@ -671,7 +642,7 @@
 
                         mainbusiness: '',
 						contacts: '',
-												contactaddress: [{
+						contactaddress: [{
 							value: 'city1',
 							label: '济南',
 							children: [
@@ -1214,7 +1185,7 @@
                             { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }                            
                         ],
 						enterprisetype: [
-                            { required: true, message: 'Please fill in the enterprise type.', trigger: 'blur' }
+                            { required: true, message: 'Please fill in the enterprise type.', trigger: 'one ' }
                         ],
 						industry: [
                             { required: true, message: 'Please fill in the industry.', trigger: 'blur' }
@@ -1226,10 +1197,7 @@
                             { required: true, message: 'Please fill in the contacts.', trigger: 'blur' }
                         ],
                         contactaddress: [
-                            { required: true, message: 'Please fill in the contact address.', trigger: 'blur' }
-                        ],
-						addresssetail: [
-                            { required: true, message: 'Please fill in the contact address.', trigger: 'blur' }
+                            { required: true, message: 'Please fill in the contact address.', trigger: 'one ' }
                         ],
 						postcode: [
                             { required: true, message: 'Please fill in the postcode.', trigger: 'blur' },
