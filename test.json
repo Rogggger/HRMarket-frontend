@@ -10,29 +10,29 @@
     "is_admin": 3
   },
   "companyinfo": {
-    "region": "1",
-    "organizationcode": "1",
-    "enterprisename": "1",
-    "value1": [
-      "type1"
-    ],
-    "value2": [
+    "area": "山东",
+    "code": "5241",
+    "name": "齐氏公司",
+    "enterprise_scale": [
       "type2"
     ],
-    "industry": [
-      "a2",
-      "8"
+    "enterprise_kind": [
+      "type2"
     ],
-    "mainbusiness": "by",
-    "contacts": "k",
-    "contactaddress": [
-      "city4",
-      "31"
+    "belong_to": [
+      "a3",
+      "14"
     ],
-    "addressdetail": "jg",
-    "postcode": "111111",
-    "telephone": "111111111111",
-    "fax": "111111111111",
-    "email": "1@qq.com"
+    "main_business": "买视频",
+    "contacts": "老齐同志",
+    "address": [
+      "city2",
+      "12"
+    ],
+    "addressdetail": "北路103号",
+    "postal_code": "101201",
+    "phone": "01061022222",
+    "fax": "010222565453",
+    "email": "4@qq.com"
   }
 }

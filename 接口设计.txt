@@ -1,3 +1,7 @@
+D:\vue学习\HRMarket-frontend> json-server --watch test.json --port 9090 --routes routes.json
+双击nginx.exe打开
+C:\Users\GRACE\Downloads\nginx-1.13.9> .\nginx.exe -s reload
+
 登录、注册页面
 {
 	"email":"123@123.com",

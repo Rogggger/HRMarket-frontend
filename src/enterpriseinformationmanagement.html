@@ -89,38 +89,38 @@
                             <i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
                                 <h1>企业信息管理</h1>
                                 </br>
-                                    <!--<Form-Item label="所属地区" prop="region" v-if =' commeNum > 0 '>
-                                        <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable disabled style="width: 300px">
+                                    <!--<Form-Item label="所属地区" prop="area" v-if =' commeNum > 0 '>
+                                        <i-input type="area" v-model="formInline.area" placeholder="所属地区" clearable disabled style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>-->
-									<Form-Item label="所属地区" prop="region">
-                                        <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable style="width: 300px">
+									<Form-Item label="所属地区" prop="area">
+                                        <i-input type="area" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                                    <Form-Item label="组织机构代码" prop="organizationcode">
-                                        <i-input type="organizationcode" v-model="formInline.organizationcode" placeholder="组织机构代码" clearable style="width: 300px">
+                                    <Form-Item label="组织机构代码" prop="code">
+                                        <i-input type="code" v-model="formInline.code" placeholder="组织机构代码" clearable style="width: 300px">
                                             <icon type="ios-briefcase" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									<Form-Item label="企业名称" prop="enterprisename">
-                                        <i-input type="enterprisename" v-model="formInline.enterprisename" placeholder="企业名称" clearable style="width: 300px">
+									<Form-Item label="企业名称" prop="name">
+                                        <i-input type="name" v-model="formInline.name" placeholder="企业名称" clearable style="width: 300px">
                                             <icon type="ios-home-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
 									<Form-Item label="企业性质" prop="enterprisetype">
-										<Cascader :data="enterprisetype1" v-model="formInline.value1" placeholder="企业规模" clearable style="width: 300px">
+										<Cascader :data="enterprisetype1" v-model="formInline.enterprise_scale" placeholder="企业规模" clearable style="width: 300px">
 										</Cascader>
-										<Cascader :data="enterprisetype2" v-model="formInline.value2" placeholder="企业经济类型" clearable style="width: 300px">
+										<Cascader :data="enterprisetype2" v-model="formInline.enterprise_kind" placeholder="企业经济类型" clearable style="width: 300px">
 										</Cascader>
                                     </Form-Item>
-									                  <Form-Item label="所属行业" prop="industry">
-                                        <Cascader :data="industry" v-model="formInline.industry" placeholder="所属行业" clearable style="width: 300px">
+									                  <Form-Item label="所属行业" prop="belong_to">
+                                        <Cascader :data="belong_to" v-model="formInline.belong_to" placeholder="所属行业" clearable style="width: 300px">
 										                    </Cascader>
                                     </Form-Item>
-									                 <Form-Item label="主要经营业务" prop="mainbusiness">
-                                        <i-input type="mainbusiness" v-model="formInline.mainbusiness" placeholder="主要经营业务" clearable style="width: 300px">
+									                 <Form-Item label="主要经营业务" prop="main_business">
+                                        <i-input type="main_business" v-model="formInline.main_business" placeholder="主要经营业务" clearable style="width: 300px">
                                             <icon type="ios-briefcase-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
@@ -129,20 +129,20 @@
                                             <icon type="ios-person-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                                    <Form-Item label="联系地址" prop="contactaddress">
-                    										<Cascader :data="contactaddress" v-model="formInline.contactaddress" placeholder="市/区" clearable style="width: 300px">
+                                    <Form-Item label="联系地址" prop="address">
+                    										<Cascader :data="address" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
                     										</Cascader>
                     										<i-input type="addressdetail" v-model="formInline.addressdetail" placeholder="详细地址" clearable style="width: 300px">
                                         </i-input>
                                     </Form-Item>
-									                  <Form-Item label="邮政编码" prop="postcode">
-                                        <i-input type="postcode" v-model="formInline.postcode" placeholder="邮政编码" clearable style="width: 300px">
+									                  <Form-Item label="邮政编码" prop="postal_code">
+                                        <i-input type="postal_code" v-model="formInline.postal_code" placeholder="邮政编码" clearable style="width: 300px">
                                             <icon type="android-mail" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									                  <Form-Item label="联系电话" prop="telephone">
-                                        <i-input type="telephone" v-model="formInline.telephone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
-                                            <icon type="ios-telephone-outline" slot="prepend"></icon>
+									                  <Form-Item label="联系电话" prop="phone">
+                                        <i-input type="phone" v-model="formInline.phone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
+                                            <icon type="ios-phone-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
 									                  <Form-Item label="传真" prop="fax">
@@ -220,7 +220,7 @@
         								label: '涉外经济'
         							}
         						],
-                    industry: [{
+                    belong_to: [{
         							value: 'a1',
         							label: '农、林、牧、渔业',
         							children: [
@@ -632,7 +632,7 @@
         								}
         							]
         						}],
-                    contactaddress: [{
+                    address: [{
         							value: 'city1',
         							label: '济南',
         							children: [
@@ -1154,54 +1154,54 @@
         						}
         						],
                 formInline: {
-                    region: '',
-                    organizationcode: '',
-        			enterprisename: '',
-                    value1:[],
-        			value2:[],
-                    industry:'',
-                    mainbusiness: '',
+                    area: '',
+                    code: '',
+        			name: '',
+                    enterprise_scale:[],
+        			enterprise_kind:[],
+                    belong_to:'',
+                    main_business: '',
 					contacts: '',
-					contactaddress:'',
+					address:'',
 					addressdetail: '',
-					postcode: '',
-                    telephone: '',
+					postal_code: '',
+                    phone: '',
 					fax: '',
 					email: ''
                 },
                     ruleInline: {
-                        region: [
-                            { required: true, message: 'Please fill in the region.', trigger: 'blur' }
+                        area: [
+                            { required: true, message: 'Please fill in the area.', trigger: 'blur' }
                         ],
-                        organizationcode: [
+                        code: [
                             { required: true, message: 'Please fill in the organization code.', trigger: 'blur' },
                             { type: 'string', max: 9, message: 'The organization code length cannot be more than 9 bits.', trigger: 'blur' }
                         ],
-						            enterprisename: [
+						            name: [
                             { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }
                         ],
 						            enterprisetype: [
                             { required: true, message: 'Please fill in the enterprise type.', trigger: 'one ' }
                         ],
-						            industry: [
-                            { required: true, message: 'Please fill in the industry.', trigger: 'blur' }
+						            belong_to: [
+                            { required: true, message: 'Please fill in the belong_to.', trigger: 'blur' }
                         ],
-						            mainbusiness: [
+						            main_business: [
                             { required: true, message: 'Please fill in the main business.', trigger: 'blur' }
                         ],
 						            contacts: [
                             { required: true, message: 'Please fill in the contacts.', trigger: 'blur' }
                         ],
-                        contactaddress: [
+                        address: [
                             { required: true, message: 'Please fill in the contact address.', trigger: 'one ' }
                         ],
-						            postcode: [
-                            { required: true, message: 'Please fill in the postcode.', trigger: 'blur' },
-                            { type: 'string', max: 6, min: 6, message: 'The postcode length must be 6 bits.', trigger: 'blur' }
+						            postal_code: [
+                            { required: true, message: 'Please fill in the postal_code.', trigger: 'blur' },
+                            { type: 'string', max: 6, min: 6, message: 'The postal_code length must be 6 bits.', trigger: 'blur' }
                         ],
-						            telephone: [
-                            { required: true, message: 'Please fill in the telephone.', trigger: 'blur' },
-                            { type: 'string', max: 12, min: 11, message: 'The telephone length must be 11 or 12 bits.', trigger: 'blur' }
+						            phone: [
+                            { required: true, message: 'Please fill in the phone.', trigger: 'blur' },
+                            { type: 'string', max: 12, min: 11, message: 'The phone length must be 11 or 12 bits.', trigger: 'blur' }
                         ],
 						            fax: [
                             { required: true, message: 'Please fill in the fax.', trigger: 'blur' },
@@ -1248,7 +1248,7 @@
                 //var path='http://localhost:5050/api/account/login';
                 var path='http://localhost:5050/gm/account/companyinfo';
                 console.log(name);
-                this.$http.post(path,formInline).then(response => {
+                this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data

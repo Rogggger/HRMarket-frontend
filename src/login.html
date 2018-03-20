@@ -159,7 +159,7 @@
                                 case 0:
                                     window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
                                     break;
-                                
+
                             }
                         }, response => {
                             // error callback
@@ -183,9 +183,9 @@
                         this.$Message.error('登录失败，格式不正确！');
                     }
                 })
-                
+
             },
-            
+
               getUsers:function()
               {
                 var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
