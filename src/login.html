@@ -86,18 +86,18 @@
                             <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
                                     <h1>登录</h1>
                                 </br>
-                                <Form-Item prop="user">
+                                <Form-Item prop="email">
                                     <i-input type="text" v-model="formInline.email" placeholder="用户名" clearable style="width: 300px">
                                         <icon type="ios-person-outline" slot="prepend"></icon>
                                     </i-input>
                                 </Form-Item>
-                                <Form-Item prop="password">
+                                <Form-Item prop="password_md5">
                                     <i-input type="password" v-model="formInline.password_md5" placeholder="密码" clearable style="width: 300px">
                                         <icon type="ios-locked-outline" slot="prepend"></icon>
                                     </i-input>
                                 </Form-Item>
                                 <Form-Item>
-                                    <i-button type="primary" @click="postUsers(formInline)">登录</i-button>
+                                    <i-button type="primary" @click="handleSubmit('formInline')">登录</i-button>
                                 </Form-Item>
                             </i-form>
                         </div>
@@ -142,63 +142,52 @@
     	},
         methods: {
             handleSubmit(name) {
-              console.log(name);
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('Success!');
-                        window.location.href="./enterpriseinformationmanagement.html";
+                        var path='http://localhost:5050/api/api/account/login';
+                        //var path='http://localhost:5050/gm/account/login';
+                        //var path='http://hr.yuanw.wang:5000';
+                        console.log(formInline);
+                        this.$http.post(path,formInline).then(response => {
+                            // get body data
+                            //this.tasks = response.body;
+                            this.tasks=response.body;
+                            console.log(this.tasks);
+                            this.$Message.success('登录成功！');
+                            switch(this.tasks.code)
+                            {
+                                case 0:
+                                    window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                                    break;
+                                
+                            }
+                        }, response => {
+                            // error callback
+                            var status=response.status;
+                            console.log(status);
+                            console.log(response.body);
+                            switch(status)
+                            {
+                                case 400:
+                                    this.$Message.error('登录失败，格式不正确！');
+                                    break;
+                                case 500:
+                                    this.$Message.error('登录失败，服务器内部错误！');
+                                    break;
+
+
+                            }
+                            
+                        
+                        });
+
                     } else {
-                        this.$Message.error('Fail!');
+                        this.$Message.error('登录失败，格式不正确！');
                     }
                 })
+                
             },
-            postUsers:function(name)
-              {
-                // GET /someUrl
-                /*var params = {
-	                "email":"123@123.com",
-	                "password_md5":"pw"
-                };*/
-                var path='http://localhost:5050/api/api/account/login';
-                //var path='http://localhost:5050/gm/account/login';
-                //var path='http://hr.yuanw.wang:5000';
-                console.log(name);
-                this.$http.post(path,name).then(response => {
-                  this.tasks=response.body;
-                  console.log(this.tasks);
-                  this.$Message.success('登录成功！');
-                  switch(this.tasks.code)
-                  {
-                      case 0:
-                        window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
-                        break;
-                        
-                  }
-                  
-                  // get body data
-                  //this.tasks = response.body;
-
-                }, response => {
-                var status=response.status;
-                  console.log(status);
-                  console.log(response.body);
-                  switch(status)
-                  {
-                      case 400:
-                        this.$Message.error('登录失败，格式不正确！');
-                        break;
-                      case 500:
-                        this.$Message.error('登录失败，服务器内部错误！');
-                        break;
-
-
-                  }
-                  
-                  // error callback
-                });
-
-
-              },
+            
               getUsers:function()
               {
                 var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
