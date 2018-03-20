@@ -94,7 +94,7 @@
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>-->
-									                  <Form-Item label="所属地区" prop="region">
+									<Form-Item label="所属地区" prop="region">
                                         <i-input type="region" v-model="formInline.region" placeholder="所属地区" clearable style="width: 300px">
                                             <icon type="earth" slot="prepend"></icon>
                                         </i-input>
@@ -104,16 +104,16 @@
                                             <icon type="ios-briefcase" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-									                  <Form-Item label="企业名称" prop="enterprisename">
+									<Form-Item label="企业名称" prop="enterprisename">
                                         <i-input type="enterprisename" v-model="formInline.enterprisename" placeholder="企业名称" clearable style="width: 300px">
                                             <icon type="ios-home-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                  									<Form-Item label="企业性质" prop="enterprisetype">
-                  										<Cascader :data="enterprisetype1" v-model="formInline.value1" placeholder="企业规模" clearable style="width: 300px">
-                  										</Cascader>
-                  										<Cascader :data="enterprisetype2" v-model="formInline.value2" placeholder="企业经济类型" clearable style="width: 300px">
-                  										</Cascader>
+									<Form-Item label="企业性质" prop="enterprisetype">
+										<Cascader :data="enterprisetype1" v-model="formInline.value1" placeholder="企业规模" clearable style="width: 300px">
+										</Cascader>
+										<Cascader :data="enterprisetype2" v-model="formInline.value2" placeholder="企业经济类型" clearable style="width: 300px">
+										</Cascader>
                                     </Form-Item>
 									                  <Form-Item label="所属行业" prop="industry">
                                         <Cascader :data="industry" v-model="formInline.industry" placeholder="所属行业" clearable style="width: 300px">
@@ -159,9 +159,9 @@
                   									<br>
                                     <Form-Item>
                                         <i-button type="primary" @click="postUsers(formInline)" >修改提交</i-button>
-                    										<a href="enterpriseuser.html">
-                    											<i-button type="primary" >放弃修改并返回</i-button>
-                    										</a>
+											<a href="enterpriseuser.html">
+												<i-button type="primary" >放弃修改并返回</i-button>
+											</a>
                                         </Form-Item>
                                     </i-form>
                     </div>
@@ -1156,18 +1156,18 @@
                 formInline: {
                     region: '',
                     organizationcode: '',
-        						enterprisename: '',
+        			enterprisename: '',
                     value1:[],
-        						value2:[],
+        			value2:[],
                     industry:'',
                     mainbusiness: '',
-        						contacts: '',
-        						contactaddress:'',
-        						addressdetail: '',
-        						postcode: '',
+					contacts: '',
+					contactaddress:'',
+					addressdetail: '',
+					postcode: '',
                     telephone: '',
-        						fax: '',
-        						email: ''
+					fax: '',
+					email: ''
                 },
                     ruleInline: {
                         region: [
@@ -1245,21 +1245,16 @@
             },
             postUsers:function(name)
               {
-                // GET /someUrl
-                /*var params = {
-	                "email":"123@123.com",
-	                "password_md5":"pw"
-                };*/
                 //var path='http://localhost:5050/api/account/login';
                 var path='http://localhost:5050/gm/account/companyinfo';
                 console.log(name);
-                this.$http.post(path,name).then(response => {
+                this.$http.post(path,formInline).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
-                  console.log(error.response.status);
+                  console.log(response.status);
                   console.log(response.body);
                   // error callback
                 });

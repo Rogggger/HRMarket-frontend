@@ -121,18 +121,18 @@
                             <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
                                     <h1>创建新用户</h1>
                                 </br>
-                                    <Form-Item prop="user">
+                                    <Form-Item prop="email">
                                         <i-input type="text" v-model="formInline.email" placeholder="新账号" clearable style="width: 300px">
                                             <icon type="ios-person-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
-                                    <Form-Item prop="password">
+                                    <Form-Item prop="password_md5">
                                         <i-input type="password" v-model="formInline.password_md5" placeholder="新密码" clearable style="width: 300px">
                                             <icon type="ios-locked-outline" slot="prepend"></icon>
                                         </i-input>
                                     </Form-Item>
                                     <Form-Item>
-                                        <i-button type="primary" @click="getUsers(formInline)">创建</i-button>
+                                        <i-button type="primary" @click="handleSubmit('formInline')">创建</i-button>
                                     </Form-Item>
                                 </i-form>
                     </div>
@@ -193,9 +193,44 @@
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('Success!');
+                        var path='http://localhost:5050/api/api/account/register';
+                        //var path='http://localhost:5050/gm/account/login';
+                        //var path='http://hr.yuanw.wang:5000';
+                        console.log(formInline);
+                        this.$http.post(path,formInline).then(response => {
+                            // get body data
+                            //this.tasks = response.body;
+                            this.tasks=response.body;
+                            console.log(this.tasks);
+                            /*this.$Message.success('创建成功！');
+                            switch(this.tasks.code)
+                            {
+                                case 0:
+                                    window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                                    break;
+                                
+                            }*/
+                        }, response => {
+                            // error callback
+                            var status=response.status;
+                            console.log(status);
+                            console.log(response.body);
+                            switch(status)
+                            {
+                                /*
+                                case 400:
+                                    this.$Message.error('创建失败，格式不正确！');
+                                    break;
+                                case 500:
+                                    this.$Message.error('登录失败，服务器内部错误！');
+                                    break;
+                                */
+
+                            }
+                        });
+
                     } else {
-                        this.$Message.error('Fail!');
+                        this.$Message.error('创建失败，格式不正确！');
                     }
                 })
             },
