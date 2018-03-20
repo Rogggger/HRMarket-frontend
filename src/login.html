@@ -159,19 +159,41 @@
 	                "email":"123@123.com",
 	                "password_md5":"pw"
                 };*/
-                //var path='http://localhost:5050/api/account/login';
+                var path='http://localhost:5050/api/api/account/login';
                 //var path='http://localhost:5050/gm/account/login';
-                var path='http://hr.yuanw.wang:5000';
+                //var path='http://hr.yuanw.wang:5000';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
+                  this.$Message.success('登录成功！');
+                  switch(this.tasks.code)
+                  {
+                      case 0:
+                        window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                        break;
+                        
+                  }
+                  
                   // get body data
                   //this.tasks = response.body;
 
                 }, response => {
-                  console.log(error.response.status);
+                var status=response.status;
+                  console.log(status);
                   console.log(response.body);
+                  switch(status)
+                  {
+                      case 400:
+                        this.$Message.error('登录失败，格式不正确！');
+                        break;
+                      case 500:
+                        this.$Message.error('登录失败，服务器内部错误！');
+                        break;
+
+
+                  }
+                  
                   // error callback
                 });
 

@@ -1,7 +1,7 @@
 {
   "login": {
-    "email": "266+6449+",
-    "password_md5": "4844888"
+    "email": "jvhuhuhuhfuvh",
+    "password_md5": "vrevevveve"
   },
   "register": {
     "is_admin": 2
@@ -10,29 +10,29 @@
     "is_admin": 3
   },
   "companyinfo": {
+    "region": "1",
+    "organizationcode": "1",
+    "enterprisename": "1",
     "value1": [
       "type1"
     ],
     "value2": [
-      "type1"
+      "type2"
     ],
-    "region": "山东",
-    "organizationcode": "110",
-    "enterprisename": "期",
     "industry": [
-      "a1",
-      "1"
+      "a2",
+      "8"
     ],
-    "mainbusiness": "哈哈哈哈",
-    "contacts": "齐若岩",
+    "mainbusiness": "by",
+    "contacts": "k",
     "contactaddress": [
-      "city1",
-      "1"
+      "city4",
+      "31"
     ],
-    "addressdetail": "发vdvfvfv",
-    "postcode": "101510",
-    "telephone": "13167383058",
-    "fax": "000000000000",
-    "email": "4@qq.com"
+    "addressdetail": "jg",
+    "postcode": "111111",
+    "telephone": "111111111111",
+    "fax": "111111111111",
+    "email": "1@qq.com"
   }
 }

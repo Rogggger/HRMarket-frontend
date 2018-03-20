@@ -64,7 +64,6 @@
 		margin-left:40%;
 		text-align: center;
 	}
-
 </style>
 </head>
 
@@ -179,7 +178,6 @@
 <script>
 	new Vue({
         el: '#app',
-
         data () {
                 return {
                     spanLeft: 5,
@@ -1154,11 +1152,8 @@
         								}
         							],
         						}
-
         						],
-
                 formInline: {
-
                     region: '',
                     organizationcode: '',
         						enterprisename: '',
@@ -1174,7 +1169,6 @@
         						fax: '',
         						email: ''
                 },
-
                     ruleInline: {
                         region: [
                             { required: true, message: 'Please fill in the region.', trigger: 'blur' }
@@ -1220,7 +1214,6 @@
                     }
                 }
             },
-
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -1265,14 +1258,11 @@
                   console.log(this.tasks);
                   // get body data
                   //this.tasks = response.body;
-
                 }, response => {
                   console.log(error.response.status);
                   console.log(response.body);
                   // error callback
                 });
-
-
               },
               getUsers:function()
               {
@@ -1282,7 +1272,6 @@
                   console.log(this.tasks);
                   // get body data
                   //this.tasks = response.body;
-
                 }, response => {
                   // error callback
                 });
