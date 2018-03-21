@@ -10,29 +10,53 @@
     "is_admin": 3
   },
   "companyinfo": {
-    "area": "山东",
-    "code": "5241",
-    "name": "齐氏公司",
+    "area": "d",
+    "code": "d",
+    "name": "s",
     "enterprise_scale": [
-      "type2"
+      "type3"
     ],
     "enterprise_kind": [
-      "type2"
+      "type3"
     ],
     "belong_to": [
-      "a3",
-      "14"
+      "a2",
+      "9"
     ],
-    "main_business": "买视频",
-    "contacts": "老齐同志",
+    "main_business": "sc",
+    "contacts": "a",
     "address": [
-      "city2",
-      "12"
+      "city3",
+      "23"
     ],
-    "addressdetail": "北路103号",
-    "postal_code": "101201",
-    "phone": "01061022222",
-    "fax": "010222565453",
-    "email": "4@qq.com"
+    "addressdetail": "ax",
+    "postal_code": "xxxxxx",
+    "phone": "xxxxxxxxxxxx",
+    "fax": "qqqqqqqqqqqq",
+    "email": "q@qq.com"
+  },
+  "enterpriseselect": {
+    "filing": "",
+    "check": "",
+    "otherreason": "",
+    "decreasetype": "",
+    "mainreason": "",
+    "mainreasondetail": "",
+    "secondreason": "",
+    "secondreasondetail": "",
+    "thirdreason": "",
+    "thirdreasondetail": ""
+  },
+  "enterprisedataupload": {
+    "filing": "7",
+    "check": "5",
+    "otherreason": "4",
+    "decreasetype": "",
+    "mainreason": "",
+    "mainreasondetail": "",
+    "secondreason": "",
+    "secondreasondetail": "",
+    "thirdreason": "",
+    "thirdreasondetail": ""
   }
 }

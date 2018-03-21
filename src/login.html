@@ -144,8 +144,8 @@
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        var path='http://localhost:5050/api/api/account/login';
-                        //var path='http://localhost:5050/gm/account/login';
+                        //var path='http://localhost:5050/api/api/account/login';
+                        var path='http://localhost:5050/gm/account/login';
                         //var path='http://hr.yuanw.wang:5000';
                         console.log(formInline);
                         this.$http.post(path,formInline).then(response => {

@@ -2,14 +2,15 @@
 <head>
 <meta charset="UTF-8">
 <title>创建新用户</title>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
+<!-- import Mock -->
+<script src="http://mockjs.com/dist/mock.js"></script>
+<!-- import Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
-
+<!-- import stylesheet -->
+<link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="https://unpkg.com/iview/dist/iview.min.js"></script>
 <style>
     .layout{
         *border: 1px solid #d7dde4;
@@ -193,8 +194,8 @@
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        var path='http://localhost:5050/api/api/account/register';
-                        //var path='http://localhost:5050/gm/account/login';
+                        //var path='http://localhost:5050/api/api/account/login';
+                        var path='http://localhost:5050/gm/account/register';
                         //var path='http://hr.yuanw.wang:5000';
                         console.log(formInline);
                         this.$http.post(path,formInline).then(response => {
@@ -202,14 +203,14 @@
                             //this.tasks = response.body;
                             this.tasks=response.body;
                             console.log(this.tasks);
-                            /*this.$Message.success('创建成功！');
+                            this.$Message.success('登录成功！');
                             switch(this.tasks.code)
                             {
-                                case 0:
+                                /*case 0:
                                     window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
-                                    break;
-                                
-                            }*/
+                                    break;*/
+
+                            }
                         }, response => {
                             // error callback
                             var status=response.status;
@@ -217,22 +218,21 @@
                             console.log(response.body);
                             switch(status)
                             {
-                                /*
-                                case 400:
-                                    this.$Message.error('创建失败，格式不正确！');
+                               /* case 400:
+                                    this.$Message.error('登录失败，格式不正确！');
                                     break;
                                 case 500:
                                     this.$Message.error('登录失败，服务器内部错误！');
                                     break;
-                                */
-
+                                    */
                             }
                         });
 
                     } else {
-                        this.$Message.error('创建失败，格式不正确！');
+                        this.$Message.error('登录失败，格式不正确！');
                     }
                 })
+
             },
             getUsers:function(name)
               {
