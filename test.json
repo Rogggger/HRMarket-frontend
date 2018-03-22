@@ -1,10 +1,11 @@
 {
   "login": {
-    "email": "jvhuhuhuhfuvh",
-    "password_md5": "vrevevveve"
+    "email": "45454545",
+    "password_md5": "77777777777"
   },
   "register": {
-    "is_admin": 2
+    "email": "4848488",
+    "password_md5": "2161616161616"
   },
   "record": {
     "is_admin": 3
@@ -48,9 +49,9 @@
     "thirdreasondetail": ""
   },
   "enterprisedataupload": {
-    "filing": "7",
-    "check": "5",
-    "otherreason": "4",
+    "filing": "2",
+    "check": "4",
+    "otherreason": "1",
     "decreasetype": "",
     "mainreason": "",
     "mainreasondetail": "",

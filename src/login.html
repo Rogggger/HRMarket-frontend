@@ -97,7 +97,7 @@
                                     </i-input>
                                 </Form-Item>
                                 <Form-Item>
-                                    <i-button type="primary" @click="handleSubmit('formInline')">登录</i-button>
+                                    <i-button type="primary" @click="handleSubmit('formInline',formInline)">登录</i-button>
                                 </Form-Item>
                             </i-form>
                         </div>
@@ -141,14 +141,15 @@
             }
     	},
         methods: {
-            handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+            handleSubmit(sname,name) {
+                console.log(sname);
+                this.$refs[sname].validate((valid) => {
                     if (valid) {
                         //var path='http://localhost:5050/api/api/account/login';
                         var path='http://localhost:5050/gm/account/login';
                         //var path='http://hr.yuanw.wang:5000';
-                        console.log(formInline);
-                        this.$http.post(path,formInline).then(response => {
+                        console.log(name);
+                        this.$http.post(path,name).then(response => {
                             // get body data
                             //this.tasks = response.body;
                             this.tasks=response.body;

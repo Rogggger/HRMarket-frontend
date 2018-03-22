@@ -66,7 +66,8 @@
 </style>
 </head>
 
-<body>
+<body >
+     
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
         <Row type="flex">
@@ -147,7 +148,13 @@
   </div>
 
 <script>
-	new Vue({
+    
+       /* window:onload=function()
+        {
+            app.getUsers();
+        }
+        */
+	var app=new Vue({
         el: '#app',
         
         data () {
@@ -190,7 +197,21 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
-            }
+            },
+            
+            getUsers:function()
+              {
+                //var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
+                var path='http://localhost:5050/gm/account/enterprisedataupload';
+                this.$http.get(path).then(response => {
+                  this.tasks=response.body;
+                  console.log(this.tasks);
+                  // get body data
+                  //this.tasks = response.body;
+                }, response => {
+                  // error callback
+                });
+              }
         }
     })
 </script>
