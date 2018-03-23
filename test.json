@@ -1,40 +1,40 @@
 {
   "login": {
-    "email": "45454545",
-    "password_md5": "77777777777"
+    "email": "151551",
+    "password_md5": "78878787878"
   },
   "register": {
-    "email": "4848488",
-    "password_md5": "2161616161616"
+    "email": "5451511",
+    "password_md5": "1515151515"
   },
   "record": {
     "is_admin": 3
   },
   "companyinfo": {
-    "area": "d",
-    "code": "d",
-    "name": "s",
+    "area": "山东",
+    "code": "cc",
+    "name": "w",
     "enterprise_scale": [
-      "type3"
+      "type2"
     ],
     "enterprise_kind": [
-      "type3"
+      "type2"
     ],
     "belong_to": [
-      "a2",
-      "9"
+      "a3",
+      "16"
     ],
-    "main_business": "sc",
-    "contacts": "a",
+    "main_business": "dc",
+    "contacts": "c",
     "address": [
       "city3",
       "23"
     ],
-    "addressdetail": "ax",
-    "postal_code": "xxxxxx",
-    "phone": "xxxxxxxxxxxx",
-    "fax": "qqqqqqqqqqqq",
-    "email": "q@qq.com"
+    "address_detail": "nvnjfnj",
+    "postal_code": "555555",
+    "phone": "888888888888",
+    "fax": "787878787872",
+    "email": "5@qq.com"
   },
   "enterpriseselect": {
     "filing": "",

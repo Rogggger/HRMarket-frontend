@@ -149,11 +149,7 @@
 
 <script>
     
-       /* window:onload=function()
-        {
-            app.getUsers();
-        }
-        */
+       
 	var app=new Vue({
         el: '#app',
         
@@ -188,6 +184,9 @@
             	return "min-height: "+contentHeight+"px";
             }
     	},
+        created: function () {
+			this.getUsers();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -202,7 +201,8 @@
             getUsers:function()
               {
                 //var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
-                var path='http://localhost:5050/gm/account/enterprisedataupload';
+                var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
+                //var path='http://localhost:5050/gm/account/enterprisedataupload';
                 this.$http.get(path).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);

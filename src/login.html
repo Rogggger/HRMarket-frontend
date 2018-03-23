@@ -145,8 +145,8 @@
                 console.log(sname);
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        //var path='http://localhost:5050/api/api/account/login';
-                        var path='http://localhost:5050/gm/account/login';
+                        var path='http://localhost:5050/api/account/login';
+                        //var path='http://localhost:5050/gm/account/login';
                         //var path='http://hr.yuanw.wang:5000';
                         console.log(name);
                         this.$http.post(path,name).then(response => {
@@ -155,29 +155,20 @@
                             this.tasks=response.body;
                             console.log(this.tasks);
                             this.$Message.success('登录成功！');
-                            switch(this.tasks.code)
+                            switch(this.tasks.is_admin)
                             {
-                                case 0:
+                                case 1:
                                     window.location.href="./enterpriseinformationmanagement.html";//跳转到企业信息页面
                                     break;
 
                             }
                         }, response => {
                             // error callback
-                            var status=response.status;
-                            console.log(status);
+                            /*var status=response.status;
+                            console.log(status);*/
                             console.log(response.body);
-                            switch(status)
-                            {
-                                case 400:
-                                    this.$Message.error('登录失败，格式不正确！');
-                                    break;
-                                case 500:
-                                    this.$Message.error('登录失败，服务器内部错误！');
-                                    break;
-
-
-                            }
+                            this.$Message.error(response.body.error);
+                                
                         });
 
                     } else {

@@ -133,7 +133,7 @@
                                     <Form-Item label="联系地址" prop="address">
                     										<Cascader :data="address" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
                     										</Cascader>
-                    										<i-input type="addressdetail" v-model="formInline.addressdetail" placeholder="详细地址" clearable style="width: 300px">
+                    										<i-input type="address_detail" v-model="formInline.address_detail" placeholder="详细地址" clearable style="width: 300px">
                                         </i-input>
                                     </Form-Item>
 									                  <Form-Item label="邮政编码" prop="postal_code">
@@ -179,7 +179,8 @@
 <script>
 	new Vue({
         el: '#app',
-        data () {
+        
+		data () {
                 return {
                     spanLeft: 5,
                     spanRight: 19,
@@ -1164,7 +1165,7 @@
                     main_business: '',
 					contacts: '',
 					address:'',
-					addressdetail: '',
+					address_detail: '',
 					postal_code: '',
                     phone: '',
 					fax: '',
@@ -1215,7 +1216,9 @@
                     }
                 }
             },
-    	computed:{
+    	
+		
+		computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
             },
@@ -1225,6 +1228,9 @@
             	return "min-height: "+contentHeight+"px";
             }
     	},
+		created: function () {
+			this.getUsers();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -1246,8 +1252,8 @@
             },
             postUsers:function(name)
               {
-                //var path='http://localhost:5050/api/account/login';
-                var path='http://localhost:5050/gm/account/companyinfo';
+                var path='http://localhost:5050/api/info/record';
+                //var path='http://localhost:5050/gm/account/companyinfo';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
@@ -1262,10 +1268,11 @@
               },
               getUsers:function()
               {
-                var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
+                var path='http://localhost:5050/gm/account/companyinfo';
                 this.$http.get(path).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
+				  this.formInline=response.body;
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
