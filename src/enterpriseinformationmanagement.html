@@ -1268,7 +1268,8 @@
               },
               getUsers:function()
               {
-                var path='http://localhost:5050/gm/account/companyinfo';
+				var path='http://localhost:5050/api/info/record';
+                //var path='http://localhost:5050/gm/account/companyinfo';
                 this.$http.get(path).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);

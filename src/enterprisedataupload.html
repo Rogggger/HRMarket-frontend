@@ -210,7 +210,7 @@
                 }
             },
             handleSubmit(name) {
-              {
+              
                 //var path='http://localhost:5050/api/account/login';
                 var path='http://localhost:5050/gm/account/enterprisedataupload';
                 console.log(name);
@@ -224,17 +224,23 @@
                   console.log(response.body);
                   // error callback
                 });
-              }
+              
             },
 
             handleSave(name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                })
+                //var path='http://localhost:5050/api/account/login';
+                var path='http://localhost:5050/gm/account/enterprisedataupload';
+                console.log(name);
+                this.$http.post(path,name).then(response => {
+                  this.tasks=response.body;
+                  console.log(this.tasks);
+                  // get body data
+                  //this.tasks = response.body;
+                }, response => {
+                  console.log(response.status);
+                  console.log(response.body);
+                  // error callback
+                });
             }
         }
     })
