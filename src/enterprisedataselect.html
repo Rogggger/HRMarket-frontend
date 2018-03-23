@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
 <!-- 先引入 Vue -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
-
 <style>
     .layout{
         *border: 1px solid #d7dde4;
@@ -169,11 +169,13 @@
                         secondreasondetail: '',
                         thirdreason: '',
                         thirdreasondetail: ''
-                    },
+                    }
                     
                 }
             },
-            
+        created: function () {
+			this.getUsers();
+		},   
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -184,9 +186,7 @@
             	return "min-height: "+contentHeight+"px";
             }
     	},
-        created: function () {
-			this.getUsers();
-		},
+        
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -197,21 +197,22 @@
                     this.spanRight = 19;
                 }
             },
-            
             getUsers:function()
               {
-                //var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
-                var path='http://localhost:5050/gm/account/login?email=1222&password_md5=pw';
-                //var path='http://localhost:5050/gm/account/enterprisedataupload';
+                var path='http://localhost:5050/gm/account/enterprisedataupload';
                 this.$http.get(path).then(response => {
+                    console.log("正常")
                   this.tasks=response.body;
                   console.log(this.tasks);
+				  this.formInline=response.body;
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
+                    console.log("异常")
                   // error callback
                 });
               }
+            
         }
     })
 </script>
