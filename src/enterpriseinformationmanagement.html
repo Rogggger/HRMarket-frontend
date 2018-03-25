@@ -1277,7 +1277,8 @@
               },
               getUsers:function()
               {
-                this.$http.get(companymanage_path).then(response => {
+				var path=base_path+'info/record';
+                this.$http.get(path).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
 				  this.formInline=response.body;
