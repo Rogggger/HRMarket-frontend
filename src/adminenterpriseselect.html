@@ -117,9 +117,6 @@
                             <span class="layout-text">注册</span>
                         </template>
                     </Submenu>
-					
-					
-					
                 </i-menu>
             </i-col>
             <i-col :span="spanRight">
@@ -128,7 +125,6 @@
                         <Icon type="navicon" size="32"></Icon>
                     </i-button>
 					<span class="system-title">山东省人力资源市场数据采集系统</span>
-					
                 </div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
@@ -138,73 +134,73 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="105" :rules="ruleInline" style="width: 300px" >
+						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
 							<h1>企业信息管理</h1>
 							<br>
-							<Form-Item label="请输入企业名称">
-								<i-input type="enterprise_name" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
+							<Form-Item label="请输入企业名称" prop="enterprise_name">
+								<i-input type="text" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<i-button type="primary" @click="postUsers(formInline)" style="width: 150px" icon="ios-search">查询</i-button>
 							<br><br><br><br>
 							<Form-Item label="所属地区">
-								<i-input type="area" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="组织机构代码">
-								<i-input type="code" v-model="formInline.code" placeholder="组织机构代码" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.code" placeholder="组织机构代码" clearable style="width: 300px">
 									<icon type="ios-briefcase" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="企业名称">
-								<i-input type="name" v-model="formInline.name" placeholder="企业名称" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.name" placeholder="企业名称" clearable style="width: 300px">
 									<icon type="ios-home-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="企业性质">
-								<i-input type="enterprisetype1" v-model="formInline.enterprisetype1" placeholder="企业规模" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.enterprisetype1" placeholder="企业规模" clearable style="width: 300px">
 									<icon type="ios-pie-outline" slot="prepend"></icon>
 								</i-input>
-								<i-input type="enterprisetype2" v-model="formInline.enterprisetype2" placeholder="企业经济类型" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.enterprisetype2" placeholder="企业经济类型" clearable style="width: 300px">
 									<icon type="ios-book-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="所属行业">
-								<i-input type="belong_to" v-model="formInline.belong_to" placeholder="所属行业" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.belong_to" placeholder="所属行业" clearable style="width: 300px">
 									<icon type="ios-bookmarks-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="主要经营业务">
-								<i-input type="main_business" v-model="formInline.main_business" placeholder="主要经营业务" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.main_business" placeholder="主要经营业务" clearable style="width: 300px">
 									<icon type="ios-briefcase-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="联系人">
-								<i-input type="contacts" v-model="formInline.contacts" placeholder="联系人" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.contacts" placeholder="联系人" clearable style="width: 300px">
 									<icon type="ios-person-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="联系地址">
-								<i-input type="address" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
 									<icon type="ios-list" slot="prepend"></icon>
 								</i-input>
-								<i-input type="address_detail" v-model="formInline.address_detail" placeholder="详细地址" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.address_detail" placeholder="详细地址" clearable style="width: 300px">
 									<icon type="ios-list-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="邮政编码">
-								<i-input type="postal_code" v-model="formInline.postal_code" placeholder="邮政编码" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.postal_code" placeholder="邮政编码" clearable style="width: 300px">
 									<icon type="android-mail" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="联系电话">
-								<i-input type="phone" v-model="formInline.phone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.phone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
 									<icon type="ios-telephone-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="传真">
-								<i-input type="fax" v-model="formInline.fax" placeholder="格式为（区号）+电话" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.fax" placeholder="格式为（区号）+电话" clearable style="width: 300px">
 									<icon type="ios-printer-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
