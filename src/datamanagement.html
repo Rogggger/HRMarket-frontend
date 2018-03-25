@@ -120,12 +120,12 @@
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>数据管理</h1>
 							</br>
-							<Form-Item label="请输入企业名称">
-								<i-input type="enterprise_name" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
+							<Form-Item label="请输入企业名称" prop="enterprise_name">
+								<i-input type="text" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="查询时间">
-								<i-input type="select_time" v-model="formInline.select_time" placeholder="查询时间" clearable style="width: 300px">
+							<Form-Item label="查询时间" prop="select_time">
+								<i-input type="text" v-model="formInline.select_time" placeholder="查询时间" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>							
 							
