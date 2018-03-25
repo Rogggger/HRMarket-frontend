@@ -91,12 +91,12 @@
 						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
 							<h1>企业信息管理</h1>
 							</br>
-							<!--<Form-Item label="所属地区" prop="area" v-if =' commeNum > 0 '>
+							<Form-Item label="所属地区" prop="area" v-if =' flag == 1 '>
 								<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable disabled style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>
-							</Form-Item>-->
-							<Form-Item label="所属地区" prop="area">
+							</Form-Item>
+							<Form-Item label="所属地区" prop="area" v-if =' flag != 1 '>
 								<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>
@@ -188,6 +188,7 @@
         
 		data () {
                 return {
+					flag:0,
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -1281,8 +1282,11 @@
                   console.log(this.tasks);
 				  this.formInline=response.body;
 				  console.log("this.formInline.area");
-				  if(this.formInline.area!=NULL)
-				  this.formInline.area=disable;
+				  if(this.formInline.area)
+				  	{
+						  flag=1;
+						  console.log(flag);
+					  }
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
