@@ -165,7 +165,7 @@
 							</Form-Item>
 							<br>
 							<Form-Item>
-								<i-button type="primary" @click="handleSubmit('formInline')" >修改提交</i-button>
+								<i-button type="primary" @click="handleSubmit('formInline',formInline)" >修改提交</i-button>
 									<a href="enterpriseuser.html">
 										<i-button type="primary" >放弃修改并返回</i-button>
 									</a>
@@ -1251,37 +1251,38 @@
                     this.spanRight = 19;
                 }
             },
-            handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+            handleSubmit(sname,name) {
+                this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('Success!');
+
+						var path=base_path+'info/record';
+						console.log(name);
+						this.$http.post(path,name).then(response => {
+						this.$Message.success('修改成功!');
+						this.tasks=response.body;
+						console.log(this.tasks);
+						// get body data
+						//this.tasks = response.body;
+						}, response => {
+						console.log(response.status);
+						console.log(response.body);
+						// error callback
+						});
                     } else {
-                        this.$Message.error('Fail!');
+                        this.$Message.error('修改失败');
                     }
                 })
             },
-            postUsers:function(name)
-              {
-				var path=base_path+'info/record';
-                console.log(name);
-                this.$http.post(path,name).then(response => {
-                  this.tasks=response.body;
-                  console.log(this.tasks);
-                  // get body data
-                  //this.tasks = response.body;
-                }, response => {
-                  console.log(response.status);
-                  console.log(response.body);
-                  // error callback
-                });
-              },
+            
               getUsers:function()
               {
 				var path=base_path+'info/record';
                 this.$http.get(path).then(response => {
-                  this.tasks=response.body;
                   console.log(this.tasks);
 				  this.formInline=response.body;
+				  console.log("this.formInline.area");
+				  if(this.formInline.area!=NULL)
+				  this.formInline.area=disable;
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
