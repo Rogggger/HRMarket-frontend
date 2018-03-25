@@ -170,13 +170,13 @@
                             this.$Message.success('登录成功！');
                             switch (this.tasks.is_admin) {
                                 case 0://普通用户
-                                    window.location.href = "./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                                    window.location.href = "./src/enterpriseuser.html";
                                     break;
                                 case 1://市级用户
-                                    window.location.href = "./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                                    window.location.href = "./src/adminuser.html";
                                     break;
                                 case 2://省级用户
-                                    window.location.href = "./enterpriseinformationmanagement.html";//跳转到企业信息页面
+                                    window.location.href = "./src/adminuser.html";
                                     break;
                             }
                         }, response => {
