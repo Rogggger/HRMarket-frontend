@@ -196,9 +196,9 @@
             handleSubmit(sname,name) {
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        
+                        var path=base_path+'account/register';
                         console.log(name);
-                        this.$http.post(register_path,name).then(response => {
+                        this.$http.post(path,name).then(response => {
                             // get body data
                             //this.tasks = response.body;
                             this.tasks=response.body;

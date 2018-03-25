@@ -210,8 +210,9 @@
                 }
             },
             handleSubmit(name) {
+                var path=base_path+'account/enterprisedataupload';
                 console.log(name);
-                this.$http.post(companyupload_path,name).then(response => {
+                this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data
@@ -225,8 +226,9 @@
             },
 
             handleSave(name) {
+                var path=base_path+'account/enterprisedataupload';
                 console.log(name);
-                this.$http.post(companyupload_path,name).then(response => {
+                this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data

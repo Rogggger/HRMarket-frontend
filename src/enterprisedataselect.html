@@ -199,7 +199,8 @@
             },
             getUsers:function()
               {
-                this.$http.get(companyupload_path).then(response => {
+                var path=base_path+'account/enterprisedataupload';
+                this.$http.get(path).then(response => {
                     console.log("正常")
                   this.tasks=response.body;
                   console.log(this.tasks);

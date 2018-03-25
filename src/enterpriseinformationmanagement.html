@@ -1253,8 +1253,9 @@
             },
             postUsers:function(name)
               {
+				var path=base_path+'info/record';
                 console.log(name);
-                this.$http.post(companymanage_path,name).then(response => {
+                this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data
