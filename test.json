@@ -8,26 +8,7 @@
     "password_md5": "123456"
   },
   "record": {
-    "enterprise_scale": "type3",
-    "enterprise_kind": "type3",
-    "belong_to": [
-      "a2",
-      "7"
-    ],
-    "address": [
-      "city7",
-      "53"
-    ],
-    "area": "hfjdg",
-    "code": "gtgt",
-    "name": "gt4g",
-    "main_business": "gg",
-    "contacts": "rgeg",
-    "address_detail": "greg",
-    "postal_code": "gggggg",
-    "phone": "gggggggggggg",
-    "fax": "wwwwwwwwwwww",
-    "email": "q@qq.com"
+    
   },
   "enterpriseselect": {
     "filing": "",

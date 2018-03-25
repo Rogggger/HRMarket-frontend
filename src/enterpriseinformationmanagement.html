@@ -91,16 +91,21 @@
 						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
 							<h1>企业信息管理</h1>
 							</br>
-							<Form-Item label="所属地区" prop="area" v-if =' flag == 1 '>
+							<!-- <Form-Item label="所属地区" prop="area" v-if =' flag > 0 '>
 								<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable disabled style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
-							<Form-Item label="所属地区" prop="area" v-if =' flag != 1 '>
+							<Form-Item label="所属地区" prop="area" v-else>
 								<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>
-							</Form-Item>
+							</Form-Item> -->
+							<Form-Item label="所属地区" prop="area">
+									<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable :disabled="flag > 0" style="width: 300px">
+										<icon type="earth" slot="prepend"></icon>
+									</i-input>
+								</Form-Item>
 							<Form-Item label="组织机构代码" prop="code">
 								<i-input type="text" v-model="formInline.code" placeholder="组织机构代码" clearable style="width: 300px">
 									<icon type="ios-briefcase" slot="prepend"></icon>
@@ -188,6 +193,7 @@
         
 		data () {
                 return {
+					flag:0,
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -1239,7 +1245,6 @@
             }
     	},
 		created: function () {
-			var flag=0;
 			this.getUsers();
 		},
         methods: {
@@ -1283,7 +1288,7 @@
 				  this.formInline=response.body;
 				  if(this.formInline.area)
 				  	{
-						  flag=1;
+						  this.flag=1;
 						  console.log(flag);
 					  }
                   // get body data
