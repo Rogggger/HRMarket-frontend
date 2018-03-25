@@ -210,11 +210,8 @@
                 }
             },
             handleSubmit(name) {
-              
-                //var path='http://localhost:5050/api/account/login';
-                var path='http://localhost:5050/gm/account/enterprisedataupload';
                 console.log(name);
-                this.$http.post(path,name).then(response => {
+                this.$http.post(companyupload_path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data
@@ -228,10 +225,8 @@
             },
 
             handleSave(name) {
-                //var path='http://localhost:5050/api/account/login';
-                var path='http://localhost:5050/gm/account/enterprisedataupload';
                 console.log(name);
-                this.$http.post(path,name).then(response => {
+                this.$http.post(companyupload_path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data

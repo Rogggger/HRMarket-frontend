@@ -9,7 +9,8 @@
     <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
-
+<!--import path-->
+<script src=".\path.js"></script>
 <style>
     .layout{
         *border: 1px solid #d7dde4;
@@ -1252,10 +1253,8 @@
             },
             postUsers:function(name)
               {
-                var path='http://localhost:5050/api/info/record';
-                //var path='http://localhost:5050/gm/account/companyinfo';
                 console.log(name);
-                this.$http.post(path,name).then(response => {
+                this.$http.post(companymanage_path,name).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
                   // get body data
@@ -1268,9 +1267,7 @@
               },
               getUsers:function()
               {
-				var path='http://localhost:5050/api/info/record';
-                //var path='http://localhost:5050/gm/account/companyinfo';
-                this.$http.get(path).then(response => {
+                this.$http.get(companymanage_path).then(response => {
                   this.tasks=response.body;
                   console.log(this.tasks);
 				  this.formInline=response.body;

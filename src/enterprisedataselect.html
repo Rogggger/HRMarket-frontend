@@ -199,8 +199,7 @@
             },
             getUsers:function()
               {
-                var path='http://localhost:5050/gm/account/enterprisedataupload';
-                this.$http.get(path).then(response => {
+                this.$http.get(companyupload_path).then(response => {
                     console.log("正常")
                   this.tasks=response.body;
                   console.log(this.tasks);
