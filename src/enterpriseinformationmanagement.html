@@ -188,7 +188,6 @@
         
 		data () {
                 return {
-					flag:0,
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -1240,6 +1239,7 @@
             }
     	},
 		created: function () {
+			var flag=0;
 			this.getUsers();
 		},
         methods: {
@@ -1281,7 +1281,6 @@
                 this.$http.get(path).then(response => {
                   console.log(this.tasks);
 				  this.formInline=response.body;
-				  console.log("this.formInline.area");
 				  if(this.formInline.area)
 				  	{
 						  flag=1;
