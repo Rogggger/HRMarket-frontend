@@ -246,7 +246,7 @@
             },
             getUsers:function()
               {
-                var path=base_path+'account/enterprisedataupload';
+                var path=base_path+'data/record';
                 this.$http.get(path).then(response => {
                     console.log("正常")
                   this.tasks=response.body;

@@ -256,7 +256,7 @@
                 }
             },
             handleSubmit(name) {
-                var path=base_path+'account/enterprisedataupload';
+                var path=base_path+'data/record';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
@@ -272,7 +272,7 @@
             },
 
             handleSave(name) {
-                var path=base_path+'account/enterprisedataupload';
+                var path=base_path+'data/record';
                 console.log(name);
                 this.$http.post(path,name).then(response => {
                   this.tasks=response.body;
