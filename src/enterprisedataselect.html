@@ -134,6 +134,7 @@
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
                         <Date-Picker v-model="date_value" type="daterange" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
+                        <i-button type="primary" @click="postDate()">查询</i-button>
                         <i-table :columns="columns" :data="formInline"></i-table>
                     </div>
                 </div>
@@ -212,9 +213,7 @@
                     
                 }
             },
-        created: function () {
-			this.getUsers();
-		},   
+        
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -236,22 +235,33 @@
                     this.spanRight = 19;
                 }
             },
-            getUsers:function()
-              {
+
+            formatDate:function(date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let monthZero = month < 10 ? '0' : '';
+            let day = date.getDate();
+            let dayZero = day < 10 ? '0' : '';
+
+            return year + '-' + monthZero + month + '-' + dayZero + day;
+        },
+            
+              postDate:function(){
                 var path=base_path+'data/record';
-                this.$http.get(path).then(response => {
-                    console.log("正常")
-                  this.tasks=response.body;
+                var body = {
+                    start:this.formatDate(this.date_value[0]),
+                    end:this.formatDate(this.date_value[1])
+                };
+                this.$http.post(path,body).then(response => {
+                    console.log("正常"),
+                    this.tasks=response.body;
                   console.log(this.tasks);
-				  this.formInline=response.body;
-                  // get body data
-                  //this.tasks = response.body;
+                  this.formInline=response.body;
                 }, response => {
                     console.log("异常")
                   // error callback
                 });
               },
-			
 			handleSubmitExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
