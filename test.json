@@ -7,6 +7,9 @@
     "email": "qiruoyan",
     "password_md5": "123456"
   },
+  "notification":{
+
+  },
   "record": {
     "area": "山东",
     "code": "444",
