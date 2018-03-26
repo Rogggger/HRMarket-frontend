@@ -1,4 +1,5 @@
 {
   "/account/*": "/$1",
-  "/info/record": "/record"
+  "/info/record": "/record",
+  "/data/record":"/data_record"
 }

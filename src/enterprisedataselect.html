@@ -133,56 +133,8 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
-							<h1>数据查询</h1>
-							</br>
-							<Form-Item label="建档期就业人数" prop="filing">
-								<i-input type="text" v-model="formInline.filing" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="调查期就业人数" prop="check">
-								<i-input type="text" v-model="formInline.check" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="其他原因" prop="other_reason">
-								<i-input type="text" v-model="formInline.other_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="就业人数减少类型">
-								<i-input type="text" v-model="formInline.decrease_type" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因">
-								<i-input type="text" v-model="formInline.main_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因说明">
-								<i-input type="text" v-model="formInline.main_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因">
-								<i-input type="text" v-model="formInline.second_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因说明">
-								<i-input type="text" v-model="formInline.second_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因">
-								<i-input type="text" v-model="formInline.third_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因说明">
-								<i-input type="text" v-model="formInline.third_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<br>
-							<Form-Item>
-								<a href="enterpriseuser.html">
-									<i-button type="primary" style="width: 200px" >返回</i-button>
-								</a>
-							</Form-Item>
-						</i-form>
+                        <Date-Picker v-model="date_value" type="daterange" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
+                        <i-table :columns="columns" :data="formInline"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -205,18 +157,58 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
-                    formInline: {
-                        filing: '',
-                        check: '',
-                        other_reason: '',
-                        decrease_type: '',
-                        main_reason: '',
-                        main_reason_detail: '',
-                        second_reason: '',
-                        second_reason_detail: '',
-                        third_reason: '',
-                        third_reason_detail: ''
+                    columns: [
+                    {
+                        title: '建档期就业人数',
+                        key: 'filing'
+                    },
+                    {
+                        title: '调查期就业人数',
+                        key: 'check'
+                    },
+                    {
+                        title: '其他原因',
+                        key: 'other_reason'
+                    },
+                    {
+                        title: '就业人数减少类型',
+                        key: 'decrease_type'
+                    },
+                    {
+                        title: '主要原因',
+                        key: 'main_reason'
+                    },
+                    {
+                        title: '主要原因说明',
+                        key: 'main_reason_detail'
+                    },
+                    {
+                        title: '次要原因',
+                        key: 'second_reason'
+                    },
+                    {
+                        title: '次要原因说明',
+                        key: 'second_reason_detail'
+                    },
+                    {
+                        title: '第三原因',
+                        key: 'third_reason'
+                    },
+                    {
+                        title: '第三原因说明',
+                        key: 'third_reason_detail'
+                    },
+                    {
+                        title: '状态',
+                        key: 'status',
+                        render: (h, params) => {
+                            var status=['保存未上报','上报未审核','通过审核','审核不通过'];
+                            return status[params.row.status];
+                        }
                     }
+                ],
+                    formInline: [],
+                    date_value: ['2018-03-26', '2016-02-15']
                     
                 }
             },
