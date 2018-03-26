@@ -8,7 +8,26 @@
     "password_md5": "123456"
   },
   "record": {
-    
+    "area": "山东",
+    "code": "444",
+    "name": "frg",
+    "enterprise_scale": "type2",
+    "enterprise_kind": "type3",
+    "belong_to": [
+      "a4",
+      "46"
+    ],
+    "main_business": "ergt",
+    "contacts": "fnjgnb",
+    "address": [
+      "city3",
+      "23"
+    ],
+    "address_detail": "fgh",
+    "postal_code": "888888",
+    "phone": "444444444444",
+    "fax": "777777777777",
+    "email": "2@qq.com"
   },
   "enterpriseselect": {
     "filing": "",
