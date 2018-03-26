@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/iview/dist/iview.min.js"></script>
     <!--import path-->
     <script src=".\path.js"></script>
+
 <style>
     .layout{
         *border: 1px solid #d7dde4;
@@ -21,6 +22,26 @@
         border-radius: 4px;
         overflow: hidden;
     }
+	.layout-logo{
+		width: 180px;
+		height: 30px;
+		background: #5b6270;
+		border-radius: 3px;
+		float: left;
+		position: relative;
+		top: 15px;
+		left: 20px;
+	}
+	.layout-exit{
+		width: 100px;
+		height: 30px;
+		background: #5b6270;
+		float: right;
+		position: relative;
+		top: 15px;
+		right: 20px;
+		text-align: right;
+	}
     .layout-breadcrumb{
         padding: 10px 15px 0;
     }
@@ -41,10 +62,11 @@
     }
     .layout-menu-left{
         background: #464c5b;
+		width: 220px;
     }
     .layout-header{
-        height: 50px;
-        background: #fff;
+        height: 60px;
+        background: #313540;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
     }
     .layout-ceiling-main a{
@@ -61,6 +83,8 @@
 		font-size:28px; 
 		font-family:"LiSu",隶书;
 		line-height:50px;
+		padding-left:230px;
+		color: #fff;
     }
     #form{
 		margin-top:100px;
@@ -73,14 +97,34 @@
 <body>
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-        <Row type="flex">
-            <i-col :span="24">
-                <div class="layout-header">
-                    <i-button type="text">
-                        <Icon type="navicon" size="32"></Icon>
-                    </i-button>
-					<span class="system-title">山东省人力资源市场数据采集系统</span>
-                </div>
+		<div class="layout-exit">
+			<i-button type="primary" @click="handleSubmitExit()" style="width: 100px">退出系统</i-button>
+		</div>
+		<div class="layout-header">
+			<div class="layout-logo"></div>
+			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+		</div>
+
+		<Row type="flex">
+            <i-col :span="spanLeft" class="layout-menu-left">
+                <i-menu active-name="1-3" theme="dark" width="auto" :open-names="['1']">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">企业用户</span>
+                        </template>
+						<Menu-item name="1-1">
+							<a href="enterpriseinformationmanagement.html">修改企业信息</a>
+						</Menu-item>
+						<Menu-item name="1-2">
+							<a href="enterprisedataselect.html">数据查询</a>
+						</Menu-item>
+						<Menu-item name="1-3">数据填报
+						</Menu-item>
+                    </Submenu>
+                </i-menu>
+            </i-col>
+            <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="enterpriseuser.html">企业用户</Breadcrumb-item>
@@ -100,36 +144,36 @@
 								<i-input type="text" v-model="formInline.check" placeholder="填写本次调查期当时的监测点就业人数 " clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="其他原因" prop="otherreason">
-								<i-input type="text" v-model="formInline.otherreason" clearable style="width: 300px">
+							<Form-Item label="其他原因" prop="other_reason">
+								<i-input type="text" v-model="formInline.other_reason" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="就业人数减少类型">
-								<i-input type="text" v-model="formInline.decreasetype" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.decrease_type" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="主要原因">
-								<i-input type="text" v-model="formInline.mainreason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.main_reason" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="主要原因说明">
-								<i-input type="text" v-model="formInline.mainreasondetail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.main_reason_detail" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="次要原因">
-								<i-input type="text" v-model="formInline.secondreason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.second_reason" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="次要原因说明">
-								<i-input type="text" v-model="formInline.secondreasondetail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.second_reason_detail" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="第三原因">
-								<i-input type="text" v-model="formInline.thirdreason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.third_reason" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="第三原因说明">
-								<i-input type="text" v-model="formInline.thirdreasondetail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.third_reason_detail" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>						
 							<br>
@@ -168,14 +212,14 @@
                     formInline: {
                         filing: '',
                         check: '',
-                        otherreason: '',
-                        decreasetype: '',
-                        mainreason: '',
-                        mainreasondetail: '',
-                        secondreason: '',
-                        secondreasondetail: '',
-                        thirdreason: '',
-                        thirdreasondetail: ''
+                        other_reason: '',
+                        decrease_type: '',
+                        main_reason: '',
+                        main_reason_detail: '',
+                        second_reason: '',
+                        second_reason_detail: '',
+                        third_reason: '',
+                        third_reason_detail: ''
                     },
                     ruleInline: {
                         filing: [
@@ -184,7 +228,7 @@
                         check: [
                             { required: true, message: '请输入调查期就业人数！', trigger: 'blur' }
                         ],
-						otherreason: [
+						other_reason: [
                             { required: true, message: '请输入其他原因！', trigger: 'blur' }
                         ]
                     }
@@ -238,6 +282,17 @@
                 }, response => {
                   console.log(response.status);
                   console.log(response.body);
+                  // error callback
+                });
+            },
+			
+			handleSubmitExit() {
+				var path=base_path+'account/logout';
+                this.$http.get(path).then(response => {
+                   window.location.href="../login.html";//跳转到登录页面
+                  // get body data
+                  //this.tasks = response.body;
+                }, response => {
                   // error callback
                 });
             }

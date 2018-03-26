@@ -2,12 +2,15 @@
 <head>
 <meta charset="UTF-8">
 <title>管理员用户</title>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
+<!-- import Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
+<!-- import stylesheet -->
+<link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="https://unpkg.com/iview/dist/iview.min.js"></script>
+<!--import path-->
+<script src=".\path.js"></script>
 
 <style>
     .layout{
@@ -17,6 +20,27 @@
         border-radius: 4px;
         overflow: hidden;
     }
+	.layout-logo{
+		width: 180px;
+		height: 30px;
+		background: #5b6270;
+		border-radius: 3px;
+		float: left;
+		position: relative;
+		top: 15px;
+		left: 20px;
+	}
+	.layout-exit{
+		width: 100px;
+		height: 30px;
+		background: #5b6270;
+		float: right;
+		position: relative;
+		top: 15px;
+		right: 20px;
+		text-align: right;
+	}
+	
     .layout-breadcrumb{
         padding: 10px 15px 0;
     }
@@ -37,10 +61,11 @@
     }
     .layout-menu-left{
         background: #464c5b;
+		width: 220px;
     }
     .layout-header{
-        height: 50px;
-        background: #fff;
+        height: 60px;
+        background: #313540;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
     }
     .layout-ceiling-main a{
@@ -57,6 +82,8 @@
 		font-size:28px; 
 		font-family:"LiSu",隶书;
 		line-height:50px;
+		padding-left:230px;
+		color: #fff;
     }
     #form{
 		margin-top:100px;
@@ -69,62 +96,88 @@
 <body>
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-        <Row type="flex">
-            <i-col :span="24">
-                <div class="layout-header">
-                    <i-button type="text">
-                        <Icon type="navicon" size="32"></Icon>
-                    </i-button>
-					<span class="system-title">山东省人力资源市场数据采集系统</span>
-                </div>
+		<div class="layout-exit">
+			<i-button type="primary" @click="handleSubmit()" style="width: 100px">退出系统</i-button>
+		</div>
+		<div class="layout-header">
+			<div class="layout-logo"></div>
+			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+		</div>
+
+		<Row type="flex">
+            <i-col :span="spanLeft" class="layout-menu-left">
+                <i-menu  theme="dark" width="auto" :open-names="['1']">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">企业管理</span>
+                        </template>
+						<Menu-item name="1-1">
+							<a href="adminenterpriseselect.html">企业查询</a>
+						</Menu-item>
+						<Menu-item name="1-2">
+							<a href="createnewuser.html">创建新用户</a>
+						</Menu-item>
+						<Menu-item name="1-3">
+							<a href="sampleanalysis.html">取样分析</a>
+						</Menu-item>
+                    </Submenu>
+					<Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">数据管理</span>
+                        </template>
+						<Menu-item name="2-1">
+							<a href="datamanagement.html">数据处理</a>
+						</Menu-item>
+						<Menu-item name="2-2">
+							<a href="datasummary.html">数据汇总</a>
+						</Menu-item>
+						<Menu-item name="2-3">
+							<a href="graph.html">图表分析</a>
+						</Menu-item>
+                    </Submenu>
+					<Submenu name="3">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">通知中心</span>
+                        </template>
+						<Menu-item name="3-1">
+							<a href="notice.html">发布通知</a>
+						</Menu-item>
+						<Menu-item name="3-2">
+							<a href="noticeviewing.html">浏览通知</a>
+						</Menu-item>
+                    </Submenu>
+					<Submenu name="4">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">系统管理</span>
+                        </template>
+						<Menu-item name="4-1">
+							<a href="reportingdeadline.html">上报时限</a>
+						</Menu-item>
+						<Menu-item name="4-2">
+							<a href="usermanagement.html">用户管理</a>
+						</Menu-item>
+						<Menu-item name="4-3">
+							<a href="charactermanagement.html">角色管理</a>
+						</Menu-item>
+						<Menu-item name="4-4">
+							<a href="systemmonitoring.html">系统监控</a>
+						</Menu-item>
+                    </Submenu>
+                </i-menu>
+            </i-col>
+            <i-col :span="spanRight">
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
 						<i-form id="form" ref="formInline" :model="formInline"   style="width: 300px" >
 							<h1>管理员用户</h1>
 							</br></br>
 							<Form-Item>
-								<a href="adminenterpriseselect.html">
-									<i-button type="primary" style="width: 300px">企业查询</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href="datamanagement.html">
-									<i-button type="primary"  style="width: 300px">数据处理</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href="datasummary.html">
-									<i-button type="primary"  style="width: 300px">数据汇总</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href=".html">
-									<i-button type="primary" style="width: 300px">多维分析</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href=".html">
-									<i-button type="primary"  style="width: 300px">图表分析</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href="notice.html">
-									<i-button type="primary"  style="width: 300px">发布通知</i-button>
-								</a>
-							</Form-Item><Form-Item>
-								<a href="systemmanagement.html">
-									<i-button type="primary" style="width: 300px">系统管理</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href="createnewuser.html">
-									<i-button type="primary"  style="width: 300px">注册</i-button>
-								</a>
-							</Form-Item>
-							<Form-Item>
-								<a href=".html">
-									<i-button type="primary"  style="width: 300px">返回</i-button>
-								</a>
+								
+								
 							</Form-Item>
 						</i-form>
                     </div>
@@ -175,6 +228,16 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
+            },
+			handleSubmit() {
+				var path=base_path+'account/logout';
+                this.$http.get(path).then(response => {
+                   window.location.href="../login.html";//跳转到登录页面
+                  // get body data
+                  //this.tasks = response.body;
+                }, response => {
+                  // error callback
+                });
             }
         }
     })
