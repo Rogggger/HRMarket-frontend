@@ -1325,16 +1325,12 @@
             handleSubmitExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
-<<<<<<< HEAD
                   console.log(this.tasks);
 				  this.formInline=response.body;
 				  if(this.formInline.area)
 				  	{
 						  this.flag=1;
 					  }
-=======
-                   window.location.href="./login.html";//跳转到登录页面
->>>>>>> 612e454a9102a9cc1346d645b0fb5012d64e143d
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
