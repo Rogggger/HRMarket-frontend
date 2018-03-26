@@ -2,15 +2,15 @@
 <head>
 <meta charset="UTF-8">
 <title>企业信息管理</title>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
+<!-- import Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
+<!-- import stylesheet -->
+<link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+<!-- import iView -->
+<script src="https://unpkg.com/iview/dist/iview.min.js"></script>
 <!--import path-->
-<script src=".\path.js"></script>
+<script src=".\src\path.js"></script>
 
 <style>
     .layout{
@@ -20,6 +20,26 @@
         border-radius: 4px;
         overflow: hidden;
     }
+	.layout-logo{
+		width: 180px;
+		height: 30px;
+		background: #5b6270;
+		border-radius: 3px;
+		float: left;
+		position: relative;
+		top: 15px;
+		left: 20px;
+	}
+	.layout-exit{
+		width: 100px;
+		height: 30px;
+		background: #5b6270;
+		float: right;
+		position: relative;
+		top: 15px;
+		right: 20px;
+		text-align: right;
+	}
     .layout-breadcrumb{
         padding: 10px 15px 0;
     }
@@ -40,10 +60,11 @@
     }
     .layout-menu-left{
         background: #464c5b;
+		width: 220px;
     }
     .layout-header{
-        height: 50px;
-        background: #fff;
+        height: 60px;
+        background: #313540;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
     }
     .layout-ceiling-main a{
@@ -57,9 +78,11 @@
     }
 	.system-title{
 		letter-spacing:10px;
-		font-size:28px;
+		font-size:28px; 
 		font-family:"LiSu",隶书;
 		line-height:50px;
+		padding-left:230px;
+		color: #fff;
     }
     #form{
 		margin-top:100px;
@@ -72,14 +95,34 @@
 <body>
   <div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-        <Row type="flex">
-            <i-col :span="24">
-                <div class="layout-header">
-                    <i-button type="text">
-                        <Icon type="navicon" size="32"></Icon>
-                    </i-button>
-					<span class="system-title">山东省人力资源市场数据采集系统</span>
-                </div>
+		<div class="layout-exit">
+			<i-button type="primary" @click="handleSubmitExit()" style="width: 100px">退出系统</i-button>
+		</div>
+		<div class="layout-header">
+			<div class="layout-logo"></div>
+			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+		</div>
+
+		<Row type="flex">
+            <i-col :span="spanLeft" class="layout-menu-left">
+                <i-menu active-name="1-1" theme="dark" width="auto" :open-names="['1']">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">企业用户</span>
+                        </template>
+						<Menu-item name="1-1">修改企业信息
+						</Menu-item>
+						<Menu-item name="1-2">
+							<a href="enterprisedataselect.html">数据查询</a>
+						</Menu-item>
+						<Menu-item name="1-3">
+							<a href="enterprisedataupload.html">数据填报</a>
+						</Menu-item>
+                    </Submenu>
+                </i-menu>
+            </i-col>
+            <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="enterpriseuser.html">企业用户</Breadcrumb-item>
@@ -1186,48 +1229,48 @@
                 },
                     ruleInline: {
                         area: [
-                            { required: true, message: 'Please fill in the area.', trigger: 'blur' }
+                            { required: true, message: '请输入“所属地区”。', trigger: 'blur' }
                         ],
                         code: [
-                            { required: true, message: 'Please fill in the organization code.', trigger: 'blur' },
+                            { required: true, message: '请输入“组织机构代码”。', trigger: 'blur' },
                             { type: 'string', max: 9, message: 'Length cannot be more than 9 bits.', trigger: 'blur' }
                         ],
 						name: [
-                            { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }
+                            { required: true, message: '请输入“企业名称”。', trigger: 'blur' }
                         ],
 						enterprise_scale: [
-                            { required: true, message: 'Please fill in the enterprise type.', trigger: 'one ' }
+                            { required: true, message: '请输入“企业规模”。', trigger: 'one ' }
                         ],
 						enterprise_kind: [
-                            { required: true, message: 'Please fill in the enterprise type.', trigger: 'one ' }
+                            { required: true, message: '请输入“企业经济类型”。', trigger: 'one ' }
                         ],
 						belong_to: [
-                            { type: 'array', required: true, message: 'Please fill in the belong_to.', trigger: 'blur' }
+                            { type: 'array', required: true, message: '请输入“所属行业”。', trigger: 'blur' }
                         ],
 						main_business: [
-                            { required: true, message: 'Please fill in the main business.', trigger: 'blur' }
+                            { required: true, message: '请输入“主要经营业务”。', trigger: 'blur' }
                         ],
 						contacts: [
-                            { required: true, message: 'Please fill in the contacts.', trigger: 'blur' }
+                            { required: true, message: '请输入“联系人”。', trigger: 'blur' }
                         ],
                         address: [
-                            { type: 'array', required: true, message: 'Please fill in the contact address.', trigger: 'one ' }
+                            { type: 'array', required: true, message: '请输入“联系地址”。', trigger: 'one ' }
                         ],
 						postal_code: [
-                            { required: true, message: 'Please fill in the postal_code.', trigger: 'blur' },
-                            { type: 'string', max: 6, min: 6, message: 'The postal_code length must be 6 bits.', trigger: 'blur' }
+                            { required: true, message: '请输入“邮政编码”。', trigger: 'blur' },
+                            { type: 'string', max: 6, min: 6, message: '邮政编码必须为6位。', trigger: 'blur' }
                         ],
 						phone: [
-                            { required: true, message: 'Please fill in the phone.', trigger: 'blur' },
-                            { type: 'string', max: 12, min: 11, message: 'The phone length must be 11 or 12 bits.', trigger: 'blur' }
+                            { required: true, message: '请输入“联系电话”。', trigger: 'blur' },
+                            { type: 'string', max: 12, min: 11, message: '电话号码为11或12位。', trigger: 'blur' }
                         ],
 						fax: [
-                            { required: true, message: 'Please fill in the fax.', trigger: 'blur' },
-                            { type: 'string', max: 12, min: 12, message: 'The fax length must be 12 bits.', trigger: 'blur' }
+                            { required: true, message: '请输入“传真”。', trigger: 'blur' },
+                            { type: 'string', max: 12, min: 11, message: '传真为11或12位。', trigger: 'blur' }
                         ],
 						email: [
-                            { required: true, message: 'Please fill in the email.', trigger: 'blur' },
-							{ type: 'email', message: 'Incorrect email format.', trigger: 'blur' }
+                            { required: true, message: '请输入“EMAIL”。', trigger: 'blur' },
+							{ type: 'email', message: '请输入正确的EMAIL格式。', trigger: 'blur' }
                         ]
                     }
                 }
@@ -1279,23 +1322,43 @@
                     }
                 })
             },
-            
-              getUsers:function()
-              {
-				var path=base_path+'info/record';
+            handleSubmitExit() {
+				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
+<<<<<<< HEAD
                   console.log(this.tasks);
 				  this.formInline=response.body;
 				  if(this.formInline.area)
 				  	{
 						  this.flag=1;
 					  }
+=======
+                   window.location.href="./login.html";//跳转到登录页面
+>>>>>>> 612e454a9102a9cc1346d645b0fb5012d64e143d
                   // get body data
                   //this.tasks = response.body;
                 }, response => {
                   // error callback
                 });
-              }
+            },
+			
+			  getUsers:function()
+			  {
+				var path=base_path+'info/record';
+				this.$http.get(path).then(response => {
+				  console.log(this.tasks);
+				  this.formInline=response.body;
+				  if(this.formInline.area)
+					{
+						  this.flag=1;
+						  console.log(flag);
+					  }
+				  // get body data
+				  //this.tasks = response.body;
+				}, response => {
+				  // error callback
+				});
+			  }
         }
     })
 </script>
