@@ -31,10 +31,18 @@
     "email": "2@qq.com"
   },
   "data_record": {
-    "start": "2018-03-26T00:00:00.000Z",
-    "end": "2016-02-15T00:00:00.000Z"
+    "filing": "544",
+    "check": "4",
+    "other_reason": "5454",
+    "decrease_type": "",
+    "main_reason": "",
+    "main_reason_detail": "",
+    "second_reason": "",
+    "second_reason_detail": "",
+    "third_reason": "",
+    "third_reason_detail": ""
   },
-  "get_data":{
+  "get_data": {
     "check": 100,
     "decrease_type": "2",
     "filing": 10,
