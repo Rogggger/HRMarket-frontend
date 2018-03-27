@@ -53,7 +53,6 @@
     }
     .layout-content-main{
         padding: 10px;
-		width: 200px;
     }
     .layout-copy{
         text-align: center;
@@ -128,14 +127,10 @@
             <i-col :span="spanRight">
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" style="width: 900px" >
+						<i-form id="form" ref="formInline" :model="formInline"   style="width: 200px" >
 							<h1>企业用户</h1>
-							</br></br>
-							<Form-Item>
-								<i-table border :columns="formInline.columns1" :data="formInline.data1"></i-table>
-																
-							</Form-Item>
-						</i-form>
+						</i-form>	</br></br>
+						<i-table :columns="columns" :data="formInline"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -144,6 +139,7 @@
             </i-col>
         </Row>
     </div>
+	<Back-Top></Back-Top>
   </div>
 
 <script>
@@ -155,33 +151,23 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
-                    formInline: {
-						columns1: [
-							{
-								title: '通知标题',
-								key: 'title'
-							},
-							{
-								title: '通知内容',
-								key: 'content'
-							},
-							{
-								title: '发布时间',
-								key: 'created_at'
-							}
-						],
-						data1: [
-							{
-								title: 'John Brown',
-								content: 'New York No. 1 Lake Park',
-								created_at: '2016-10-03'
-							}
-						]
-            
+					columns: [
+                    {
+                        title: '通知标题',
+                        key: 'title'
                     },
-                    ruleInline: {
-                        
+                    {
+                        title: '通知内容',
+                        key: 'content'
+                    },
+                    {
+                        title: '发布时间',
+                        key: 'created_at'
                     }
+
+                ],
+                    formInline: [],
+					
                 }
             },
             
