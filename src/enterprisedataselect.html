@@ -209,7 +209,7 @@
                     }
                 ],
                     formInline: [],
-                    date_value: ['2018-03-26', '2016-02-15']
+                    date_value: ['2018-01-26', '2018-03-15']
                     
                 }
             },
@@ -236,7 +236,7 @@
                 }
             },
 
-            formatDate:function(date) {
+            /*formatDate:function(date) {
             let year = date.getFullYear();
             let month = date.getMonth() + 1;
             let monthZero = month < 10 ? '0' : '';
@@ -245,12 +245,12 @@
 
             return year + '-' + monthZero + month + '-' + dayZero + day;
         },
-            
+            */
               postDate:function(){
                 var path=base_path+'data/record';
                 var body = {
-                    start:this.formatDate(this.date_value[0]),
-                    end:this.formatDate(this.date_value[1])
+                    start:this.date_value[0],
+                    end:this.date_value[1]
                 };
                 this.$http.post(path,body).then(response => {
                     console.log("正常"),
