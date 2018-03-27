@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>发布通知</title>
+<title>浏览通知</title>
 <!-- import Vue.js -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
@@ -178,21 +178,15 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
-							<h1>浏览通知</h1>
-							</br>
-							<Form-Item prop="notice">
-								<i-input type="textarea" v-model="formInline.notice" placeholder="通知内容" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item>
-								<Date-Picker type="datetime" placeholder="Select date and time" style="width: 300px"></Date-Picker>
-							</Form-Item>
-							<Form-Item>
-								<a href="adminuser.html">
-									<i-button type="primary" style="width: 100px">返回</i-button>
-								</a>
-							</Form-Item>
+						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
+							<h1>浏览通知</h1>							
+							</br></br>
+						</i-form>
+						<i-table border :columns="columns" :data="formInline"></i-table>
+						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
+							<a href="adminuser.html">
+								<i-button type="primary" style="width: 100px">返回</i-button>
+							</a>
 						</i-form>
                     </div>
                 </div>
@@ -209,18 +203,31 @@
 	new Vue({
         el: '#app',
         data () {
-                return {
-                    spanLeft: 5,
-                    spanRight: 19,
-                    theme1: 'dark',
-                    formInline: {
-                        notice: ''
-                    },
-                    ruleInline: {
-                        
-                    }
-                }
-            },
+			return {
+				spanLeft: 5,
+				spanRight: 19,
+				theme1: 'dark',
+				columns: [
+					{
+						title: '通知标题',
+						key: 'title'
+					},
+					{
+						title: '通知内容',
+						key: 'content'
+					},
+					{
+						title: '发布时间',
+						key: 'created_at'
+					}
+
+				],
+				formInline: []
+			}
+		},
+		created: function () {
+			this.getTable();
+		},
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -241,6 +248,19 @@
                     this.spanRight = 19;
                 }
             },
+			getTable:function()
+			{
+				var path=base_path+'/notification';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+				  this.formInline=response.body;
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
 			handleExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
