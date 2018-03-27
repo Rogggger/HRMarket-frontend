@@ -7,6 +7,7 @@
     "email": "qiruoyan",
     "password_md5": "123456"
   },
+  "notification": {},
   "record": {
     "area": "山东",
     "code": "444",
@@ -28,6 +29,23 @@
     "phone": "444444444444",
     "fax": "777777777777",
     "email": "2@qq.com"
+  },
+  "data_record": {
+    "start": "2018-03-26T00:00:00.000Z",
+    "end": "2016-02-15T00:00:00.000Z"
+  },
+  "get_data":{
+    "check": 100,
+    "decrease_type": "2",
+    "filing": 10,
+    "main_reason": "3",
+    "main_reason_detail": "4",
+    "other_reason": "1",
+    "second_reason": "6",
+    "second_reason_detail": "7",
+    "status": 1,
+    "third_reason": "9",
+    "third_reason_detail": "9"
   },
   "enterpriseselect": {
     "filing": "",

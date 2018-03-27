@@ -113,14 +113,15 @@
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             <span class="layout-text">企业用户</span>
                         </template>
-						<Menu-item name="1-1">
-							<a href="enterpriseinformationmanagement.html">修改企业信息</a>
-						</Menu-item>
-						<Menu-item name="1-2">数据查询
-						</Menu-item>
-						<Menu-item name="1-3">
-							<a href="enterprisedataupload.html">数据填报</a>
-						</Menu-item>
+						<a href="enterpriseinformationmanagement.html">
+							<Menu-item name="1-1">修改企业信息</Menu-item>
+						</a>
+						<a href="enterprisedataselect.html">
+							<Menu-item name="1-2">数据查询</Menu-item>
+						</a>
+						<a href="enterprisedataupload.html">
+							<Menu-item name="1-3">数据填报</Menu-item>
+						</a>
                     </Submenu>
                 </i-menu>
             </i-col>
@@ -133,56 +134,9 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
-							<h1>数据查询</h1>
-							</br>
-							<Form-Item label="建档期就业人数" prop="filing">
-								<i-input type="text" v-model="formInline.filing" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="调查期就业人数" prop="check">
-								<i-input type="text" v-model="formInline.check" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="其他原因" prop="other_reason">
-								<i-input type="text" v-model="formInline.other_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="就业人数减少类型">
-								<i-input type="text" v-model="formInline.decrease_type" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因">
-								<i-input type="text" v-model="formInline.main_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因说明">
-								<i-input type="text" v-model="formInline.main_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因">
-								<i-input type="text" v-model="formInline.second_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因说明">
-								<i-input type="text" v-model="formInline.second_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因">
-								<i-input type="text" v-model="formInline.third_reason" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因说明">
-								<i-input type="text" v-model="formInline.third_reason_detail" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<br>
-							<Form-Item>
-								<a href="enterpriseuser.html">
-									<i-button type="primary" style="width: 200px" >返回</i-button>
-								</a>
-							</Form-Item>
-						</i-form>
+                        <Date-Picker v-model="date_value" type="daterange" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
+                        <i-button type="primary" @click="postDate()">查询</i-button>
+                        <i-table :columns="columns" :data="formInline"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -205,24 +159,62 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
-                    formInline: {
-                        filing: '',
-                        check: '',
-                        other_reason: '',
-                        decrease_type: '',
-                        main_reason: '',
-                        main_reason_detail: '',
-                        second_reason: '',
-                        second_reason_detail: '',
-                        third_reason: '',
-                        third_reason_detail: ''
+                    columns: [
+                    {
+                        title: '建档期就业人数',
+                        key: 'filing'
+                    },
+                    {
+                        title: '调查期就业人数',
+                        key: 'check'
+                    },
+                    {
+                        title: '其他原因',
+                        key: 'other_reason'
+                    },
+                    {
+                        title: '就业人数减少类型',
+                        key: 'decrease_type'
+                    },
+                    {
+                        title: '主要原因',
+                        key: 'main_reason'
+                    },
+                    {
+                        title: '主要原因说明',
+                        key: 'main_reason_detail'
+                    },
+                    {
+                        title: '次要原因',
+                        key: 'second_reason'
+                    },
+                    {
+                        title: '次要原因说明',
+                        key: 'second_reason_detail'
+                    },
+                    {
+                        title: '第三原因',
+                        key: 'third_reason'
+                    },
+                    {
+                        title: '第三原因说明',
+                        key: 'third_reason_detail'
+                    },
+                    {
+                        title: '状态',
+                        key: 'status',
+                        render: (h, params) => {
+                            var status=['保存未上报','上报未审核','通过审核','审核不通过'];
+                            return status[params.row.status];
+                        }
                     }
+                ],
+                    formInline: [],
+                    date_value: ['2018-01-26', '2018-03-15']
                     
                 }
             },
-        created: function () {
-			this.getUsers();
-		},   
+        
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -244,22 +236,33 @@
                     this.spanRight = 19;
                 }
             },
-            getUsers:function()
-              {
+
+            /*formatDate:function(date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let monthZero = month < 10 ? '0' : '';
+            let day = date.getDate();
+            let dayZero = day < 10 ? '0' : '';
+
+            return year + '-' + monthZero + month + '-' + dayZero + day;
+        },
+            */
+              postDate:function(){
                 var path=base_path+'data/record';
-                this.$http.get(path).then(response => {
-                    console.log("正常")
-                  this.tasks=response.body;
+                var body = {
+                    start:this.date_value[0],
+                    end:this.date_value[1]
+                };
+                this.$http.post(path,body).then(response => {
+                    console.log("正常");
+                    this.tasks=response.body;
                   console.log(this.tasks);
-				  this.formInline=response.body;
-                  // get body data
-                  //this.tasks = response.body;
+                  this.formInline=response.body;
                 }, response => {
-                    console.log("异常")
+                    console.log("异常");
                   // error callback
                 });
               },
-			
 			handleSubmitExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
