@@ -111,14 +111,15 @@
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             <span class="layout-text">企业用户</span>
                         </template>
-						<Menu-item name="1-1">修改企业信息
-						</Menu-item>
-						<Menu-item name="1-2">
-							<a href="enterprisedataselect.html">数据查询</a>
-						</Menu-item>
-						<Menu-item name="1-3">
-							<a href="enterprisedataupload.html">数据填报</a>
-						</Menu-item>
+						<a href="enterpriseinformationmanagement.html">
+							<Menu-item name="1-1">修改企业信息</Menu-item>
+						</a>
+						<a href="enterprisedataselect.html">
+							<Menu-item name="1-2">数据查询</Menu-item>
+						</a>
+						<a href="enterprisedataupload.html">
+							<Menu-item name="1-3">数据填报</Menu-item>
+						</a>
                     </Submenu>
                 </i-menu>
             </i-col>
@@ -198,7 +199,7 @@
 							</Form-Item>
 							<Form-Item label="联系电话" prop="phone">
 								<i-input type="text" v-model="formInline.phone" placeholder="格式为（区号）+电话或者手机号码" clearable style="width: 300px">
-									<icon type="ios-phone-outline" slot="prepend"></icon>
+									<icon type="ios-telephone-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="传真" prop="fax">
