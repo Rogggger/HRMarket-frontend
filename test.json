@@ -43,10 +43,10 @@
     "other_reason": "1",
     "second_reason": "6",
     "second_reason_detail": "7",
-    "status": 0,
+    "status": 1,
     "third_reason": "9",
     "third_reason_detail": "9"
-  }
+  },
   "enterpriseselect": {
     "filing": "",
     "check": "",

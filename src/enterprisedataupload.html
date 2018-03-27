@@ -51,9 +51,11 @@
         overflow: hidden;
         background: #fff;
         border-radius: 4px;
+        width:100%;
     }
     .layout-content-main{
         padding: 10px;
+        width:100%;
     }
     .layout-copy{
         text-align: center;
@@ -91,6 +93,14 @@
 		margin-left:40%;
 		text-align: center;
 	}
+    #status{
+        width: 100px;
+        height:50px;
+        margin-right:20px;
+        font-size: 15px;
+        padding:5px;
+        text-align: center;
+    }
 </style>
 </head>
 
@@ -134,47 +144,51 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
+                            <Tag id="status"v-if =' status == 0 '>保存未上报</Tag>
+                            <Tag id="status"v-if =' status == 1 '>上报未审核</Tag>
+                            <Tag id="status"v-if =' status == 2 '>通过审核</Tag>
+                            <Tag id="status"v-if =' status == 3 '>审核不通过</Tag>
 						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
 							<h1>数据填报</h1>
-							</br>
-							<Form-Item label="建档期就业人数" prop="filing">
-								<i-input type="text" v-model="formInline.filing" placeholder="填写初次建档时监测点就业人数" clearable style="width: 300px">
+                            </br>
+							<Form-Item label="建档期就业人数" prop="filing" >
+								<i-input type="text" v-model="formInline.filing" placeholder="填写初次建档时监测点就业人数" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="调查期就业人数" prop="check">
-								<i-input type="text" v-model="formInline.check" placeholder="填写本次调查期当时的监测点就业人数 " clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.check" placeholder="填写本次调查期当时的监测点就业人数 " clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="其他原因" prop="other_reason">
-								<i-input type="text" v-model="formInline.other_reason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.other_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="就业人数减少类型">
-								<i-input type="text" v-model="formInline.decrease_type" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.decrease_type" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="主要原因">
-								<i-input type="text" v-model="formInline.main_reason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.main_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="主要原因说明">
-								<i-input type="text" v-model="formInline.main_reason_detail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.main_reason_detail" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="次要原因">
-								<i-input type="text" v-model="formInline.second_reason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.second_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="次要原因说明">
-								<i-input type="text" v-model="formInline.second_reason_detail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.second_reason_detail" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="第三原因">
-								<i-input type="text" v-model="formInline.third_reason" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.third_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="第三原因说明">
-								<i-input type="text" v-model="formInline.third_reason_detail" clearable style="width: 300px">
+								<i-input type="text" v-model="formInline.third_reason_detail" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>						
 							<br>
@@ -202,7 +216,7 @@
   </div>
 
 <script>
-	new Vue({
+	let vm = new Vue({
         el: '#app',
         
         data () {
@@ -261,6 +275,7 @@
             },
             getUsers:function()
 			  {
+                  console.log("执行get函数");
 				var path=base_path+'data/get';
 				this.$http.get(path).then(response => {
 				  console.log(response.body);
