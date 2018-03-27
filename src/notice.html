@@ -181,13 +181,15 @@
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>发布通知</h1>
 							</br>
-							<Form-Item prop="notice">
-								<i-input type="textarea" v-model="formInline.notice" placeholder="通知内容" clearable style="width: 300px">
+							<Form-Item label="通知标题" prop="title">
+								<i-input type="text" v-model="formInline.title" placeholder="通知标题" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item>
-								<Date-Picker type="datetime" placeholder="Select date and time" style="width: 300px"></Date-Picker>
+							<Form-Item label="通知内容" prop="content">
+								<i-input type="textarea" v-model="formInline.content" placeholder="通知内容" clearable style="width: 300px">
+								</i-input>
 							</Form-Item>
+							
 							<Form-Item>
 								<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">发布</i-button>
 								<a href="adminuser.html">
@@ -206,7 +208,11 @@
 	<Back-Top></Back-Top>
   </div>
 
-<script>
+<script type="text/javascript">
+	var myDate = new Date();	
+	var now = myDate.toLocaleString();	//获取当前系统时间
+	//document.write(now);
+	
 	new Vue({
         el: '#app',
         data () {
@@ -215,11 +221,15 @@
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-                        notice: ''
+                        title: '',
+						content: ''
                     },
                     ruleInline: {
-                        notice: [
-                            { required: true, message: 'Please fill in the notice.', trigger: 'blur' }
+                        title: [
+                            { required: true, message: '请输入通知标题。', trigger: 'blur' }
+                        ],
+						content: [
+                            { required: true, message: '请输入通知内容。', trigger: 'blur' }
                         ]
                     }
                 }

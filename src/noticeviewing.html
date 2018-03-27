@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>发布通知</title>
+<title>浏览通知</title>
 <!-- import Vue.js -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.js"></script>
@@ -181,12 +181,17 @@
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>浏览通知</h1>
 							</br>
-							<Form-Item prop="notice">
-								<i-input type="textarea" v-model="formInline.notice" placeholder="通知内容" clearable style="width: 300px">
+							<Form-Item label="通知标题" prop="title">
+								<i-input type="text" v-model="formInline.notice" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item>
-								<Date-Picker type="datetime" placeholder="Select date and time" style="width: 300px"></Date-Picker>
+							<Form-Item label="通知内容" prop="notice">
+								<i-input type="text" v-model="formInline.notice" clearable style="width: 300px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="发布时间">
+								<i-input type="text" v-model="formInline.date" clearable style="width: 300px">
+								</i-input>
 							</Form-Item>
 							<Form-Item>
 								<a href="adminuser.html">
@@ -214,7 +219,9 @@
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-                        notice: ''
+                        title: '',
+						notice: '',
+						date: ''
                     },
                     ruleInline: {
                         
