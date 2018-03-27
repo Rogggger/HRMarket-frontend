@@ -254,12 +254,12 @@
                     end:this.date_value[1]
                 };
                 this.$http.post(path,body).then(response => {
-                    console.log("正常"),
+                    console.log("正常");
                     this.tasks=response.body;
                   console.log(this.tasks);
                   this.formInline=response.body;
                 }, response => {
-                    console.log("异常")
+                    console.log("异常");
                   // error callback
                 });
               },
