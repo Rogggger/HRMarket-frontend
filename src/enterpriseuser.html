@@ -129,8 +129,9 @@
                     <div class="layout-content-main" :style="contentStyle">
 						<i-form id="form" ref="formInline" :model="formInline"   style="width: 200px" >
 							<h1>企业用户</h1>
-						</i-form>	</br></br>
-						<i-table :columns="columns" :data="formInline"></i-table>
+						</i-form>
+						</br></br>
+						<i-table border :columns="columns" :data="formInline"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -147,30 +148,28 @@
         el: '#app',
         
         data () {
-                return {
-                    spanLeft: 5,
-                    spanRight: 19,
-                    theme1: 'dark',
-					columns: [
-                    {
-                        title: '通知标题',
-                        key: 'title'
-                    },
-                    {
-                        title: '通知内容',
-                        key: 'content'
-                    },
-                    {
-                        title: '发布时间',
-                        key: 'created_at'
-                    }
-
-                ],
-                    formInline: [],
-					
-                }
-            },
-            
+			return {
+				spanLeft: 5,
+				spanRight: 19,
+				theme1: 'dark',
+				columns: [
+				{
+					title: '通知标题',
+					key: 'title'
+				},
+				{
+					title: '通知内容',
+					key: 'content'
+				},
+				{
+					title: '发布时间',
+					key: 'created_at'
+				}]
+			}
+		},
+        created: function () {
+			this.getTable();
+		},
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -191,6 +190,20 @@
                     this.spanRight = 19;
                 }
             },
+			getTable:function()
+			{
+				var path=base_path+'/notification';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+				  this.formInline=response.body;
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
+			
 			handleSubmit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
@@ -202,7 +215,6 @@
                 });
             }
         }
-		
     })
 </script>
 </body>
