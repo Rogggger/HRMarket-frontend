@@ -276,7 +276,7 @@
             getUsers:function()
 			  {
                   console.log("执行get函数");
-				var path=base_path+'data/get';
+				var path=base_path+'data/record';
 				this.$http.get(path).then(response => {
 				  console.log(response.body);
 				  this.formInline=response.body;
@@ -288,7 +288,7 @@
 				  // error callback
 				});
 			  },
-              handleSubmit(sname,name) {
+              handleSubmit(sname,name) {//上传
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
                         var path=base_path+'data/report';
