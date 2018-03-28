@@ -180,12 +180,16 @@
                     <div class="layout-content-main" :style="contentStyle">
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>发布通知</h1>
-							</br>
-							<Form-Item prop="notice">
-								<i-input type="textarea" v-model="formInline.notice" placeholder="通知内容" clearable style="width: 300px">
+							<br>
+							<Form-Item label="通知标题" prop="title">
+								<i-input type="text" v-model="formInline.title" placeholder="通知标题" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item>
+							<Form-Item label="通知内容" prop="content">
+								<i-input type="textarea" v-model="formInline.content" placeholder="通知内容" clearable style="width: 300px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="发布时间">
 								<Date-Picker type="datetime" placeholder="Select date and time" style="width: 300px"></Date-Picker>
 							</Form-Item>
 							<Form-Item>
@@ -195,6 +199,8 @@
 								</a>
 							</Form-Item>
 						</i-form>
+						<br><br>
+						<i-table border :columns="columns" :data="data"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -214,12 +220,70 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
+					columns: [
+						{
+							title: '通知标题',
+							key: 'title'
+						},
+						{
+							title: '通知内容',
+							key: 'content'
+						},
+						{
+							title: '发布时间',
+							key: 'created_at'
+						},
+						{
+							title: '操作',
+							key: 'action',
+							width: 140,
+							align: 'center',
+							render: (h, params) => {
+								return h('div', [
+									h('Button', {
+										props: {
+											type: 'primary',
+											size: 'small'
+										},
+										style: {
+											marginRight: '5px'
+										},
+										on: {
+											click: () => {
+												this.show(params.index)
+											}
+										}
+									}, 'View'),
+									h('Button', {
+										props: {
+											type: 'error',
+											size: 'small'
+										},
+										on: {
+											click: () => {
+												this.remove(params.index)
+											}
+										}
+									}, 'Delete')
+								]);
+							}
+						}
+					],
+					data: [
+						{title: 'AAA',
+                        content: '123'
+                    }],
+					
                     formInline: {
-                        notice: ''
+                        title: '',
+						content: '',
                     },
                     ruleInline: {
                         notice: [
-                            { required: true, message: 'Please fill in the notice.', trigger: 'blur' }
+                            { required: true, message: '请输入通知标题。', trigger: 'blur' }
+                        ],
+						title: [
+                            { required: true, message: '请输入通知内容。', trigger: 'blur' }
                         ]
                     }
                 }
@@ -243,6 +307,14 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
+            },
+			show (index) {
+                this.$Modal.info({
+                    title: '通知详情',
+                    content: `通知标题：${this.data[index].title}
+					<br>通知内容：${this.data[index].content}
+					<br>发布时间：${this.data[index].created_at}`
+                })
             },
 			handleExit() {
 				var path=base_path+'account/logout';
