@@ -192,6 +192,16 @@
 									<icon type="ios-locked-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
+							<Form-Item prop="is_admin">
+								<Radio-Group v-model="formInline.is_admin">
+									<Radio label="0">
+										<span>企业用户</span>
+									</Radio>
+									<Radio label="1">
+										<span>市级管理员</span>
+									</Radio>
+								</Radio-Group>
+							</Form-Item>
 							<Form-Item>
 								<i-button type="primary" @click="handleSubmit('formInline',formInline)">创建</i-button>
 							</Form-Item>
@@ -215,17 +225,22 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
+					
                     formInline: {
                         email: '',
-                        password_md5: ''
+                        password_md5: '',
+						is_admin: ''
                     },
                     ruleInline: {
                         email: [
-                            { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+                            { required: true, message: '请输入用户名。', trigger: 'blur' }
                         ],
                         password_md5: [
-                            { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                            { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+                            { required: true, message: '请输入密码。', trigger: 'blur' },
+                            { type: 'string', min: 6, message: '密码必须不少于6位。', trigger: 'blur' }
+                        ],
+						is_admin: [
+                            { required: true, message: '请输入角色。', trigger: 'blur' }
                         ]
                     }
                 }
@@ -252,6 +267,7 @@
                 }
             },
             handleSubmit(sname,name) {
+			
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
                         var path=base_path+'account/register';
