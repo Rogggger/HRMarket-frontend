@@ -152,8 +152,9 @@
 						<Steps :current="status">
 							<Step title="保存未上报"></Step>
 							<Step title="上报未审核"></Step>
-							<Step title="审核不通过" status="error" v-if ='status == 2 '></Step>
-							<Step title="通过审核" v-else></Step>
+							<Step title="通过审核" v-if ='status != 3 && status != 2'></Step>
+							<Step title="通过审核" v-if ='status == 2 ' status="finish"></Step>
+							<Step title="审核不通过"  v-if ='status == 3 ' status="error"></Step>
 						</Steps>
 						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
 							<h1>数据填报</h1>
