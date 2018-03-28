@@ -253,7 +253,7 @@
                     start:this.date_value[0],
                     end:this.date_value[1]
                 };
-                this.$http.post(path,body).then(response => {
+                this.$http.get(path,body).then(response => {
                     console.log("正常");
                     this.tasks=response.body;
                   console.log(this.tasks);
