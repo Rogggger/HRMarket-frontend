@@ -178,7 +178,7 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
+						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="90" :rules="ruleInline" style="width: 300px" >
 							<h1>发布通知</h1>
 							<br>
 							<Form-Item label="通知标题" prop="title">
@@ -199,7 +199,8 @@
 								</a>
 							</Form-Item>
 						</i-form>
-						<br><br>
+					</div>
+                    <div class="layout-content-main" :style="contentStyle">
 						<i-table border :columns="columns" :data="data"></i-table>
                     </div>
                 </div>
