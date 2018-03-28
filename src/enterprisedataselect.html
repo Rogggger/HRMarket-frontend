@@ -134,7 +134,7 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-                        <Date-Picker v-model="date_value" type="daterange" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
+                        <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
                         <i-button type="primary" @click="postDate()">查询</i-button>
                         <i-table :columns="columns" :data="formInline"></i-table>
                     </div>
@@ -237,23 +237,25 @@
                 }
             },
 
-            /*formatDate:function(date) {
+            formatDate:function(date) {
             let year = date.getFullYear();
             let month = date.getMonth() + 1;
             let monthZero = month < 10 ? '0' : '';
             let day = date.getDate();
             let dayZero = day < 10 ? '0' : '';
 
-            return year + '-' + monthZero + month + '-' + dayZero + day;
+            return year + '-' + monthZero + month + '-' + dayZero + day+'T00:00:00';
         },
-            */
+            
               postDate:function(){
+
                 var path=base_path+'data/record';
-                var body = {
-                    start:this.date_value[0],
-                    end:this.date_value[1]
-                };
-                this.$http.get(path+'?start='+this.date_value[0]+'&end='+this.date_value[1]).then(response => {
+                var start=this.formatDate(this.date_value[0]);
+                var end=this.formatDate(this.date_value[1]);
+                console.log(start);
+                console.log(end);
+                
+                this.$http.get(path+'?start='+start+'&end='+end).then(response => {
                     console.log("正常");
                     this.tasks=response.body;
                   console.log(this.tasks);
@@ -262,6 +264,15 @@
                     console.log("异常");
                   // error callback
                 });
+                /*this.$http.post(path,body).then(response => {
+                    console.log("正常");
+                    this.tasks=response.body;
+                  console.log(this.tasks);
+                  this.formInline=response.body;
+                }, response => {
+                    console.log("异常");
+                  // error callback
+                });*/
               },
 			handleSubmitExit() {
 				var path=base_path+'account/logout';
