@@ -180,7 +180,7 @@
                     <div class="layout-content-main" :style="contentStyle">
 						<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
 						</i-input>
-						<i-button type="primary" @click="postName()">查询</i-button>
+						<i-button type="primary" @click="getName()">查询</i-button>
                         <i-table border :columns="columns" :data="data"></i-table>
                     </div>
                 </div>
@@ -326,9 +326,9 @@
                     this.spanRight = 19;
                 }
             },
-			postName:function(){
-                var path=base_path+'admin/info';
-                this.$http.get(path).then(response => {
+			getName:function(){
+				var path=base_path+'admin/info';
+                this.$http.get(path/*+'?area='+this.formInline.area*/).then(response => {
 				  console.log("正常");
 				  console.log(response.body);
 				  this.data=response.body;

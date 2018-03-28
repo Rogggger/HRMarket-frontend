@@ -1,11 +1,14 @@
 {
   "login": {
-    "email": "qiye",
+    "email": "qiruoyan",
     "password_md5": "123456"
   },
   "register": {
     "email": "qiruoyan",
     "password_md5": "123456"
+  },
+  "admin_info": {
+    "area": "444"
   },
   "notification": {},
   "record": {
@@ -31,16 +34,8 @@
     "email": "2@qq.com"
   },
   "data_record": {
-    "filing": "544",
-    "check": "4",
-    "other_reason": "5454",
-    "decrease_type": "",
-    "main_reason": "",
-    "main_reason_detail": "",
-    "second_reason": "",
-    "second_reason_detail": "",
-    "third_reason": "",
-    "third_reason_detail": ""
+    "start": "2018-01-26T00:00:00.000Z",
+    "end": "2018-03-15T00:00:00.000Z"
   },
   "get_data": {
     "check": 100,

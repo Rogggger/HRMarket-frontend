@@ -2,5 +2,6 @@
   "/account/*": "/$1",
   "/info/record": "/record",
   "/data/record":"/data_record",
-  "/data/get":"/get_data"
+  "/data/get":"/get_data",
+  "/admin/info":"/admin_info"
 }
