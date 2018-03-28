@@ -276,7 +276,7 @@
             getUsers:function()
 			  {
                   console.log("执行get函数");
-				var path=base_path+'data/record';
+				var path=base_path+'data/get';
 				this.$http.get(path).then(response => {
 				  console.log(response.body);
 				  this.formInline=response.body;
