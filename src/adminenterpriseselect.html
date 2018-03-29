@@ -356,6 +356,9 @@
 					<br>EMAIL：${this.data[index].email}`
                 })
             },
+            remove (index) {
+                this.data.splice(index, 1);
+            },
 			handleExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
@@ -365,9 +368,6 @@
                 }, response => {
                   // error callback
                 });
-            },
-            remove (index) {
-                this.data.splice(index, 1);
             }
         }
     })

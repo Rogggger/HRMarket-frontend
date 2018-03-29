@@ -156,30 +156,30 @@
 							<Step title="通过审核" v-if ='status == 2 ' status="finish"></Step>
 							<Step title="审核不通过"  v-if ='status == 3 ' status="error"></Step>
 						</Steps>
-						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="110" :rules="ruleInline" style="width: 300px" >
+						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="120" :rules="ruleInline" style="width: 300px" >
 							<h1>数据填报</h1>
                             </br>
 							<Form-Item label="建档期就业人数" prop="filing" >
-								<i-input type="text" v-model="formInline.filing" placeholder="填写初次建档时监测点就业人数" clearable :disabled="status > 0" style="width: 300px">
+								<i-input type="text" v-model="formInline.filing" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="调查期就业人数" prop="check">
-								<i-input type="text" v-model="formInline.check" placeholder="填写本次调查期当时的监测点就业人数 " clearable :disabled="status > 0" style="width: 300px">
+								<i-input type="text" v-model="formInline.check" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="其他原因" prop="other_reason">
+							<Form-Item label="其他原因" prop="other_reason" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
 								<i-input type="text" v-model="formInline.other_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="就业人数减少类型">
+							<Form-Item label="就业人数减少类型" prop="decrease_type" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
 								<i-input type="text" v-model="formInline.decrease_type" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="主要原因" prop="main_reaon" v-if =' formInline.check < formInline.filing '>
+							<Form-Item label="主要原因" prop="main_reason" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
 								<i-input type="text" v-model="formInline.main_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="主要原因说明" prop="main_reason_detail" v-if =' formInline.check < formInline.filing '>
+							<Form-Item label="主要原因说明" prop="main_reason_detail" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
 								<i-input type="text" v-model="formInline.main_reason_detail" clearable :disabled="status > 0"  style="width: 300px">
 								</i-input>
 							</Form-Item>
@@ -254,6 +254,9 @@
                         ],
 						other_reason: [
                             { required: true, message: '请输入其他原因！', trigger: 'blur' }
+                        ],
+						decrease_type: [
+                            { required: true, message: '请输入就业人数减少类型！', trigger: 'blur' }
                         ],
                         main_reason: [
                             { required: true, message: '请输入调查期就业人数！', trigger: 'blur' }
