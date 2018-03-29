@@ -248,10 +248,10 @@
 										},
 										on: {
 											click: () => {
-												this.show(params.index)
+												this.changeNotice(params.index)
 											}
 										}
-									}, 'View'),
+									}, '修改'),
 									h('Button', {
 										props: {
 											type: 'error',
@@ -262,16 +262,23 @@
 												this.remove(params.index)
 											}
 										}
-									}, 'Delete')
+									}, '删除')
 								]);
 							}
 						}
 					],
 					data: [
-						{title: 'AAA',
-                        content: '123'
-                    }],
-					
+					{
+						"content": "213123123",
+						"created_at": "2018-03-29T10:53:59+00:00",
+						"title": "a new noticification"
+					},
+					{
+						"content": "213123123",
+						"created_at": "2018-03-29T11:02:16+00:00",
+						"title": "a old noticification"
+					}
+					],
                     formInline: {
                         title: '',
 						content: '',
@@ -316,14 +323,73 @@
 				// error callback
 				});
 			},
-			show (index) {
-                this.$Modal.info({
-                    title: '通知详情',
-                    content: `通知标题：${this.data[index].title}
-					<br>通知内容：${this.data[index].content}
-					<br>发布时间：${this.data[index].created_at}`
+			getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'notification';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+				  this.data=response.body;
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
+			changeNotice (index) {
+
+                this.$Modal.confirm({
+					render: (h) => {
+						return h('div', [
+							h('h1',  '修改通知标题'),
+							h('Input', {
+								props: {
+									value: this.value,
+									autofocus: true,
+									placeholder: '请填入标题'
+								},
+								style: {
+									marginTop: '25px'
+								},
+								on: {
+									input: (val) => {
+										this.value = val;
+									}
+								}
+							}, '通知标题'),
+							h('Input', {
+								props: {
+									type:"textarea",
+									value: this.value,
+									autofocus: true,
+									placeholder: '请填入内容'
+								},
+								style: {
+									marginTop: '5px'
+								},
+								on: {
+									input: (val) => {
+										this.value = val;
+									}
+								}
+							}, '通知内容')
+						]);
+					}
                 })
-            },
+			},
+			remove(index)//删除通知admin/noticification/<int:id> DELETE 删除第id的通知
+			{
+				var path=base_path+'admin/notification/index';
+				console.log(path);
+				this.$http.post(path).then(response => {
+					this.data6.splice(index, 1);
+					console.log("正常");
+				}, response => {
+					console.log("异常");
+				// error callback
+				});
+			},
 			handleExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
