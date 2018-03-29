@@ -10,7 +10,17 @@
   "admin_info": {
     "area": "444"
   },
-  "notification": {},
+  "notification": [{
+	"title": "hahaha",
+	"content": "hahahahahaha",
+	"created_at": "2018-03-2113:13:59"
+	}, {
+	"title": "ha87878haha",
+	"content": "hah454545ahahahaha",
+	"created_at": "2019-03-213:13:59"
+	}
+	
+	],
   "record": {
     "area": "山东",
     "code": "444",

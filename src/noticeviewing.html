@@ -208,20 +208,18 @@
 				spanRight: 19,
 				theme1: 'dark',
 				columns: [
-					{
-						title: '通知标题',
-						key: 'title'
-					},
-					{
-						title: '通知内容',
-						key: 'content'
-					},
-					{
-						title: '发布时间',
-						key: 'created_at'
-					}
-
-				],
+				{
+					title: '通知标题',
+					key: 'title'
+				},
+				{
+					title: '通知内容',
+					key: 'content'
+				},
+				{
+					title: '发布时间',
+					key: 'created_at'
+				}],
 				formInline: []
 			}
 		},
@@ -250,7 +248,8 @@
             },
 			getTable:function()
 			{
-				var path=base_path+'/notification';
+				console.log("执行get函数");
+				var path=base_path+'notification';
 				this.$http.get(path).then(response => {
 				  console.log("正常");
 				  console.log(response.body);
