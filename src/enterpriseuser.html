@@ -193,7 +193,8 @@
             },
 			getTable:function()
 			{
-				var path=base_path+'/notification';
+				console.log("执行get函数");
+				var path=base_path+'notification';
 				this.$http.get(path).then(response => {
 				  console.log("正常");
 				  console.log(response.body);
