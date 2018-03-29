@@ -3,5 +3,6 @@
   "/info/record": "/record",
   "/data/record":"/data_record",
   "/data/get":"/get_data",
-  "/admin/info":"/admin_info"
+  "/admin/info":"/admin_info",
+  "/admin/notification":"/notice"
 }

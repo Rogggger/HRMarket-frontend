@@ -189,11 +189,8 @@
 								<i-input type="textarea" v-model="formInline.content" placeholder="通知内容" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="发布时间">
-								<Date-Picker type="datetime" placeholder="Select date and time" style="width: 300px"></Date-Picker>
-							</Form-Item>
 							<Form-Item>
-								<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">发布</i-button>
+								<i-button type="primary" @click="postNotice()" style="width: 100px">发布</i-button>
 								<a href="adminuser.html">
 									<i-button type="primary" style="width: 100px">返回</i-button>
 								</a>
@@ -308,7 +305,17 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
-            },
+			},
+			postNotice:function(){//发布通知
+				var path=base_path+'admin/notification';
+				this.$http.post(path,this.formInline).then(response => {
+					console.log("正常");
+					console.log(this.formInline);
+				}, response => {
+					console.log("异常");
+				// error callback
+				});
+			},
 			show (index) {
                 this.$Modal.info({
                     title: '通知详情',
