@@ -146,10 +146,12 @@
 								</i-input>
 							</Form-Item> -->
 							<Form-Item label="所属地区" prop="area">
-									<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable :disabled="flag > 0" style="width: 300px">
-										<icon type="earth" slot="prepend"></icon>
-									</i-input>
-								</Form-Item>
+								<!--<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable :disabled="flag > 0" style="width: 300px">
+									<icon type="earth" slot="prepend"></icon>
+								</i-input>-->
+								<Cascader :data="area" v-model="formInline.area" placeholder="市/区" clearable :disabled="flag > 0" style="width: 300px">
+								</Cascader>
+							</Form-Item>
 							<Form-Item label="组织机构代码" prop="code">
 								<i-input type="text" v-model="formInline.code" placeholder="组织机构代码" clearable style="width: 300px">
 									<icon type="ios-briefcase" slot="prepend"></icon>
@@ -186,10 +188,11 @@
 									<icon type="ios-person-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
-							<Form-Item label="联系地址" prop="address">
-								<Cascader :data="address" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
-								</Cascader>
+							<Form-Item label="联系地址" prop="address_detail">
+								<!--<Cascader :data="address" v-model="formInline.address" placeholder="市/区" clearable style="width: 300px">
+								</Cascader>-->
 								<i-input type="text" v-model="formInline.address_detail" placeholder="详细地址" clearable style="width: 300px">
+									<icon type="earth" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
 							<Form-Item label="邮政编码" prop="postal_code">
@@ -690,8 +693,8 @@
         								}
         							]
         						}],
-                    address: [{
-        							value: 'city1',
+                    area: [{
+        							value: '0531',
         							label: '济南',
         							children: [
         								{
@@ -727,7 +730,7 @@
         								}
         							]
         						}, {
-        							value: 'city2',
+        							value: '0532',
         							label: '青岛',
         							children: [
         								{
@@ -763,7 +766,7 @@
         								}
         							],
         						}, {
-        							value: 'city3',
+        							value: '0533',
         							label: '淄博',
         							children: [
         								{
@@ -793,7 +796,7 @@
         								}
         							],
         						}, {
-        							value: 'city4',
+        							value: '0632',
         							label: '枣庄',
         							children: [
         								{
@@ -817,7 +820,7 @@
         								}
         							],
         						}, {
-        							value: 'city5',
+        							value: '0546',
         							label: '东营',
         							children: [
         								{
@@ -838,7 +841,7 @@
         								}
         							],
         						}, {
-        							value: 'city6',
+        							value: '0535',
         							label: '烟台',
         							children: [
         								{
@@ -880,7 +883,7 @@
         								}
         							],
         						}, {
-        							value: 'city7',
+        							value: '0536',
         							label: '潍坊',
         							children: [
         								{
@@ -922,7 +925,7 @@
         								}
         							],
         						}, {
-        							value: 'city8',
+        							value: '0537',
         							label: '济宁',
         							children: [
         								{
@@ -961,7 +964,7 @@
         								}
         							],
         						}, {
-        							value: 'city9',
+        							value: '0538',
         							label: '泰安',
         							children: [
         								{
@@ -985,7 +988,7 @@
         								}
         							],
         						}, {
-        							value: 'city10',
+        							value: '0631',
         							label: '威海',
         							children: [
         								{
@@ -1003,7 +1006,7 @@
         								}
         							],
         						}, {
-        							value: 'city11',
+        							value: '0633',
         							label: '日照',
         							children: [
         								{
@@ -1021,7 +1024,7 @@
         								}
         							],
         						}, {
-        							value: 'city12',
+        							value: '0634',
         							label: '莱芜',
         							children: [
         								{
@@ -1033,7 +1036,7 @@
         								}
         							],
         						}, {
-        							value: 'city13',
+        							value: '0539',
         							label: '临沂',
         							children: [
         								{
@@ -1075,7 +1078,7 @@
         								}
         							],
         						}, {
-        							value: 'city14',
+        							value: '0534',
         							label: '德州',
         							children: [
         								{
@@ -1114,7 +1117,7 @@
         								}
         							],
         						}, {
-        							value: 'city15',
+        							value: '0635',
         							label: '聊城',
         							children: [
         								{
@@ -1144,7 +1147,7 @@
         								}
         							],
         						}, {
-        							value: 'city16',
+        							value: '0543',
         							label: '滨州',
         							children: [
         								{
@@ -1177,7 +1180,7 @@
         								}
         							],
         						}, {
-        							value: 'city17',
+        							value: '0530',
         							label: '菏泽',
         							children: [
         								{
@@ -1221,7 +1224,7 @@
                     belong_to:'',
                     main_business: '',
 					contacts: '',
-					address:'',
+					//address:'',
 					address_detail: '',
 					postal_code: '',
                     phone: '',
@@ -1230,11 +1233,11 @@
                 },
                     ruleInline: {
                         area: [
-                            { required: true, message: '请输入“所属地区”。', trigger: 'blur' }
+                            {  type: 'array', required: true, message: '请输入“所属地区”。', trigger: 'blur' }
                         ],
                         code: [
                             { required: true, message: '请输入“组织机构代码”。', trigger: 'blur' },
-                            { type: 'string', max: 9, message: 'Length cannot be more than 9 bits.', trigger: 'blur' }
+                            { type: 'string', max: 9, message: '长度不能大于9位。', trigger: 'blur' }
                         ],
 						name: [
                             { required: true, message: '请输入“企业名称”。', trigger: 'blur' }
@@ -1254,8 +1257,8 @@
 						contacts: [
                             { required: true, message: '请输入“联系人”。', trigger: 'blur' }
                         ],
-                        address: [
-                            { type: 'array', required: true, message: '请输入“联系地址”。', trigger: 'one ' }
+                        address_detail: [
+                            { required: true, message: '请输入“联系地址”。', trigger: 'blur ' }
                         ],
 						postal_code: [
                             { required: true, message: '请输入“邮政编码”。', trigger: 'blur' },
