@@ -250,7 +250,7 @@
 										},
 										on: {
 											click: () => {
-												this.changeNotice(params.index,this.title_value,this.content_value)
+												this.changeNotice(params.index,this.title_value,this.content_value,this.data1)
 											}
 										}
 									}, '修改'),
@@ -270,6 +270,7 @@
 						}
 					],
 					data1: [],
+					id:[],
                     formInline: {
                         title: '',
 						content: '',
@@ -334,17 +335,15 @@
 				  console.log("正常");
 				  console.log(response.body);
 				  this.data1=response.body;
+				  console.log(this.data1);
 				}, response => {
 				console.log("异常");
 				  // error callback
 				});
 				
 			},
-			changeNotice (index,title_value,content_value) {
-
+			changeNotice (index,title_value,content_value,data1) {
                 this.$Modal.confirm({
-
-
 					render: (h) => {
 						return h('div', [
 							h('h1',  '修改通知标题'),
@@ -387,8 +386,9 @@
 							title:title_value,
 							content:content_value,
 						}
+						var id=data1[index].id;
 						console.log(name);
-						var path=base_path+'admin/notification/'+index;
+						var path=base_path+'admin/notification/'+id;
 						this.$http.post(path,name).then(response => {
 							this.$Message.success('修改成功');
 							console.log("正常");
@@ -405,7 +405,8 @@
 			},
 			remove(index)//删除通知admin/noticification/<int:id> DELETE 删除第id的通知
 			{
-				var path=base_path+'admin/notification/'+index;
+				var id=this.data1[index].id;
+				var path=base_path+'admin/notification/'+id;
 				console.log(path);
 				this.$http.delete(path).then(response => {
 					this.$Message.success('删除成功');
