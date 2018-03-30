@@ -183,19 +183,19 @@
 								<i-input type="text" v-model="formInline.main_reason_detail" clearable :disabled="status > 0"  style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="次要原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason==''&&formInline.main_reason_detail==''">
+							<Form-Item label="次要原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
 								<i-input type="text" v-model="formInline.second_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="次要原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason!=''&&formInline.main_reason_detail!=''">
+							<Form-Item label="次要原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
 								<i-input type="text" v-model="formInline.second_reason_detail" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="第三原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason!=''&&formInline.main_reason_detail!=''&&formInline.second_reason!=''&&formInline.second_reason_detail!=''">
+							<Form-Item label="第三原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
 								<i-input type="text" v-model="formInline.third_reason" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="第三原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason!=''&&formInline.main_reason_detail!=''&&formInline.second_reason!=''&&formInline.second_reason_detail!=''">
+							<Form-Item label="第三原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
 								<i-input type="text" v-model="formInline.third_reason_detail" clearable :disabled="status > 0" style="width: 300px">
 								</i-input>
 							</Form-Item>						
