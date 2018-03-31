@@ -178,10 +178,39 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable style="width: 300px">
-						</i-input>
-						<i-button type="primary" @click="getName()">查询</i-button>
+						<i-form :model="formInline" :rules="ruleInline" inline >
+							<Form-Item>
+								<i-select v-model="formInline.select" placeholder="查询条件" style="width:250px">
+									<i-option value="name">单位名称</i-option>
+									<i-option value="user_name">登陆账号</i-option>
+									<i-option value="user_is_admin">用户类型</i-option>
+									<i-option value="city">所属地市</i-option>
+									<i-option value="district">所属市县</i-option>
+									<i-option value="status">数据状态</i-option>
+									<i-option value="enterprise_kind">单位性质</i-option>
+									<i-option value="belong_to">所属行业</i-option>
+									<i-option value="start_at">起始日期</i-option>
+									<i-option value="end_at">结束日期</i-option>
+									<i-option value="month">统计月份</i-option>
+									<i-option value="season">统计季度</i-option>
+								</i-select>
+							</Form-Item>
+							<Form-Item v-if="formInline.select!='' &&formInline.select!='start_at' &&formInline.select!='end_at' &&formInline.select!='month' &&formInline.select!='season' ">
+								<i-input type="text"  v-model="formInline.condition" placeholder="查询条件" clearable style="width: 300px">
+								</i-input>
+								<i-button type="primary" @click="getName()">查询</i-button>
+							</Form-Item>
+							<Form-Item v-if="formInline.select=='start_at' ||formInline.select=='end_at'">
+								<Date-Picker v-model="date_day" type="date" split-panels format="yyyy-MM-dd" placeholder="请选择日期" style="width: 200px"></Date-Picker>                   
+								<i-button type="primary" @click="postDay()">查询</i-button>
+							</Form-Item>
+							<Form-Item v-if="formInline.select=='month' ||formInline.select=='season'">
+								<Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>                   
+								<i-button type="primary" @click="postDate()">查询</i-button>
+							</Form-Item>
+						</i-form>
                         <i-table border :columns="columns" :data="data"></i-table>
+						
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -201,6 +230,8 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
+					date_value: [],
+					date_day:'',
                     columns: [
 						{
 							title: '所属地区',
@@ -297,10 +328,11 @@
                         name: 'AAAAAA'
                     }],
                     formInline: {
-						area: ''
+						condition: '',
+						select: ''
 					},
 					ruleInline: {
-                        area: [
+                        condition: [
                             { required: true, message: '请输入所属地区。', trigger: 'blur' }
                         ]
                     }
@@ -328,7 +360,7 @@
             },
 			getName:function(){
 				var path=base_path+'admin/info';
-                this.$http.get(path/*+'?area='+this.formInline.area*/).then(response => {
+                this.$http.get(path/*+'?this.formInline.select='+this.formInline.condition*/).then(response => {
 				  console.log("正常");
 				  console.log(response.body);
 				  this.data=response.body;
@@ -337,6 +369,39 @@
 				  // error callback
 				});
             },
+			postDate:function(){
+                var path=base_path+'admin/info';
+                var start=this.formatDate(this.date_value[0]);
+                var end=this.formatDate(this.date_value[1]);
+                console.log(start);
+                console.log(end);
+                
+                this.$http.get(path+'?start='+start+'&end='+end).then(response => {
+                    console.log("正常");
+                    this.tasks=response.body;
+                  console.log(this.tasks);
+                  this.formInline=response.body;
+                }, response => {
+                    console.log("异常");
+                  // error callback
+                });
+            },
+			postDay:function(){
+                var path=base_path+'admin/info';
+                var day=this.formatDate(this.date_day);
+                console.log(day);
+                
+                this.$http.get(path+'?date='+day).then(response => {
+                    console.log("正常");
+                    this.tasks=response.body;
+                  console.log(this.tasks);
+                  this.formInline=response.body;
+                }, response => {
+                    console.log("异常");
+                  // error callback
+                });
+			},
+			
 			show (index) {
                 this.$Modal.info({
                     title: '企业信息',

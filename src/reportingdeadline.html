@@ -87,7 +87,6 @@
     }
     #form{
 		margin-top:100px;
-		margin-left:40%;
 		text-align: center;
 	}
 </style>
@@ -178,48 +177,21 @@
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
-                    <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
-							<h1>上报时限</h1>
-							</br>
-							<Form-Item label="所有调查期">
-								</br>
-								<i-input type="text" v-model="formInline.select_time_start1" clearable style="width: 135px">
-								</i-input>	——	
-								<i-input type="text" v-model="formInline.select_time_end1"  clearable style="width: 135px">
-								</i-input>
-								
-								<i-input type="text" v-model="formInline.select_time_start2" clearable style="width: 135px">
-								</i-input>	——	
-								<i-input type="text" v-model="formInline.select_time_end2"  clearable style="width: 135px">
-								</i-input>
-								
-								<i-input type="text" v-model="formInline.select_time_start3" clearable style="width: 135px">
-								</i-input>	——	
-								<i-input type="text" v-model="formInline.select_time_end3"  clearable style="width: 135px">
-								</i-input>
-								
-								<i-input type="text" v-model="formInline.select_time_start4" clearable style="width: 135px">
-								</i-input>	——	
-								<i-input type="text" v-model="formInline.select_time_end4"  clearable style="width: 135px">
-								</i-input>
-							</Form-Item>							
-							<Form-Item label="新增调查期">
-								</br>
-								<i-input type="text" v-model="formInline.select_time_start5" clearable style="width: 135px">
-								</i-input>	——	
-								<i-input type="text" v-model="formInline.select_time_end5"  clearable style="width: 135px">
-								</i-input>
-							</Form-Item>
-							<Form-Item>
-								<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">确定新增</i-button>	
-								<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">确定更改</i-button>
-							</Form-Item>
-							<Form-Item>
-								<a href="systemmanagement.html">
-									<i-button type="primary" style="width: 100px">返回</i-button>
-								</a>
-							</Form-Item>
+                    <div class="layout-content-main" :style="contentStyle" id="form">
+                        <h2>新增调查期</h2>
+                        </br>                   
+                        <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期"></Date-Picker>                   
+                        <i-button type="primary" @click="addDate()" style="width: 100px">确定新增</i-button>	
+                        </br>              
+                        <h2>所有调查期</h2>		
+                        </br>				
+                        <i-table :columns="columns" :data="formInline" style="width: 700px; margin-left:35%" height="600"></i-table>
+                                 
+                        <Form-Item>
+                            <a href="systemmanagement.html">
+                                <i-button type="primary" style="width: 100px">返回</i-button>
+                            </a>
+                        </Form-Item>
 						</i-form>
                     </div>
                 </div>
@@ -229,34 +201,71 @@
             </i-col>
         </Row>
     </div>
+    <Modal title="修改调查期" width="550" v-model="modal.show" @on-ok="changeNotice()">
+            <Date-Picker v-model="modal.time_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期"></Date-Picker>  
+        </Modal>
 	<Back-Top></Back-Top>
   </div>
+
+
 
 <script>
 	new Vue({
         el: '#app',
         data () {
                 return {
+                    modal: {
+                        show: false,
+                        index: 0,
+                        time_value: []
+                    },
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
-                    formInline: {
-						select_time_start1: '',
-						select_time_end1: '',
-						select_time_start2: '',
-						select_time_end2: '',
-						select_time_start3: '',
-						select_time_end3: '',
-						select_time_start4: '',
-						select_time_end4: '',
-						select_time_start5: '',
-						select_time_end5: ''
-                    },
-                    ruleInline: {
-						
-                    }
+                    formInline: [],
+					columns: [
+						{
+							title: '开始时间',
+							key: 'start_time'
+						},
+						{
+							title: '结束时间',
+							key: 'end_time'
+                        },
+                        {
+							title: '操作',
+							key: 'action',
+							width: 140,
+							align: 'center',
+							render: (h, params) => {
+								return h('div', [
+									h('Button', {
+										props: {
+											type: 'primary',
+											size: 'small'
+										},
+										style: {
+											marginRight: '5px'
+										},
+										on: {
+											click: () => {
+                                                this.modal.show=true;
+                                                this.modal.time_value = [];
+                                                this.modal.index = params.index;
+											}
+										}
+									}, '修改')
+								]);
+							}
+						}
+                	],
+					date_value: ['2018-01-26', '2018-04-15'],
+                    date_change:[]
                 }
             },
+        created: function () {
+			this.getDate();
+		},
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -268,6 +277,21 @@
             }
     	},
         methods: {
+            formatDate:function(date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let monthZero = month < 10 ? '0' : '';
+            let day = date.getDate();
+            let dayZero = day < 10 ? '0' : '';
+            let hour=date.getHours();
+            let hourZero = hour < 10 ? '0' : '';
+            let minute=date.getMinutes();
+            let minuteZero = minute < 10 ? '0' : '';
+            let second=date.getSeconds();
+            let secondZero = second < 10 ? '0' : '';
+            return year + '-' + monthZero + month + '-' + dayZero + day+'T'+hourZero+hour+':'+minuteZero+minute+':'+secondZero+second+'+00:00';
+        	},
+            
             toggleClick: function() {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
@@ -286,7 +310,75 @@
                 }, response => {
                   // error callback
                 });
-            }
+            },
+            changeNotice () {				
+                var name={                           
+                    start_time:this.formatDate(this.modal.time_value[0]),
+                    end_time:this.formatDate(this.modal.time_value[1]),
+                }
+                var id=this.formInline[this.modal.index].id;
+                console.log('id:'+id);
+                console.log(name);
+                var path=base_path+'admin/notification/'+id;
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    this.$Message.success('修改成功');
+                    console.log("正常");
+                }, response => {
+                    this.$Message.error('修改失败');
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+            getDate()
+            {
+                console.log("执行get函数");
+				var path=base_path+'admin/time/';
+				this.$http.get(path).then(response => {
+				  console.log(response.body);
+				  this.formInline=response.body;
+                  this.status=response.body.status;
+                  console.log(this.status);
+				  // get body data
+				  //this.tasks = response.body;
+				}, response => {
+                    console.log(response.body);
+				  // error callback
+				});
+            },
+			
+			addDate:function(){
+
+                var path=base_path+'admin/time/';
+                var date={
+					start_time:this.formatDate(this.date_value[0]),
+                    end_time:this.formatDate(this.date_value[1])
+                    
+                }
+                console.log(this.date_value);
+                console.log(date);
+                this.$http.post(path,date).then(response => {
+					this.$Message.success("新增成功");
+                    console.log("正常");
+                    this.tasks=response.body;
+                  console.log(this.tasks);
+                }, response => {
+					this.$Message.error(response.body.error);
+					console.log(response.body);
+                    console.log("异常");
+                  // error callback
+                });
+                /*this.$http.post(path,body).then(response => {
+                    console.log("正常");
+                    this.tasks=response.body;
+                  console.log(this.tasks);
+                  this.formInline=response.body;
+                }, response => {
+                    console.log("异常");
+                  // error callback
+                });*/
+              },
         }
     })
 </script>
