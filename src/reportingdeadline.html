@@ -202,8 +202,8 @@
         </Row>
     </div>
     <Modal title="修改调查期" width="550" v-model="modal.show" @on-ok="changeNotice()">
-            <Date-Picker v-model="modal.time_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期"></Date-Picker>  
-        </Modal>
+        <Date-Picker v-model="modal.time_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期"></Date-Picker>  
+    </Modal>
 	<Back-Top></Back-Top>
   </div>
 
@@ -277,19 +277,19 @@
             }
     	},
         methods: {
-            formatDate:function(date) {
-            let year = date.getFullYear();
-            let month = date.getMonth() + 1;
-            let monthZero = month < 10 ? '0' : '';
-            let day = date.getDate();
-            let dayZero = day < 10 ? '0' : '';
-            let hour=date.getHours();
-            let hourZero = hour < 10 ? '0' : '';
-            let minute=date.getMinutes();
-            let minuteZero = minute < 10 ? '0' : '';
-            let second=date.getSeconds();
-            let secondZero = second < 10 ? '0' : '';
-            return year + '-' + monthZero + month + '-' + dayZero + day+'T'+hourZero+hour+':'+minuteZero+minute+':'+secondZero+second+'+00:00';
+                formatDate:function(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let monthZero = month < 10 ? '0' : '';
+                let day = date.getDate();
+                let dayZero = day < 10 ? '0' : '';
+                let hour=date.getHours();
+                let hourZero = hour < 10 ? '0' : '';
+                let minute=date.getMinutes();
+                let minuteZero = minute < 10 ? '0' : '';
+                let second=date.getSeconds();
+                let secondZero = second < 10 ? '0' : '';
+                return year + '-' + monthZero + month + '-' + dayZero + day+'T'+hourZero+hour+':'+minuteZero+minute+':'+secondZero+second+'+00:00';
         	},
             
             toggleClick: function() {
