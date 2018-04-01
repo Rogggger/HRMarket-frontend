@@ -184,6 +184,22 @@
 							</br>
 							<Form-Item>
 								各种系统信息：
+                            </Form-Item>
+                            <Form-Item label="CPU">
+								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" disabled style="width: 300px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="内存">
+								<i-input type="text" v-model="formInline.memory" placeholder="内存" disabled style="width: 300px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="硬盘">
+								<i-input type="text" v-model="formInline.hard_disk" placeholder="硬盘" disabled style="width: 300px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="应用系统">
+								<i-input type="text" v-model="formInline.system" placeholder="应用系统" disabled style="width: 300px">
+								</i-input>
 							</Form-Item>
 							<Form-Item>
 								<a href="systemmanagement.html">
@@ -211,10 +227,10 @@
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-						
-                    },
-                    ruleInline: {
-						
+                        cpu:'',
+                        memory:'',
+                        hard_disk:'',
+                        system:''
                     }
                 }
             },
@@ -227,7 +243,10 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        created: function () {
+			this.getInfo();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -246,6 +265,16 @@
                   //this.tasks = response.body;
                 }, response => {
                   // error callback
+                });
+            },
+            getInfo:function()
+            {
+                var path=base_path+'system_info';
+                this.$http.get(path).then(response => {
+                    console.log(this.tasks);
+                    this.formInline=response.body;
+                }, response => {
+                    // error callback
                 });
             }
         }
