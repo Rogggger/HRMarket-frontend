@@ -40,7 +40,7 @@
 		right: 20px;
 		text-align: right;
 	}
-	
+
     .layout-breadcrumb{
         padding: 10px 15px 0;
     }
@@ -61,7 +61,7 @@
     }
     .layout-menu-left{
         background: #464c5b;
-		width: 220px;
+		width: 17%;
     }
     .layout-header{
         height: 60px;
@@ -79,7 +79,7 @@
     }
 	.system-title{
 		letter-spacing:10px;
-		font-size:28px; 
+		font-size:28px;
 		font-family:"LiSu",隶书;
 		line-height:50px;
 		padding-left:230px;
@@ -115,11 +115,8 @@
 						<a href="adminenterpriseselect.html">
 							<Menu-item name="1-1">企业查询</Menu-item>
 						</a>
-						<a href="createnewuser.html">
-							<Menu-item name="1-2">创建新用户</Menu-item>
-						</a>
 						<a href="sampleanalysis.html">
-							<Menu-item name="1-3">取样分析</Menu-item>
+							<Menu-item name="1-2">取样分析</Menu-item>
 						</a>
                     </Submenu>
 					<Submenu name="2">
@@ -157,14 +154,17 @@
 						<a href="reportingdeadline.html">
 							<Menu-item name="4-1">上报时限</Menu-item>
 						</a>
+						<a href="createnewuser.html" >
+							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
+						</a>
 						<a href="usermanagement.html">
-							<Menu-item name="4-2">用户管理</Menu-item>
+							<Menu-item name="4-3">用户管理</Menu-item>
 						</a>
 						<a href="charactermanagement.html">
-							<Menu-item name="4-3">角色管理</Menu-item>
+							<Menu-item name="4-4">角色管理</Menu-item>
 						</a>
 						<a href="systemmonitoring.html">
-							<Menu-item name="4-4">系统监控</Menu-item>
+							<Menu-item name="4-5">系统监控</Menu-item>
 						</a>
                     </Submenu>
                 </i-menu>
@@ -172,35 +172,57 @@
             <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb-item href="adminuser.html">管理员用户</Breadcrumb-item>
-                        <Breadcrumb-item>数据处理</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>市级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item>数据管理</Breadcrumb-item>
+						<Breadcrumb-item>数据处理</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>数据处理</h1>
-							</br>
-							<Form-Item label="请输入企业名称" prop="enterprise_name">
+							<Form-Item label="企业名称" prop="enterprise_name">
 								<i-input type="text" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
 							<Form-Item label="查询时间" prop="select_time">
-								<i-input type="text" v-model="formInline.select_time" placeholder="查询时间" clearable style="width: 300px">
-								</i-input>
-							</Form-Item>							
-							
+								<Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 300px"></Date-Picker>
+							</Form-Item>
+
 							<Form-Item>
-								<a href="dataprocess.html">
-									<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">查询</i-button>
-								</a>
-								<a href="adminuser.html">
-									<i-button type="primary" style="width: 100px">返回</i-button>
-								</a>
+								<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">查询</i-button>
 							</Form-Item>
 						</i-form>
-                    </div>
+						<i-form ref="formInline" :model="formInline" style="text-align:center">
+							<Form-Item v-if='temp==1'>
+								<i-table border height="300" :columns="columns1" :data="data1" ref="table"></i-table>
+								<i-button type="primary" @click="exportData(1)" style="width: 100px">导出</i-button>
+								<i-button type="primary" @click="postPass(formInline)" style="width: 100px">审核通过</i-button>
+								<i-button type="primary" @click="temp2=1" :disabled="temp2 == 1" style="width: 100px">退回</i-button>
+								<i-button type="primary" @click="handleSubmit('formInline',formInline)" style="width: 100px" :disabled="status > 0">上报</i-button>
+								<!--<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">上报</i-button>-->
+							</Form-Item>
+							<Form-Item prop="remark" v-if='temp2==1'>
+								<i-input type="textarea" v-model="formInline.remark" placeholder="备注" clearable style="width: 300px"></i-input>
+								<i-button type="primary" @click="postReturn(formInline)" style="width: 100px">提交退回</i-button>
+							</Form-Item>
+						</i-form>
+					</div>
+					<Modal title="数据修改" width="550" v-model="modal.show" @on-ok="changeData()">
+					  <i-input type="text" v-model="modal.filing" placeholder="建档期就业人数" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.check" placeholder="调查期就业人数" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.other_reason" placeholder="其他原因" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.decrease_type" placeholder="就业人数减少类型" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.main_reason" placeholder="主要原因" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.main_reason_detail" placeholder="主要原因说明" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.second_reason" placeholder="次要原因" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.second_reason_detail" placeholder="次要原因说明称" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.third_reason" placeholder="第三原因" clearable style="width: 300px"></i-input>
+					  <i-input type="text" v-model="modal.third_reason_detail" placeholder="第三原因说明" clearable style="width: 300px"></i-input>
+				  </Modal>
                 </div>
+
                 <div class="layout-copy">
                     2016-2017 &copy; 027wh
                 </div>
@@ -213,8 +235,26 @@
 <script>
 	new Vue({
         el: '#app',
-        data () {
+        data (){
                 return {
+                    flag:sessionStorage.is_admin,
+					temp:0,
+					temp2:0,
+					modal: {
+                        show: false,
+                        index: 0,
+                        filing:'',
+						check:'',
+                        other_reason:'',
+                        decrease_type:'',
+                        main_reason:'',
+                        main_reason_detail:'',
+                        second_reason:'',
+                        second_reason_detail:'',
+                        third_reason:'',
+                        third_reason_detail:'',
+
+                    },
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -224,14 +264,97 @@
                     },
                     ruleInline: {
                         enterprise_name: [
-                            { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }
+                            { required: true, message: '请输入企业名称。', trigger: 'blur' }
                         ],
 						select_time: [
-                            { required: true, message: 'Please fill in the select time.', trigger: 'blur' }
+                            { required: true, message: '请选择查询时间。', trigger: 'blur' }
                         ]
-                    }
+                    },
+                    columns1: [
+                        {
+                            title: '建档期就业人数',
+                            key: 'filing'
+                        },
+                        {
+                            title: '调查期就业人数',
+                            key: 'check'
+                        },
+                        {
+                            title: '其他原因',
+                            key: 'other_reason'
+                        },
+                        {
+                            title: '就业人数减少类型',
+                            key: 'decrease_type'
+                        },
+                        {
+                            title: '主要原因',
+                            key: 'main_reason'
+                        },
+                        {
+                            title: '主要原因说明',
+                            key: 'main_reason_detail'
+                        },
+                        {
+                            title: '次要原因',
+                            key: 'second_reason'
+                        },
+                        {
+                            title: '次要原因说明',
+                            key: 'second_reason_detail'
+                        },
+                        {
+                            title: '第三原因',
+                            key: 'third_reason'
+                        },
+                        {
+                            title: '第三原因说明',
+                            key: 'third_reason_detail'
+                        },
+                        {
+                            title: '操作',
+                            key: 'action',
+                            width: 120,
+                            align: 'center',
+                            render: (h, params) => {
+                                return h('div', [
+                                    h('Button', {
+                                        props: {
+                                            type: 'primary',
+                                            size: 'small'
+                                        },
+                                        style: {
+                                            marginRight: '5px'
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.modal.show=true;
+                                                this.modal.filing='',
+                                                this.modal.check='',
+                                                this.modal.other_reason='',
+                                                this.modal.decrease_type='',
+												this.modal.main_reason='',
+                                                this.modal.main_reason_detail='',
+                                                this.modal.second_reason='',
+                                                this.modal.second_reason_detail='',
+                                                this.modal.third_reason='',
+                                                this.modal.third_reason_detail='',
+                                                this.modal.index = params.index;
+                                            }
+                                        }
+                                    }, '修改'),
+
+                                ]);
+                            }
+                        }
+                    ],
+                    data1: [{
+							filing: 'AAA',
+							check: '111'
+						}],
+                    date_value: ['', '']
                 }
-            },
+        },
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -243,6 +366,25 @@
             }
     	},
         methods: {
+			exportData (type) {
+				if (type === 1) {
+					this.$refs.table.exportCsv({
+						filename: 'The original data'
+					});
+				} else if (type === 2) {
+					this.$refs.table.exportCsv({
+						filename: 'Sorting and filtering data',
+						original: false
+					});
+				} else if (type === 3) {
+					this.$refs.table.exportCsv({
+						filename: 'Custom data',
+						columns: this.columns1.filter((col, index) => index < 4),
+						data: this.data1.filter((data, index) => index < 4)
+					});
+				}
+			},
+
             toggleClick: function() {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
@@ -250,6 +392,92 @@
                 } else {
                     this.spanLeft = 5;
                     this.spanRight = 19;
+                }
+            },
+			postUsers(formInline){
+				this.temp=1;
+				
+			},
+			postPass(formInline){
+				
+			},
+			postReturn(formInline){
+				
+				
+			},
+			
+			
+            changeData () {
+                this.$refs['modal'].validate((valid) => {
+                    if (valid) {
+                        var name = {
+                            filing: this.modal.filing,
+							check: this.modal.check,
+                            other_reason: this.modal.other_reason,
+                            decrease_type: this.decrease_type,
+                            main_reason: this.main_reason,
+                            main_reason_detail: this.main_reason_detail,
+                            second_reason: this.second_reason,
+                            second_reason_detail: this.second_reason_detail,
+                            third_reason: this.third_reason,
+                            third_reason_detail: this.third_reason_detail,
+                        }
+                        var id = this.data1[this.modal.index].id;
+                        console.log(name);
+                        var path = base_path + 'admin/data/' + id;
+                        this.$http.post(path, name).then(response => {
+                            this.$Message.success('修改成功');
+                            console.log("正常");
+                            console.log(this.formInline);
+                        }, response => {
+                            this.$Message.error('修改失败');
+                            console.log("异常");
+                            // error callback
+                        });
+                    }
+                    else {
+                        this.$Message.error('数据修改失败');
+                    }
+                })
+             },
+			
+            handleSubmit(sname,name) {//上报
+                this.$refs[sname].validate((valid) => {
+                    if (valid) {
+                        var path=base_path+'data/report/';
+                        console.log(name);
+                        this.$http.post(path,name).then(response => {
+                            this.tasks=response.body;
+                            this.$Message.success('上报成功');
+                            console.log(this.tasks);
+                            // get body data
+                            //this.tasks = response.body;
+                        }, response => {
+                            this.$Message.error(response.body.error);
+                            console.log(response.status);
+                            console.log(response.body);
+                            // error callback
+                        });
+                    }
+                    else {
+                        this.$Message.error('上报失败');
+                    }
+                })
+            },
+
+            AutomateExcel() {
+                var elTable = document.getElementById("i-table"); //table1改成你的tableID
+                var oRangeRef = document.body.createTextRange();
+                oRangeRef.moveToElementText(elTable);
+                oRangeRef.execCommand("Copy");
+                try {
+                    var appExcel = new ActiveXObject("Excel.Application");
+                    appExcel.Visible = true;
+                    appExcel.Workbooks.Add().Worksheets.Item(1).Paste();
+                    appExcel = null;
+                } catch (e) {
+                    alert("无法调用Office对象，请确保您的机器已安装了Office并已将本系统的站点名加入到IE的信任站点列表中！");
+                    return;
                 }
             },
 			handleExit() {
