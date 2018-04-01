@@ -199,11 +199,11 @@
 						<i-table border :columns="columns" :data="data1"></i-table>
 					</div>
                     <Modal title="修改通知" width="550" v-model="modal.show" @on-ok="changeNotice()">
-						<i-form  ref="formInline" :model="formInline" label-position="left" :label-width="90" :rules="ruleInline1" style="width: 300px" >
-							<Form-Item label="通知标题" prop="title1">
+						<i-form  ref="modal" :model="modal" label-position="left" :label-width="90" :rules="ruleInline_change" style="width: 300px" >
+							<Form-Item label="通知标题" prop="title_value">
 								<i-input type="text" v-model="modal.title_value" placeholder="通知标题" clearable style="width: 300px"></i-input>
 							</Form-Item>
-							<Form-Item label="通知内容" prop="content1">
+							<Form-Item label="通知内容" prop="content_value">
 								<i-input type="textarea" v-model="modal.content_value" placeholder="通知内容" clearable style="width: 300px"></i-input>
 							</Form-Item>
 						</i-form>
@@ -299,12 +299,12 @@
                             { required: true, message: '请输入通知标题。', trigger: 'blur' }
 						]
 					},
-					ruleInline1: {
-						title1: [
-                            { required: true, message: '请输入通知标题。', trigger: 'blur' }
+					ruleInline_change: {
+						title_value: [
+							{ required: true, message: '请输入通知标题。', trigger: 'blur' }
 						],
-						content1: [
-                            { required: true, message: '请输入通知内容。', trigger: 'blur' }
+						content_value: [
+                            { required: true, message: '请输入通知内容。', trigger: 'blur'}
                         ],
 					},
                 }
@@ -347,7 +347,7 @@
 						});
 					}
                     else {
-                        this.$Message.error('通知发布失败');
+                        this.$Message.error('修改失败');
                     }
                 })
 			},
@@ -366,23 +366,30 @@
 				});
 				
 			},
-			changeNotice () {								
-				var name={
-					title:this.modal.title_value,
-					content:this.modal.content_value,
-				}
-				var id=this.data1[this.modal.index].id;
-				console.log(name);
-				var path=base_path+'admin/notification/'+id;
-				this.$http.post(path,name).then(response => {
-					this.$Message.success('修改成功');
-					console.log("正常");
-					console.log(this.formInline);
-				}, response => {
-					this.$Message.error('修改失败');
-					console.log("异常");
-				// error callback
-				});
+			changeNotice () {
+				this.$refs['modal'].validate((valid) => {
+                    if (valid) {								
+						var name={
+							title:this.modal.title_value,
+							content:this.modal.content_value,
+						}
+						var id=this.data1[this.modal.index].id;
+						console.log(name);
+						var path=base_path+'admin/notification/'+id;
+						this.$http.post(path,name).then(response => {
+							this.$Message.success('修改成功');
+							console.log("正常");
+							console.log(this.formInline);
+						}, response => {
+							this.$Message.error('修改失败');
+							console.log("异常");
+						// error callback
+						});
+					}
+                    else {
+                        this.$Message.error('通知发布失败');
+                    }
+                })
 			},
 			remove(index)//删除通知admin/noticification/<int:id> DELETE 删除第id的通知
 			{
