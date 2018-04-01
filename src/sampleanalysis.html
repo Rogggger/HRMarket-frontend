@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
 <!-- import iView -->
 <script src="https://unpkg.com/iview/dist/iview.min.js"></script>
+<!-- import ECHART -->
+<script src="http://echarts.baidu.com/dist/echarts.js"></script>
 <!--import path-->
 <script src=".\path.js"></script>
 
@@ -87,7 +89,7 @@
     }
     #form{
 		margin-top:100px;
-		margin-left:40%;
+		margin-left:30%;
 		text-align: center;
 	}
 </style>
@@ -178,12 +180,15 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
+						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 800px" >
 							<h1>取样分析</h1>
 							</br>
 							<Form-Item>
 								全省各市企业的数量合占比的饼图
-							</Form-Item>
+                            </Form-Item>
+                            <Form-Item id="pie_chart" style="width:800px;height:600px;">
+								<!-- <div id="pie_chart" style="width:600px;height:400px;"></div> -->
+                            </Form-Item>
 							<Form-Item>
 								<a href="summary.html">
 									<i-button type="primary" style="width: 100px">返回</i-button>
@@ -226,7 +231,10 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        mounted(){
+            this.pie_chart();
+        },
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -236,6 +244,85 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
+            },
+            pie_chart(){//折线图
+                var myChart = echarts.init(document.getElementById('pie_chart'));
+
+                // 指定图表的配置项和数据
+                option = {
+                    backgroundColor: '#2c343c',
+
+                    title: {
+                        text: 'Customized Pie',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+
+                    visualMap: {
+                        show: false,
+                        min: 80,
+                        max: 600,
+                        inRange: {
+                            colorLightness: [0, 1]
+                        }
+                    },
+                    series : [
+                        {
+                            name:'访问来源',
+                            type:'pie',
+                            radius : '55%',
+                            center: ['50%', '50%'],
+                            data:[
+                                {value:335, name:'直接访问'},
+                                {value:310, name:'邮件营销'},
+                                {value:274, name:'联盟广告'},
+                                {value:235, name:'视频广告'},
+                                {value:400, name:'搜索引擎'}
+                            ].sort(function (a, b) { return a.value - b.value; }),
+                            roseType: 'radius',
+                            label: {
+                                normal: {
+                                    textStyle: {
+                                        color: 'rgba(255, 255, 255, 0.3)'
+                                    }
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.3)'
+                                    },
+                                    smooth: 0.2,
+                                    length: 10,
+                                    length2: 20
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: '#c23531',
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            },
+
+                            animationType: 'scale',
+                            animationEasing: 'elasticOut',
+                            animationDelay: function (idx) {
+                                return Math.random() * 200;
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
             },
 			handleExit() {
 				var path=base_path+'account/logout';
