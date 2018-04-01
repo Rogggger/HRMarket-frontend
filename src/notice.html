@@ -398,7 +398,7 @@
 				console.log(path);
 				this.$http.delete(path).then(response => {
 					this.$Message.success('删除成功');
-					this.data6.splice(index, 1);
+					this.data1.splice(index, 1);
 					console.log("正常");
 				}, response => {
 					console.log(response.body);
