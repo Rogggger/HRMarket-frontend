@@ -185,10 +185,7 @@
 							<h1>对比分析</h1>
 							</br>
 							<Form-Item label="输入对比调查期限">
-								<i-input type="text" v-model="formInline.item1" clearable style="width: 200px">
-								</i-input>
-								<i-input type="text" v-model="formInline.item2" clearable style="width: 200px">
-								</i-input>
+								<i-table border ref="selection" :columns="columns" :data="data1"></i-table>
 							</Form-Item>
 							<i-button type="primary" @click="postUsers(formInline)" style="width: 150px" icon="ios-search">查询</i-button>
 							<br><br><br><br>							
@@ -252,6 +249,20 @@
                     this.spanRight = 19;
                 }
             },
+            getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'admin/datacheck/';
+				this.$http.get(path).then(response => {
+				  
+				  this.data1=response.body;
+				  console.log(this.data1);
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
 			handleExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
