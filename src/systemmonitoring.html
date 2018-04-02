@@ -106,7 +106,7 @@
 
 		<Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <i-menu active-name="4-2" theme="dark" width="auto" :open-names="['4']">
+                <i-menu active-name="4-5" theme="dark" width="auto" :open-names="['4']">
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
@@ -115,11 +115,8 @@
 						<a href="adminenterpriseselect.html">
 							<Menu-item name="1-1">企业查询</Menu-item>
 						</a>
-						<a href="createnewuser.html">
-							<Menu-item name="1-2">创建新用户</Menu-item>
-						</a>
 						<a href="sampleanalysis.html">
-							<Menu-item name="1-3">取样分析</Menu-item>
+							<Menu-item name="1-2">取样分析</Menu-item>
 						</a>
                     </Submenu>
 					<Submenu name="2">
@@ -157,14 +154,17 @@
 						<a href="reportingdeadline.html">
 							<Menu-item name="4-1">上报时限</Menu-item>
 						</a>
+						<a href="createnewuser.html" >
+							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
+						</a>
 						<a href="usermanagement.html">
-							<Menu-item name="4-2">用户管理</Menu-item>
+							<Menu-item name="4-3">用户管理</Menu-item>
 						</a>
 						<a href="charactermanagement.html">
-							<Menu-item name="4-3">角色管理</Menu-item>
+							<Menu-item name="4-4">角色管理</Menu-item>
 						</a>
 						<a href="systemmonitoring.html">
-							<Menu-item name="4-4">系统监控</Menu-item>
+							<Menu-item name="4-5">系统监控</Menu-item>
 						</a>
                     </Submenu>
                 </i-menu>
@@ -172,7 +172,8 @@
             <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb-item href="adminuser.html">管理员用户</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>市级管理员用户</Breadcrumb-item>
 						<Breadcrumb-item>系统管理</Breadcrumb-item>
                         <Breadcrumb-item>系统监控</Breadcrumb-item>
                     </Breadcrumb>
@@ -184,6 +185,22 @@
 							</br>
 							<Form-Item>
 								各种系统信息：
+                            </Form-Item>
+                            <Form-Item label="CPU">
+								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" disabled style="width: 300px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="内存">
+								<i-input type="text" v-model="formInline.memory" placeholder="内存" disabled style="width: 300px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="硬盘">
+								<i-input type="text" v-model="formInline.hard_disk" placeholder="硬盘" disabled style="width: 300px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="应用系统">
+								<i-input type="text" v-model="formInline.system" placeholder="应用系统" disabled style="width: 300px">
+								</i-input>
 							</Form-Item>
 							<Form-Item>
 								<a href="systemmanagement.html">
@@ -207,14 +224,15 @@
         el: '#app',
         data () {
                 return {
+                    flag:sessionStorage.is_admin,
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-						
-                    },
-                    ruleInline: {
-						
+                        cpu:'',
+                        memory:'',
+                        hard_disk:'',
+                        system:''
                     }
                 }
             },
@@ -227,7 +245,10 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        created: function () {
+			this.getInfo();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -246,6 +267,16 @@
                   //this.tasks = response.body;
                 }, response => {
                   // error callback
+                });
+            },
+            getInfo:function()
+            {
+                var path=base_path+'system_info';
+                this.$http.get(path).then(response => {
+                    console.log(this.tasks);
+                    this.formInline=response.body;
+                }, response => {
+                    // error callback
                 });
             }
         }

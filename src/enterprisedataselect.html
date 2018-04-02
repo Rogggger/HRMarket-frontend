@@ -134,7 +134,7 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-                        <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 200px"></Date-Picker>
+                        <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>
                         <i-button type="primary" @click="postDate()">查询</i-button>
                         <i-table :columns="columns" :data="formInline"></i-table>
                     </div>

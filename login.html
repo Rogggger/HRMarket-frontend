@@ -174,9 +174,11 @@
                                     break;
                                 case 1://市级用户
                                     window.location.href = "./src/adminuser.html";
+									sessionStorage.is_admin=1;
                                     break;
                                 case 2://省级用户
                                     window.location.href = "./src/adminuser.html";
+									sessionStorage.is_admin=2;
                                     break;
                             }
                         }, response => {

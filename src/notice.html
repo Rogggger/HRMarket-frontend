@@ -196,10 +196,18 @@
 								</a>
 							</Form-Item>
 						</i-form>
-					</div>
-                    <div class="layout-content-main" :style="contentStyle">
 						<i-table border :columns="columns" :data="data1"></i-table>
-                    </div>
+					</div>
+                    <Modal title="修改通知" width="550" v-model="modal.show" @on-ok="changeNotice()">
+						<i-form  ref="modal" :model="modal" label-position="left" :label-width="90" :rules="ruleInline_change" style="width: 300px" >
+							<Form-Item label="通知标题" prop="title_value">
+								<i-input type="text" v-model="modal.title_value" placeholder="通知标题" clearable style="width: 300px"></i-input>
+							</Form-Item>
+							<Form-Item label="通知内容" prop="content_value">
+								<i-input type="textarea" v-model="modal.content_value" placeholder="通知内容" clearable style="width: 300px"></i-input>
+							</Form-Item>
+						</i-form>
+					</Modal>
                 </div>
                 <div class="layout-copy">
                     2016-2017 &copy; 027wh
@@ -215,8 +223,12 @@
         el: '#app',
         data () {
                 return {
-					title_value:'',
-					content_value:'',
+					modal: {
+                        show: false,
+                        index: 0,
+						title_value:'',
+						content_value:''
+                    },
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -250,8 +262,12 @@
 										},
 										on: {
 											click: () => {
-												this.changeNotice(params.index,this.title_value,this.content_value,this.data1)
+                                                this.modal.show=true;
+												this.modal.title_value = '';
+												this.modal.content_value = '';
+                                                this.modal.index = params.index;
 											}
+											
 										}
 									}, '修改'),
 									h('Button', {
@@ -276,13 +292,21 @@
 						content: '',
                     },
                     ruleInline: {
-                        notice: [
-                            { required: true, message: '请输入通知标题。', trigger: 'blur' }
+                        content: [
+                            { required: true, message: '请输入通知内容。', trigger: 'blur' }
                         ],
 						title: [
-                            { required: true, message: '请输入通知内容。', trigger: 'blur' }
-                        ]
-                    }
+                            { required: true, message: '请输入通知标题。', trigger: 'blur' }
+						]
+					},
+					ruleInline_change: {
+						title_value: [
+							{ required: true, message: '请输入通知标题。', trigger: 'blur' }
+						],
+						content_value: [
+                            { required: true, message: '请输入通知内容。', trigger: 'blur'}
+                        ],
+					},
                 }
             },
 		created: function () {
@@ -323,7 +347,7 @@
 						});
 					}
                     else {
-                        this.$Message.error('通知发布失败');
+                        this.$Message.error('修改失败');
                     }
                 })
 			},
@@ -342,51 +366,14 @@
 				});
 				
 			},
-			changeNotice (index,title_value,content_value,data1) {
-                this.$Modal.confirm({
-					render: (h) => {
-						return h('div', [
-							h('h1',  '修改通知标题'),
-							h('Input', {
-								props: {
-									value: title_value,
-									autofocus: true,
-									placeholder: '请填入标题'
-								},
-								style: {
-									marginTop: '25px'
-								},
-								on: {
-									input: (val) => {
-										title_value = val;
-									}
-								}
-							}, '通知标题'),
-							h('Input', {
-								props: {
-									type:"textarea",
-									value: content_value,
-									autofocus: true,
-									placeholder: '请填入内容'
-								},
-								style: {
-									marginTop: '5px'
-								},
-								on: {
-									input: (val) => {
-										content_value = val;
-									}
-								}
-							}, '通知内容')
-						]);
-					},
-					onOk()
-					{						
+			changeNotice () {
+				this.$refs['modal'].validate((valid) => {
+                    if (valid) {								
 						var name={
-							title:title_value,
-							content:content_value,
+							title:this.modal.title_value,
+							content:this.modal.content_value,
 						}
-						var id=data1[index].id;
+						var id=this.data1[this.modal.index].id;
 						console.log(name);
 						var path=base_path+'admin/notification/'+id;
 						this.$http.post(path,name).then(response => {
@@ -399,9 +386,10 @@
 						// error callback
 						});
 					}
-				});
-				
-			
+                    else {
+                        this.$Message.error('通知发布失败');
+                    }
+                })
 			},
 			remove(index)//删除通知admin/noticification/<int:id> DELETE 删除第id的通知
 			{
@@ -410,7 +398,7 @@
 				console.log(path);
 				this.$http.delete(path).then(response => {
 					this.$Message.success('删除成功');
-					this.data6.splice(index, 1);
+					this.data1.splice(index, 1);
 					console.log("正常");
 				}, response => {
 					console.log(response.body);
