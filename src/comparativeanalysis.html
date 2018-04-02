@@ -194,8 +194,7 @@
                     <div class="layout-content-main" :style="contentStyle" id="center">
                         <h1>对比分析</h1>
                         <i-table border ref="selection" :columns="columns1" :data="data1" height="400px" @on-select="select($event)"></i-table>
-                        </br></br>	
-                        <i-button type="primary" @click="search()" style="width: 150px" icon="ios-search">查询</i-button>
+
                             
                         </br></br></br>	
                         <div id="bar_chart" style="width:100%;height:800px;"></div>
@@ -274,19 +273,23 @@
                     data1: [
                         {
                             start:'2016-7-7',
-                            end:'2019-7-4'
+                            end:'2019-7-4',
+                            id:'1'
                         },
                         {
                             start:'2017-7-7',
-                            end:'2019-7-4'
+                            end:'2019-7-4',
+                            id:'2'
                         },
                         {
                             start:'2018-7-7',
-                            end:'2019-7-4'
+                            end:'2019-7-4',
+                            id:'3'
                         },
                         {
                             start:'2019-7-7',
-                            end:'2019-7-4'
+                            end:'2019-7-4',
+                            id:'4'
                         }
                     ],
                     data2: [
@@ -306,7 +309,8 @@
                             percent:'76'
                             
                         }
-                    ]
+                    ],
+
                 }
             },
     	computed:{
@@ -327,9 +331,31 @@
         },
         methods: {
             select: function(e) {
-                if(e.length>2)
-                this.$Message.error('请选中两项');
                 console.log(e);
+                if(e.length!=2)
+                    this.$Message.error('请选中两项');
+                else{
+                    console.log(e.length);
+                    console.log(e[0].id);
+                    console.log(e[1].id);
+                    var name={
+                        id_1:e[0].id,
+                        id_2:e[1].id
+                    }
+                    var path=base_path+'admin/compare';
+                    console.log(name);
+                    this.$http.post(path,name).then(response => {
+                        this.data2=response.body;
+                        this.$Message.success('修改成功');
+                        console.log("正常");
+                    }, response => {
+                        this.$Message.error('修改失败');
+                        console.log("异常");
+                        console.log(response.body);
+                    // error callback
+                    });
+                }
+
             },
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -340,16 +366,7 @@
                     this.spanRight = 19;
                 }
             },
-            search()
-            {
-                console.log(this.data1);
-                this.temp=1;
-                for(var i=0;i<this.data1.length;i++)
-                {
-                    if(this.data1[i]._checked==true)
-                        console.log(this.data1[i]);
-                }
-            },
+            
             getTable:function()
 			{
 				console.log("执行get函数");
@@ -462,7 +479,7 @@
                         }
                     },
                     legend: {
-                        data: ['Forest','Wetland']
+                        data: ['第一个调查期','第二个调查期']
                     },
                     toolbox: {
                         show: true,
@@ -492,14 +509,14 @@
                     ],
                     series: [
                         {
-                            name: 'Forest',
+                            name: '第一个调查期',
                             type: 'bar',
                             barGap: 0,
                             label: labelOption,
                             data: [320, 332, 301, 334, 50]
                         },
                         {
-                            name: 'Wetland',
+                            name: '第二个调查期',
                             type: 'bar',
                             label: labelOption,
                             data: [98, 77, 101, 99, 60]
