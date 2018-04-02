@@ -164,7 +164,7 @@
 							<Menu-item name="4-1">上报时限</Menu-item>
 						</a>
 						<a href="createnewuser.html" >
-							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
+							<Menu-item name="4-2">创建新用户</Menu-item>
 						</a>
 						<a href="usermanagement.html">
 							<Menu-item name="4-3" v-if=' flag==2 '>用户管理</Menu-item>
@@ -183,6 +183,7 @@
                     <Breadcrumb>
 						<Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
 						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html">省级管理员用户</Breadcrumb-item>
 						<Breadcrumb-item>系统管理</Breadcrumb-item>
                         <Breadcrumb-item>用户管理</Breadcrumb-item>
                     </Breadcrumb>
@@ -199,15 +200,8 @@
 							<Form-Item label="用户名" prop="username_value">
 								<i-input type="text" v-model="modal.username_value" clearable style="width: 300px"></i-input>
 							</Form-Item>
-							<Form-Item label="角色" prop="character_value">
-								<Radio-Group v-model="modal.character_value">
-									<Radio label="0">
-										<span>企业用户</span>
-									</Radio>
-									<Radio label="1">
-										<span>市级管理员用户</span>
-									</Radio>
-								</Radio-Group>
+							<Form-Item label="密码" prop="password_value">
+								<i-input type="text" v-model="modal.password_value" clearable style="width: 300px"></i-input>
 							</Form-Item>
 						</i-form>
 					</Modal>
@@ -231,7 +225,7 @@
                         show: false,
                         index: 0,
 						username_value:'',
-						character_value:''
+						password_value:''
                     },
 					spanLeft: 5,
                     spanRight: 19,
@@ -264,7 +258,7 @@
 											click: () => {
                                                 this.modal.show=true;
                                                 this.modal.username_value = '';
-												this.modal.character_value = '';
+												this.modal.password_value = '';
                                                 this.modal.index = params.index;
 											}
 										}
@@ -284,19 +278,14 @@
 							}
 						}
 					],
-					data1: [
-						{
-							username: 'AAA',
-							character: '企业用户'
-						}
-					],
+					data1: [],
 					id:[],
                     ruleInline_change: {
 						username_value: [
 							{ required: true, message: '请输入用户名。', trigger: 'blur' }
 						],
-						character_value: [
-                            { required: true, message: '请选择角色类型。', trigger: 'blur'}
+						password_value: [
+                            { required: true, message: '请输入密码。', trigger: 'blur'}
                         ]
 					}
                 }
@@ -331,13 +320,25 @@
                   // error callback
                 });
             },
-			
+			getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'admin/user/';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+				  this.data1=response.body;
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+			},
 			changeUser () {
 				this.$refs['modal'].validate((valid) => {
                     if (valid) {								
 						var name={
 							username:this.modal.username_value,
-							character:this.modal.character_value,
+							password:this.modal.password_value,
 						}
 						var id=this.data1[this.modal.index].id;
 						console.log(name);
@@ -357,7 +358,7 @@
                     }
                 })
 			},
-			remove(index)//删除通知admin/user/<int:id> DELETE 删除第id的用户信息
+			remove(index)//admin/user/<int:id> DELETE 删除第id的用户信息
 			{
 				var id=this.data1[index].id;
 				var path=base_path+'admin/user/'+id;

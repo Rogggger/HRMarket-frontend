@@ -193,14 +193,13 @@
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle" id="center">
                         <h1>对比分析</h1>
-                        <i-table border ref="selection" :columns="columns1" :data="data1" height="400px"></i-table>
+                        <i-table border ref="selection" :columns="columns1" :data="data1" height="400px" @on-select="select($event)"></i-table>
                         </br></br>	
                         <i-button type="primary" @click="search()" style="width: 150px" icon="ios-search">查询</i-button>
                             
                         </br></br></br>	
                         <div id="bar_chart" style="width:100%;height:800px;"></div>
-                        <i-table border height="300" :columns="column2" :data="data2" ref="table"></i-table>
-
+                        <i-table border height="300" :columns="column2" :data="data2" ref="table" ></i-table>
                     </div>
                     <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
                         <Form-Item>
@@ -274,7 +273,11 @@
                     ],
                     data1: [
                         {
-                            start:'2018-7-7',
+                            start:'2016-7-7',
+                            end:'2019-7-4'
+                        },
+                        {
+                            start:'2017-7-7',
                             end:'2019-7-4'
                         },
                         {
@@ -282,11 +285,7 @@
                             end:'2019-7-4'
                         },
                         {
-                            start:'2018-7-7',
-                            end:'2019-7-4'
-                        },
-                        {
-                            start:'2018-7-7',
+                            start:'2019-7-7',
                             end:'2019-7-4'
                         }
                     ],
@@ -327,6 +326,9 @@
             this.bar_chart();
         },
         methods: {
+            select: function(e) {
+                console.log(e);
+            },
             toggleClick: function() {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
@@ -338,7 +340,13 @@
             },
             search()
             {
+                console.log(this.data1);
                 this.temp=1;
+                for(var i=0;i<this.data1.length;i++)
+                {
+                    if(this.data1[i]._checked==true)
+                        console.log(this.data1[i]);
+                }
             },
             getTable:function()
 			{

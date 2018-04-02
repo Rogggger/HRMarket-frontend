@@ -194,13 +194,7 @@
                         <h2>所有调查期</h2>		
                         </br>				
                         <i-table :columns="columns" :data="formInline" style="width: 700px; margin-left:35%" height="600"></i-table>
-                                 
-                        <Form-Item>
-                            <a href="systemmanagement.html">
-                                <i-button type="primary" style="width: 100px">返回</i-button>
-                            </a>
-                        </Form-Item>
-						</i-form>
+                        
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -328,7 +322,7 @@
                 var id=this.formInline[this.modal.index].id;
                 console.log('id:'+id);
                 console.log(name);
-                var path=base_path+'admin/notification/'+id;
+                var path=base_path+'admin/time/'+id;
                 console.log()
                 this.$http.post(path,name).then(response => {
                     this.$Message.success('修改成功');
