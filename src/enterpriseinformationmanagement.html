@@ -149,7 +149,7 @@
 								<!--<i-input type="text" v-model="formInline.area" placeholder="所属地区" clearable :disabled="flag > 0" style="width: 300px">
 									<icon type="earth" slot="prepend"></icon>
 								</i-input>-->
-								<Cascader :data="area" v-model="formInline.area" placeholder="市/区" clearable :disabled="flag > 0" style="width: 300px">
+								<Cascader :data="area" v-model="formInline.area" placeholder="市/区" clearable="flag > 0" :disabled="flag > 0" style="width: 300px">
 								</Cascader>
 							</Form-Item>
 							<Form-Item label="组织机构代码" prop="code">
