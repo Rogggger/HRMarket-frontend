@@ -191,7 +191,7 @@
                             
                         </br></br></br>	
                         <div id="bar_chart" style="width:100%;height:800px;"></div>				
-                        <i-table border height="300" :columns="column2" :data="data2" ref="table"></i-table>
+                        <i-table border height="300" :columns="column2" :data="data2" ref="table" @on-select-all="changeNotice()"></i-table>
                         
                     </div>
                 </div>

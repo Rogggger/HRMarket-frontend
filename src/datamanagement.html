@@ -470,22 +470,6 @@
                 })
              },
 			
-
-            AutomateExcel() {
-                var elTable = document.getElementById("i-table"); //table1改成你的tableID
-                var oRangeRef = document.body.createTextRange();
-                oRangeRef.moveToElementText(elTable);
-                oRangeRef.execCommand("Copy");
-                try {
-                    var appExcel = new ActiveXObject("Excel.Application");
-                    appExcel.Visible = true;
-                    appExcel.Workbooks.Add().Worksheets.Item(1).Paste();
-                    appExcel = null;
-                } catch (e) {
-                    alert("无法调用Office对象，请确保您的机器已安装了Office并已将本系统的站点名加入到IE的信任站点列表中！");
-                    return;
-                }
-            },
 			handleExit() {
 				var path=base_path+'account/logout';
                 this.$http.get(path).then(response => {
