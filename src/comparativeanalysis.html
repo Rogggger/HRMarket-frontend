@@ -313,6 +313,8 @@
         },
         methods: {
             select: function(e) {
+                if(e.length>2)
+                this.$Message.error('请选中两项');
                 console.log(e);
             },
             toggleClick: function() {
