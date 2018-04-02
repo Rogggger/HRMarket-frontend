@@ -100,12 +100,16 @@
 			<i-button type="primary" @click="handleSubmit()" style="width: 100px">退出系统</i-button>
 		</div>
 		<div class="layout-header">
-			<div class="layout-logo"></div>
+			<div class="layout-logo">
+				<a href="adminuser.html">
+					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				</a>
+			</div>
 			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
 		</div>
 		<Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
-                <i-menu theme="dark" width="auto" :open-names="['1']">
+                <i-menu theme="dark" width="auto" :open-names="['']">
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
@@ -126,11 +130,14 @@
 						<a href="datamanagement.html">
 							<Menu-item name="2-1">数据处理</Menu-item>
 						</a>
+						<a href="dataaudit.html">
+							<Menu-item name="2-2">数据审核</Menu-item>
+						</a>
 						<a href="datasummary.html">
-							<Menu-item name="2-2">数据汇总</Menu-item>
+							<Menu-item name="2-3">数据汇总</Menu-item>
 						</a>
 						<a href="graph.html">
-							<Menu-item name="2-3">图表分析</Menu-item>
+							<Menu-item name="2-4">图表分析</Menu-item>
 						</a>
                     </Submenu>
 					<Submenu name="3">
@@ -157,10 +164,10 @@
 							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
 						</a>
 						<a href="usermanagement.html">
-							<Menu-item name="4-3">用户管理</Menu-item>
+							<Menu-item name="4-3" v-if=' flag==2 '>用户管理</Menu-item>
 						</a>
 						<a href="charactermanagement.html">
-							<Menu-item name="4-4">角色管理</Menu-item>
+							<Menu-item name="4-4" v-if=' flag==2 '>角色管理</Menu-item>
 						</a>
 						<a href="systemmonitoring.html">
 							<Menu-item name="4-5">系统监控</Menu-item>
@@ -174,7 +181,7 @@
 						<i-form id="form" ref="formInline" :model="formInline"   style="width: 300px" >
 							<Form-Item>
 								<h1 v-if=' flag==2 '>欢迎省级管理员用户</h1>
-								<h1 v-if=' flag==1 '>欢迎市级管理员用户</h1>
+								<h1 v-if=' flag==1 '>欢迎<script>document.write(sessionStorage.area)</script>市管理员用户</h1>
 							</Form-Item>
 						</i-form>
                     </div>
@@ -189,7 +196,8 @@
   </div>
 
 <script type="text/javascript">
-//	sessionStorage.is_admin=2;
+	sessionStorage.is_admin=1;
+	sessionStorage.area='济南';
 	new Vue({
         el: '#app',
         
@@ -201,7 +209,9 @@
                     theme1: 'dark'
                 }
             },
-            
+        created: function () {
+			this.getTable();
+		},
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;

@@ -181,28 +181,19 @@
 						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>数据汇总</h1>
 							</br>
-							<Form-Item label="请输入企业名称" prop="enterprise_name">
-								<i-input type="text" v-model="formInline.enterprise_name" placeholder="企业名称" clearable style="width: 300px">
+							<Form-Item label="请输入企业名称" prop="name">
+								<i-input type="text" v-model="formInline.name" placeholder="企业名称" clearable style="width: 300px">
 								</i-input>
 							</Form-Item>
-							<Form-Item label="查询时间" prop="select_time_start">
-								</br>
-								<i-input type="text" v-model="formInline.select_time_start" placeholder="查询时间" clearable style="width: 140px">
-								</i-input>	至	
-								<i-input type="text" v-model="formInline.select_time_end" placeholder="查询时间" clearable style="width: 140px">
-								</i-input>
-								
-							</Form-Item>							
 							
 							<Form-Item>
-								<a href="summary.html">
-									<i-button type="primary" @click="postUsers(formInline)" style="width: 100px">查询</i-button>
-								</a>
+								<i-button type="primary" @click="search()" style="width: 100px">查询</i-button>
 								<a href="adminuser.html">
 									<i-button type="primary" style="width: 100px">返回</i-button>
 								</a>
 							</Form-Item>
-						</i-form>
+                        </i-form>
+                        <i-table border :columns="columns" :data="data1" height="700px" ref="table"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -223,21 +214,36 @@
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-                        enterprise_name: '',
-						select_time_start: '',
-						select_time_end: ''
+                        name: ''
                     },
                     ruleInline: {
-                        enterprise_name: [
-                            { required: true, message: 'Please fill in the enterprise name.', trigger: 'blur' }
-                        ],
-						select_time_start: [
-                            { required: true, message: 'Please fill in the select time.', trigger: 'blur' }
-                        ],
-						select_time_end: [
-                            { required: true, message: 'Please fill in the select time.', trigger: 'blur' }
+                        name: [
+                            { required: true, message: '请输入企业名称', trigger: 'blur' }
                         ]
-                    }
+                    },
+                    columns: [
+						{
+							title: '开始时间',
+							key: 'start'
+						},
+						{
+							title: '结束时间',
+							key: 'end'
+						},
+						{
+							title: '建档期人数',
+							key: 'filing'
+						},
+						{
+							title: '调查期人数',
+							key: 'check'
+						},
+						{
+							title: '差值',
+							key: 'diff'
+                        }
+                    ],
+                    data1: [],
                 }
             },
     	computed:{
@@ -269,7 +275,28 @@
                 }, response => {
                   // error callback
                 });
+            },
+            search(){
+                this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+                        var path=base_path+'admin/summary';
+                        this.$http.post(path,this.formInline).then(response => {
+                        this.data1=response.body;
+                        console.log(this.tasks);
+                        // get body data
+                        //this.tasks = response.body;
+                        }, response => {
+                        this.$Message.error(response.body.error);
+                        console.log(response.body);
+                        // error callback
+                        });
+                    }
+                else {
+                        this.$Message.error('请输入企业名称');
+                    }
+                })
             }
+            
         }
     })
 </script>
