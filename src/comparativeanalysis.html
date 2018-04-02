@@ -88,10 +88,13 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
 		margin-left:40%;
 		text-align: center;
 	}
+    #center{
+        margin-top:20px;
+        text-align:center;
+    }
 </style>
 </head>
 
@@ -180,27 +183,17 @@
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
-                    <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
-							<h1>对比分析</h1>
-							</br>
-							<Form-Item label="输入对比调查期限">
-								<i-input type="text" v-model="formInline.item1" clearable style="width: 200px">
-								</i-input>
-								<i-input type="text" v-model="formInline.item2" clearable style="width: 200px">
-								</i-input>
-							</Form-Item>
-							<i-button type="primary" @click="postUsers(formInline)" style="width: 150px" icon="ios-search">查询</i-button>
-							<br><br><br><br>							
-							<Form-Item>
-								折线图、表格（企业总数、建档期总岗位数、岗位减少总数、岗位变化数量占比）
-							</Form-Item>
-							<Form-Item>
-								<a href="graph.html">
-									<i-button type="primary" style="width: 200px">返回</i-button>
-								</a>
-							</Form-Item>
-						</i-form>
+                    <div class="layout-content-main" :style="contentStyle" id="center">
+                        <h1>对比分析</h1>
+                        <i-table border ref="selection" :columns="columns1" :data="data1" height="400px"></i-table>
+                        </br></br>	
+                        <i-button type="primary" @click="search()" style="width: 150px" icon="ios-search">查询</i-button>
+                            
+                        </br></br></br>	
+                        <div id="bar_chart" style="width:100%;height:800px;"></div>				
+                        <i-table border height="300" :columns="column2" :data="data2" ref="table" v-if='temp==1'></i-table>
+                        
+						
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -217,6 +210,7 @@
         el: '#app',
         data () {
                 return {
+                    temp:0,
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
@@ -226,7 +220,67 @@
                     },
                     ruleInline: {
                         
+                    },
+                    columns1: [
+                    {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center'
+                    },
+                    {
+                        title: '开始时间',
+                        key: 'start'
+                    },
+                    {
+                        title: '结束时间',
+                        key: 'end'
                     }
+                    ],
+                    column2: [
+                    {
+                        title: '企业总数',
+                        key: 'sum'
+                    },
+                    {
+                        title: '建档期总岗位数',
+                        key: 'filing'
+                    },
+                    {
+                        title: '调查期总岗位数',
+                        key: 'check'
+                    },
+                    {
+                        title: '岗位变化总数',
+                        key: 'diff'
+                    },
+                    {
+                        title: '岗位变化占比',
+                        key: 'percent'
+                    }
+                    ],
+                    data1: [
+                        {
+                            start:'2018-7-7',
+                            end:'2019-7-4'
+                        },
+                        {
+                            start:'2018-7-7',
+                            end:'2019-7-4'
+                        },
+                        {
+                            start:'2018-7-7',
+                            end:'2019-7-4'
+                        },
+                        {
+                            start:'2018-7-7',
+                            end:'2019-7-4'
+                        }
+                    ],
+                    data2: [
+                        {
+                            diff:'2'
+                        }
+                    ]
                 }
             },
     	computed:{
@@ -238,7 +292,13 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        created: function () {
+			this.getTable();
+        },
+        mounted(){
+            this.bar_chart();
+        },
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -248,6 +308,195 @@
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
+            },
+            search()
+            {
+                this.temp=1;
+            },
+            getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'admin/compare';
+				this.$http.get(path).then(response => {
+				  
+				  this.data1=response.body;
+				  console.log(this.data1);
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+            },
+            bar_chart(){//折线图
+                var myChart = echarts.init(document.getElementById('bar_chart'));
+                var posList = [
+                    'left', 'right', 'top', 'bottom',
+                    'inside',
+                    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+                    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+                ];
+
+                app.configParameters = {
+                    rotate: {
+                        min: -90,
+                        max: 90
+                    },
+                    align: {
+                        options: {
+                            left: 'left',
+                            center: 'center',
+                            right: 'right'
+                        }
+                    },
+                    verticalAlign: {
+                        options: {
+                            top: 'top',
+                            middle: 'middle',
+                            bottom: 'bottom'
+                        }
+                    },
+                    position: {
+                        options: echarts.util.reduce(posList, function (map, pos) {
+                            map[pos] = pos;
+                            return map;
+                        }, {})
+                    },
+                    distance: {
+                        min: 0,
+                        max: 100
+                    }
+                };
+
+                app.config = {
+                    rotate: 90,
+                    align: 'left',
+                    verticalAlign: 'middle',
+                    position: 'insideBottom',
+                    distance: 15,
+                    onChange: function () {
+                        var labelOption = {
+                            normal: {
+                                rotate: app.config.rotate,
+                                align: app.config.align,
+                                verticalAlign: app.config.verticalAlign,
+                                position: app.config.position,
+                                distance: app.config.distance
+                            }
+                        };
+                        myChart.setOption({
+                            series: [{
+                                label: labelOption
+                            }, {
+                                label: labelOption
+                            }, {
+                                label: labelOption
+                            }, {
+                                label: labelOption
+                            }]
+                        });
+                    }
+                };
+
+
+                var labelOption = {
+                    normal: {
+                        show: true,
+                        position: app.config.position,
+                        distance: app.config.distance,
+                        align: app.config.align,
+                        verticalAlign: app.config.verticalAlign,
+                        rotate: app.config.rotate,
+                        formatter: '{c}  {name|{a}}',
+                        fontSize: 16,
+                        rich: {
+                            name: {
+                                textBorderColor: '#fff'
+                            }
+                        }
+                    }
+                };
+
+                option = {
+                    color: ['#003366','#e5323e'],
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['Forest','Wetland']
+                    },
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        left: 'right',
+                        top: 'center',
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [
+                        {
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: ['企业总数', '建档期总岗位数', '调查期总岗位数', '岗位变化总数', '岗位变化占比']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Forest',
+                            type: 'bar',
+                            barGap: 0,
+                            label: labelOption,
+                            data: [320, 332, 301, 334, 390]
+                        },
+                        {
+                            name: 'Wetland',
+                            type: 'bar',
+                            label: labelOption,
+                            data: [98, 77, 101, 99, 40]
+                        }
+                    ]
+                };
+
+                myChart.on('brushSelected', renderBrushed);
+
+                function renderBrushed(params) {
+                    var brushed = [];
+                    var brushComponent = params.batch[0];
+
+                    for (var sIdx = 0; sIdx < brushComponent.selected.length; sIdx++) {
+                        var rawIndices = brushComponent.selected[sIdx].dataIndex;
+                        brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
+                    }
+
+                    myChart.setOption({
+                        title: {
+                            backgroundColor: '#333',
+                            text: 'SELECTED DATA INDICES: \n' + brushed.join('\n'),
+                            bottom: 0,
+                            right: 0,
+                            width: 100,
+                            textStyle: {
+                                fontSize: 12,
+                                color: '#fff'
+                            }
+                        }
+                    });
+                }
+                                // 使用刚指定的配置项和数据显示图表。
+                                myChart.setOption(option);
             },
 			handleExit() {
 				var path=base_path+'account/logout';
