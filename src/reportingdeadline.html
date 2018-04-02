@@ -86,7 +86,7 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
+		margin-top:50px;
 		text-align: center;
 	}
 </style>
@@ -186,15 +186,16 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle" id="form">
-                        <h2>新增调查期</h2>
-                        </br>                   
-                        <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
-                        <i-button type="primary" @click="addDate()" style="width: 100px">确定新增</i-button>	
-                        </br>              
-                        <h2>所有调查期</h2>		
-                        </br>				
-                        <i-table :columns="columns" :data="formInline" style="width: 700px; margin-left:35%" height="600"></i-table>
-                        
+                        <i-form style="text-align:center">
+							<h2>新增调查期</h2>
+							<br>                   
+							<Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
+							<i-button type="primary" @click="addDate()" style="width: 100px">确定新增</i-button>	
+							<br><br>
+							<h2>所有调查期</h2>		
+							<br>				
+							<i-table border :columns="columns" :data="formInline" height="600"></i-table>
+						</i-form>
                     </div>
                 </div>
                 <div class="layout-copy">

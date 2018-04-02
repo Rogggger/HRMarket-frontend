@@ -86,8 +86,8 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
-		margin-left:40%;
+		margin-top:50px;
+		margin-left:10%;
 		text-align: center;
 	}
 </style>
@@ -187,7 +187,10 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<h1 style="text-align:center">数据审核</h1>
+						<i-form id="form" ref="formInline" :model="formInline" style="width: 800px" >
+							<h1>数据审核</h1>
+							<br>
+						</i-form>
 						<i-table border height="700" :columns="columns1" :data="data1" ref="table"></i-table>
 					</div>
 					<Modal title="退回" width="550" v-model="modal.show" @on-ok="back()">

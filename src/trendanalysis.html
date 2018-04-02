@@ -88,8 +88,8 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
-		margin-left:40%;
+		margin-top:50px;
+		margin-left:20%;
 		text-align: center;
 	}
 </style>
@@ -193,19 +193,15 @@
                             <!-- line_chart用来显示折线图-->
 
                             <div id="line_chart" style="width:600px;height:400px;"></div>
-                            <div id="table" style="width:600px;height:400px;">
-                                    <i-table border  :columns="columns1" :data="data1" height="480" ></i-table>
-                            </div>
-
+                            <i-table border :columns="columns1" :data="data1" height="480" width="600"></i-table>
                         </div>
-                        <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
-                        <Form-Item>
-                            <a href="graph.html">
-                                <i-button type="primary" style="width: 200px">返回</i-button>
-                            </a>
-                        </Form-Item>
+                        <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 600px" >
+							<Form-Item>
+								<a href="graph.html">
+									<i-button type="primary" style="width: 200px">返回</i-button>
+								</a>
+							</Form-Item>
                         </i-form>
-
                     </div>
                 </div>
                 <div class="layout-copy">

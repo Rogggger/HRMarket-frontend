@@ -86,8 +86,8 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
-		margin-left:40%;
+		margin-top:50px;
+		margin-left:35%;
 		text-align: center;
 	}
 </style>
@@ -200,12 +200,9 @@
 							</Form-Item>
 							<Form-Item>
 								<i-button type="primary" @click="postNotice('formInline',formInline)" style="width: 100px">发布</i-button>
-								<a href="adminuser.html">
-									<i-button type="primary" style="width: 100px">返回</i-button>
-								</a>
 							</Form-Item>
 						</i-form>
-						<i-table border :columns="columns" :data="data1"></i-table>
+						<i-table border :columns="columns" :data="data1" height="500"></i-table>
 					</div>
                     <Modal title="修改通知" width="550" v-model="modal.show" @on-ok="changeNotice()">
 						<i-form  ref="modal" :model="modal" label-position="left" :label-width="90" :rules="ruleInline_change" style="width: 300px" >
