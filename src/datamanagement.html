@@ -192,8 +192,9 @@
 
 							<Form-Item>
 								<i-button type="primary" @click="postSearch()" style="width: 100px">查询</i-button>
-							</Form-Item>
-						
+                            </Form-Item>
+                        </i-form>
+                        <i-form  ref="formInline" :model="formInline" :rules="ruleInline" >
 							<Form-Item v-if='temp==1'>
 								<i-table border height="300" :columns="columns1" :data="data1" ref="table"></i-table>
 								<i-button type="primary" @click="exportData()" style="width: 100px">导出</i-button>
