@@ -238,7 +238,10 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        created: function () {
+			this.getTable();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
