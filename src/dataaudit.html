@@ -178,7 +178,7 @@
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
-						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>市级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
 						<Breadcrumb-item>数据管理</Breadcrumb-item>
 						<Breadcrumb-item>数据审核</Breadcrumb-item>
                     </Breadcrumb>

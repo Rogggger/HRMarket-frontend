@@ -194,6 +194,27 @@
 									<icon type="ios-locked-outline" slot="prepend"></icon>
 								</i-input>
 							</Form-Item>
+							<Form-Item prop="area">
+								<i-select v-model="formInline.area" placeholder="所属地区" style="width:300px">
+									<i-option value="0531">济南</i-option>
+									<i-option value="0532">青岛</i-option>
+									<i-option value="0533">淄博</i-option>
+									<i-option value="0534">德州</i-option>
+									<i-option value="0535">烟台</i-option>
+									<i-option value="0536">潍坊</i-option>
+									<i-option value="0537">济宁</i-option>
+									<i-option value="0538">泰安</i-option>
+									<i-option value="0539">临沂</i-option>
+									<i-option value="0530">菏泽</i-option>
+									<i-option value="0543">滨州</i-option>
+									<i-option value="0546">东营</i-option>
+									<i-option value="0631">威海</i-option>
+									<i-option value="0632">枣庄</i-option>
+									<i-option value="0633">日照</i-option>
+									<i-option value="0634">莱芜</i-option>
+									<i-option value="0635">聊城</i-option>
+								</i-select>
+							</Form-Item>
 							<Form-Item prop="is_admin">
 								<Radio-Group v-model="formInline.is_admin">
 									<Radio label="0">
@@ -231,7 +252,8 @@
                     formInline: {
                         email: '',
                         password_md5: '',
-						is_admin: ''
+						is_admin: '',
+						area: ''
                     },
                     ruleInline: {
                         email: [
@@ -242,7 +264,10 @@
                             { type: 'string', min: 6, message: '密码必须不少于6位。', trigger: 'blur' }
                         ],
 						is_admin: [
-                            { required: true, message: '请输入角色。', trigger: 'blur' }
+                            { required: true, message: '请选择角色。', trigger: 'blur' }
+                        ],
+						area: [
+                            { required: true, message: '请选择所属地区。', trigger: 'blur' }
                         ]
                     }
                 }

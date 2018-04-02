@@ -61,7 +61,7 @@
     }
     .layout-menu-left{
         background: #464c5b;
-		width: 220px;
+		width: 17%;
     }
     .layout-header{
         height: 60px;
@@ -101,7 +101,9 @@
 		</div>
 		<div class="layout-header">
 			<div class="layout-logo">
-				<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				<a href="adminuser.html">
+					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				</a>
 			</div>
 			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
 		</div>
@@ -178,7 +180,7 @@
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
-						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>市级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
 						<Breadcrumb-item>企业管理</Breadcrumb-item>
 						<Breadcrumb-item>企业查询</Breadcrumb-item>
                     </Breadcrumb>

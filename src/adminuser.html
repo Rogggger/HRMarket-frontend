@@ -101,7 +101,9 @@
 		</div>
 		<div class="layout-header">
 			<div class="layout-logo">
-				<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				<a href="adminuser.html">
+					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				</a>
 			</div>
 			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
 		</div>
@@ -179,7 +181,7 @@
 						<i-form id="form" ref="formInline" :model="formInline"   style="width: 300px" >
 							<Form-Item>
 								<h1 v-if=' flag==2 '>欢迎省级管理员用户</h1>
-								<h1 v-if=' flag==1 '>欢迎市级管理员用户</h1>
+								<h1 v-if=' flag==1 '>欢迎<script>document.write(sessionStorage.area)</script>市管理员用户</h1>
 							</Form-Item>
 						</i-form>
                     </div>
@@ -194,7 +196,8 @@
   </div>
 
 <script type="text/javascript">
-//	sessionStorage.is_admin=2;
+	sessionStorage.is_admin=1;
+	sessionStorage.area='济南';
 	new Vue({
         el: '#app',
         
@@ -206,7 +209,9 @@
                     theme1: 'dark'
                 }
             },
-            
+        created: function () {
+			this.getTable();
+		},
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
