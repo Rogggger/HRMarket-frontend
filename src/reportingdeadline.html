@@ -321,7 +321,7 @@
                 var id=this.formInline[this.modal.index].id;
                 console.log('id:'+id);
                 console.log(name);
-                var path=base_path+'admin/notification/'+id;
+                var path=base_path+'admin/time/'+id;
                 console.log()
                 this.$http.post(path,name).then(response => {
                     this.$Message.success('修改成功');
