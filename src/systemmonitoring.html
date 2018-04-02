@@ -61,7 +61,7 @@
     }
     .layout-menu-left{
         background: #464c5b;
-		width: 220px;
+		width: 17%;
     }
     .layout-header{
         height: 60px;
@@ -100,57 +100,64 @@
 			<i-button type="primary" @click="handleExit()" style="width: 100px">退出系统</i-button>
 		</div>
 		<div class="layout-header">
-			<div class="layout-logo"></div>
+			<div class="layout-logo">
+				<a href="adminuser.html">
+					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+				</a>
+			</div>
 			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
 		</div>
 
 		<Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
                 <i-menu active-name="4-5" theme="dark" width="auto" :open-names="['4']">
-                    <Submenu name="1">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">企业管理</span>
-                        </template>
+					<Submenu name="1">
+						<template slot="title">
+							<Icon type="ios-navigate" :size="iconSize"></Icon>
+							<span class="layout-text">企业管理</span>
+						</template>
 						<a href="adminenterpriseselect.html">
 							<Menu-item name="1-1">企业查询</Menu-item>
 						</a>
 						<a href="sampleanalysis.html">
 							<Menu-item name="1-2">取样分析</Menu-item>
 						</a>
-                    </Submenu>
+					</Submenu>
 					<Submenu name="2">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">数据管理</span>
-                        </template>
+						<template slot="title">
+							<Icon type="ios-navigate" :size="iconSize"></Icon>
+							<span class="layout-text">数据管理</span>
+						</template>
 						<a href="datamanagement.html">
 							<Menu-item name="2-1">数据处理</Menu-item>
 						</a>
+						<a href="dataaudit.html">
+							<Menu-item name="2-2">数据审核</Menu-item>
+						</a>
 						<a href="datasummary.html">
-							<Menu-item name="2-2">数据汇总</Menu-item>
+							<Menu-item name="2-3">数据汇总</Menu-item>
 						</a>
 						<a href="graph.html">
-							<Menu-item name="2-3">图表分析</Menu-item>
+							<Menu-item name="2-4">图表分析</Menu-item>
 						</a>
-                    </Submenu>
+					</Submenu>
 					<Submenu name="3">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">通知中心</span>
-                        </template>
+						<template slot="title">
+							<Icon type="ios-navigate" :size="iconSize"></Icon>
+							<span class="layout-text">通知中心</span>
+						</template>
 						<a href="notice.html">
 							<Menu-item name="3-1">发布通知</Menu-item>
 						</a>
 						<a href="noticeviewing.html">
 							<Menu-item name="3-2">浏览通知</Menu-item>
 						</a>
-                    </Submenu>
+					</Submenu>
 					<Submenu name="4">
-                        <template slot="title">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">系统管理</span>
-                        </template>
+						<template slot="title">
+							<Icon type="ios-navigate" :size="iconSize"></Icon>
+							<span class="layout-text">系统管理</span>
+						</template>
 						<a href="reportingdeadline.html">
 							<Menu-item name="4-1">上报时限</Menu-item>
 						</a>
@@ -158,22 +165,22 @@
 							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
 						</a>
 						<a href="usermanagement.html">
-							<Menu-item name="4-3">用户管理</Menu-item>
+							<Menu-item name="4-3" v-if=' flag==2 '>用户管理</Menu-item>
 						</a>
 						<a href="charactermanagement.html">
-							<Menu-item name="4-4">角色管理</Menu-item>
+							<Menu-item name="4-4" v-if=' flag==2 '>角色管理</Menu-item>
 						</a>
 						<a href="systemmonitoring.html">
 							<Menu-item name="4-5">系统监控</Menu-item>
 						</a>
-                    </Submenu>
+					</Submenu>
                 </i-menu>
             </i-col>
             <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
-						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>市级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
+						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
 						<Breadcrumb-item>系统管理</Breadcrumb-item>
                         <Breadcrumb-item>系统监控</Breadcrumb-item>
                     </Breadcrumb>
