@@ -225,7 +225,8 @@
                             </Form-Item>
                         </i-form>
                         <i-table border :columns="columns" :data="data1" height="700px" ref="table"></i-table>
-                        <i-button id="form1" type="primary" @click="handleSubmit()" style="width: 100px">上报给部级
+                        <i-button id="form1" type="primary" @click="handleSubmit()" v-if=' flag==2 '
+                                  style="width: 100px">上报给部级
                         </i-button>
 
                     </div>
