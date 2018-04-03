@@ -315,7 +315,7 @@
 							}
 						}
 					],
-					data1: [],
+					data1: [{'0','1'}],
                     formInline: {
 						area: ''
 					}
@@ -363,6 +363,9 @@
                 console.log('name='+name);
                 this.$http.post(path,name).then(response => {
                   this.data1=response.body;
+				  
+				  this.data1.area=dictionary.get('this.data1.area[0]')+'/'+dictionary.get('this.data1.area[1]');
+				  
                 }, response => {
                     console.log("异常");
                   // error callback
@@ -446,7 +449,40 @@
                 });
             }
         }
-    })
+    }),
+	
+	function Dictionary() {  
+            var items = {};
+			
+            this.has = function (key) {  
+                return key in items;  
+            };  
+            this.set = function (key, value) {  
+                items[key] = value;  
+            };  
+            this.get = function (key) {  
+                return this.has(key) ? items[key] : undefined;  
+            };
+			
+			this.keys = function(){
+				return Object.keys(items);
+			};
+            this.values = function () {  
+                var values = [];  
+                for (var k in items) {  
+                    if (this.has(k)) {  
+                        values.push(items[k]);  
+                    }  
+                }  
+                return values;  
+            };  
+		}
+        var dictionary = new Dictionary();  
+        dictionary.set('0', 'AAA');  
+        dictionary.set('1', 'bbb');  
+        dictionary.set('Tyrion', 'tyrion@email.com');  
+
+        console.log(dictionary.get('Tyrion')); 
 </script>
 </body>
 </html>
