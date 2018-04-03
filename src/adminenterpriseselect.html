@@ -397,6 +397,8 @@
 					["91","中国共产党机关"],["92","国家机构"],["93","人民政协、民主党派"],["94","社会保障"],["95","群众团体、社会团体和其他成员组织"],
 					["96","基层群众自治组织及其他组织"],["97","国际组织"]
 				];
+				var enterprisescale=[["type1","大型企业"],["type2","中型企业"],["type3","小型企业"],["type4","微型企业"]];
+				  var enterpriseecotype=[["type1","国有经济"],["type2","集体所有制经济"],["type3","私营经济"],["type4","联营经济"],["type5","股份制经济"],["type6","涉外经济"]];
 
 
 				  var area1=[["1","历下区"],["2","市中区"],["3","槐荫区"],["4","天桥区"],["5","历城区"],["6","长清区"],["7","章丘区"],["8","平阴县"],["9","济阳县"],["10","商河县"],["11","市南区"],["12","市北区"],["13","黄岛区"],["14","崂山区"],["15","李沧区"],["16","城阳区"],["17","胶州市"],["18","即墨市"],["19","平度市"],["20","莱西市"],
@@ -410,9 +412,8 @@
 				  var area1=new Map(area1);
 				  var belong=new Map(belong);
 				  var belong1=new Map(belong1);
-				  var enterprisescale=[["type1","大型企业"],["type2","中型企业"],["type3","小型企业"],["type4","微型企业"]];
-				  var enterpriseecotype=[["type1","国有经济"],["type2","集体所有制经济"],["type3","私营经济"],["type4","联营经济"],["type5","股份制经济"],["type6","涉外经济"]];
-
+				  var enterprisescale=new Map(enterprisescale);
+				  var enterpriseecotype=new Map(enterpriseecotype);
                     // console.log(myMap.get("0531"));
 
                     //   var kvArray = [["key1", "value1"], ["key2", "value2"]];
@@ -429,11 +430,11 @@
 					temp.name = this.getdata[i].name;
 					temp.contacts = this.getdata[i].contacts;
 					temp.phone = this.getdata[i].phone;
-					temp.enterprise_kind = this.getdata[i].enterprise_kind;
+					temp.enterprise_kind = enterpriseecotype.get(this.getdata[i].enterprise_kind);
 					temp.address_detail = this.getdata[i].address_detail;
 					temp.postal_code = this.getdata[i].postal_code;
 					temp.email = this.getdata[i].email;
-					temp.enterprise_scale = this.getdata[i].enterprise_scale;
+					temp.enterprise_scale = enterprisescale.get(this.getdata[i].enterprise_scale);
 					temp.area=area.get(this.getdata[i].area[0])+'/'+area1.get(this.getdata[i].area[1]);
 					temp.belong_to=belong.get(this.getdata[i].belong_to[0])+'/'+belong1.get(this.getdata[i].belong_to[1]);
                     this.data1.push(temp);
