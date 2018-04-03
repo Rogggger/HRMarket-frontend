@@ -189,19 +189,22 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
+                        <i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="95" :rules="ruleInline" style="width: 300px" >
+                            <Form-Item label="企业名称" prop="name">
+                                    <i-input type="text" v-model="formInline.name" placeholder="企业名称" clearable style="width: 300px">
+                                        <icon type="ios-home-outline" slot="prepend"></icon>
+                                    </i-input>
+                            </Form-Item>
+
+                            <i-button type="primary" @click="search()" >查询</i-button>
+                        </i-form>
                         <div id="form">
                             <!-- line_chart用来显示折线图-->
 
                             <div id="line_chart" style="width:600px;height:400px;"></div>
                             <i-table border :columns="columns1" :data="data1" height="480" width="600"></i-table>
                         </div>
-                        <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 600px" >
-							<Form-Item>
-								<a href="graph.html">
-									<i-button type="primary" style="width: 200px">返回</i-button>
-								</a>
-							</Form-Item>
-                        </i-form>
+                        
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -222,7 +225,12 @@
                     spanRight: 19,
                     theme1: 'dark',
                     formInline: {
-                        
+                        name:''
+                    },
+                    ruleInline: {
+                        name: [
+                            {required: true, message: '请输入“企业名称”。', trigger: 'blur' }
+                        ]
                     },
                     columns1: [
                         {
@@ -237,9 +245,7 @@
                     data1: []
                 }
             },
-        created: function () {
-			this.getTable();
-		},
+        
     	computed:{
          	iconSize:function () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -263,19 +269,27 @@
                     this.spanRight = 19;
                 }
             },
-            getTable:function()
+            search:function()
 			{
-				console.log("执行get函数");
-				var path=base_path+'trend_analysis';
-				this.$http.get(path).then(response => {
-				  console.log("正常");
-				  console.log(response.body);
-				  this.data1=response.body;
-				  console.log(this.data1);
-				}, response => {
-				console.log("异常");
-				  // error callback
-				});
+                this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+                        console.log("执行post函数");
+                        var path=base_path+'trend_analysis';
+                        this.$http.post(path,this.formInline).then(response => {
+                            this.$Message.sucess('查询成功！');
+                            console.log("正常");
+                            console.log(response.body);
+                            this.data1=response.body;
+                            console.log(this.data1);
+                        }, response => {
+                            this.$Message.error(response.body.error);
+                        console.log("异常");
+                        // error callback
+                        });
+                    } else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 				
 			},
 			handleExit() {

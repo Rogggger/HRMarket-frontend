@@ -15,12 +15,13 @@
     <style>
         body {
             margin: 0 auto;
-            background-color: #464c5b;
-            /*background-image: url(./images/bg5.jpg);
+            /*background-color: #464c5b;*/
+            background-image: url(./images/bg8.jpg);
             background-repeat: no-repeat;
             background-position: left top;
-            background-size: 100% 100%;*/
-            color: black;
+            background-size: 100% 100%;
+            color: white;
+            overflow: hidden;
         }
 
         .layout {
@@ -44,19 +45,20 @@
         }
 
         .layout-content-main {
-            padding: 10px;
+            padding: 130px;
         }
 
         .layout-copy {
             text-align: center;
-            padding: 10px 0 20px;
+            padding: 280px 0 20px;
+            padding-left:33px;
             color: #fff;
         }
 
         .layout-header {
             height: 50px;
             text-align: center;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+            /*box-shadow: 0 1px 1px rgba(0, 0, 0, .1);*/
         }
 
         .layout-ceiling-main a {
@@ -69,9 +71,10 @@
 
         .system-title {
             letter-spacing: 10px;
-            font-size: 28px;
+            font-size: 35px;
             font-family: "LiSu", 隶书;
-            line-height: 50px;
+            line-height: 540px;
+            padding-left:46px;
         }
 
         #form {
@@ -82,7 +85,7 @@
     </style>
 </head>
 <body>
-<div v-cloak id="app">
+<div v-cloak id="app" >
     <div class="layout">
         <Row type="flex">
             <i-col :span="24">
@@ -92,12 +95,11 @@
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
                         <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px">
-                            <h1>登录</h1>
-                            </br>
                             <Form-Item prop="email">
                                 <i-input type="text" v-model="formInline.email" placeholder="用户名" clearable
                                          style="width: 300px">
                                     <icon type="ios-person-outline" slot="prepend"></icon>
+
                                 </i-input>
                             </Form-Item>
                             <Form-Item prop="password_md5">
@@ -107,14 +109,16 @@
                                 </i-input>
                             </Form-Item>
                             <Form-Item>
-                                <i-button type="primary" @click="handleSubmit('formInline',formInline)">登录</i-button>
+                                <i-button type="primary" @click="handleSubmit('formInline',formInline)" style="width: 100px" >登录</i-button>
                             </Form-Item>
                         </i-form>
+                        <div class="layout-copy">
+                            2016-2017 &copy; 027wh
+                        </div>
                     </div>
+
                 </div>
-                <div class="layout-copy">
-                    2016-2017 &copy; 027wh
-                </div>
+
             </i-col>
         </Row>
     </div>

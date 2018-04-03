@@ -311,29 +311,17 @@
                                                 this.modal.index = params.index;
                                             }
                                         }
-                                    }, '退回'),
-									h('Button', {
-                                        props: {
-                                            type: 'primary',
-                                            size: 'small'
-                                        },
-                                        style: {
-                                            marginRight: '5px'
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.submit(params.index)
-                                            }
-                                        }
-                                    }, '上报')
+                                    }, '退回')
 
                                 ]);
                             }
                         }
                     ],
                     data1: [{
-							filing: 'AAA',
-							check: '111'
+                            name:'齐氏企业',
+							filing: '456',
+                            check: '456',
+                            id:'1'
 						}],
                     
                 }
@@ -347,7 +335,10 @@
            		var contentHeight = innerHeight-50-110;
             	return "min-height: "+contentHeight+"px";
             }
-    	},
+        },
+        created: function () {
+			this.getTable();
+		},
         methods: {
 			
             toggleClick: function() {
@@ -359,18 +350,63 @@
                     this.spanRight = 19;
                 }
             },
-			
+			getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'admin/datacheck/';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+				  this.data1=response.body;
+				  console.log(this.data1);
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
 			pass (index) {//通过
-                
+                var path=base_path+'admin/datacheck/';
+                var name={
+                    id:this.data1[index].id,
+                    status:1,
+                    remark:''
+                }
+                console.log(name);
+                this.$http.post(path,name).then(response => {
+                    // get body data
+                    //this.tasks = response.body;
+                    this.tasks=response.body;
+                    console.log(this.tasks);
+                    this.$Message.success('审核通过！');
+                    
+                }, response => {
+                    // error callback
+                    this.$Message.error(response.body.error);
+                });
             },
 			
-			back (index) {//退回
-                
+			back () {//退回
+                var path=base_path+'admin/datacheck/';
+                var name={
+                    id:this.data1[this.modal.index].id,
+                    status:1,
+                    remark:this.modal.remark
+                }
+                console.log(name);
+                this.$http.post(path,name).then(response => {
+                    // get body data
+                    //this.tasks = response.body;
+                    this.tasks=response.body;
+                    console.log(this.tasks);
+                    this.$Message.success('审核退回！');
+                    
+                }, response => {
+                    // error callback
+                    this.$Message.error(response.body.error);
+                });
             },
 			
-            submit (index) {//上报
-            
-            },
 			
 			handleExit() {
 				var path=base_path+'account/logout';
