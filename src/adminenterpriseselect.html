@@ -440,37 +440,38 @@
                     // 	var myMap = new Map(kvArray);
 
                     // 	console.log(myMap.get("key1")); // 返回值为 "value1"
-
-                    temp = {
-                        main_business: '',
-                        fax: '',
-                        code: '',
-                        name: '',
-                        contacts: '',
-                        area: '',
-                        phone: '',
-                        enterprise_kind: '',
-                        belong_to: '',
-                        address_detail: '',
-                        postal_code: '',
-                        email: '',
-                        enterprise_scale: ''
-                    };
-                    temp.main_business = this.getdata[i].main_business;
-                    temp.fax = this.getdata[i].fax;
-                    temp.code = this.getdata[i].code;
-                    temp.name = this.getdata[i].name;
-                    temp.contacts = this.getdata[i].contacts;
-                    temp.phone = this.getdata[i].phone;
-                    temp.enterprise_kind = enterpriseecotype.get(this.getdata[i].enterprise_kind);
-                    temp.address_detail = this.getdata[i].address_detail;
-                    temp.postal_code = this.getdata[i].postal_code;
-                    temp.email = this.getdata[i].email;
-                    temp.enterprise_scale = enterprisescale.get(this.getdata[i].enterprise_scale);
-                    temp.area = area.get(this.getdata[i].area[0]) + '/' + area1.get(this.getdata[i].area[1]);
-                    temp.belong_to = belong.get(this.getdata[i].belong_to[0]) + '/' + belong1.get(this.getdata[i].belong_to[1]);
-                    this.data1.push(temp);
-
+                    this.data1 = [];
+                    for (let i = 0; i < this.getdata.length; i++) {
+                        temp = {
+                            main_business: '',
+                            fax: '',
+                            code: '',
+                            name: '',
+                            contacts: '',
+                            area: '',
+                            phone: '',
+                            enterprise_kind: '',
+                            belong_to: '',
+                            address_detail: '',
+                            postal_code: '',
+                            email: '',
+                            enterprise_scale: ''
+                        };
+                        temp.main_business = this.getdata[i].main_business;
+                        temp.fax = this.getdata[i].fax;
+                        temp.code = this.getdata[i].code;
+                        temp.name = this.getdata[i].name;
+                        temp.contacts = this.getdata[i].contacts;
+                        temp.phone = this.getdata[i].phone;
+                        temp.enterprise_kind = enterpriseecotype.get(this.getdata[i].enterprise_kind);
+                        temp.address_detail = this.getdata[i].address_detail;
+                        temp.postal_code = this.getdata[i].postal_code;
+                        temp.email = this.getdata[i].email;
+                        temp.enterprise_scale = enterprisescale.get(this.getdata[i].enterprise_scale);
+                        temp.area = area.get(this.getdata[i].area[0]) + '/' + area1.get(this.getdata[i].area[1]);
+                        temp.belong_to = belong.get(this.getdata[i].belong_to[0]) + '/' + belong1.get(this.getdata[i].belong_to[1]);
+                        this.data1.push(temp);
+                    }
 
                 }, response => {
                     console.log('异常');
