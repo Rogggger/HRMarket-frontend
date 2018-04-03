@@ -187,16 +187,15 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form :model="formInline" :rules="ruleInline" inline >
+						<i-form ref="formInline" :model="formInline" :rules="ruleInline" inline>
 							<Form-Item>
-								<i-select v-model="formInline.select" placeholder="查询条件" style="width:250px">
-									<i-option value="name">单位名称</i-option>
+								<i-select v-model="formInline.select" placeholder="查询条件" clearable style="width:200px">
+									<i-option value="name">企业名称</i-option>
 									<i-option value="user_name">登陆账号</i-option>
 									<i-option value="user_is_admin">用户类型</i-option>
-									<i-option value="city">所属地市</i-option>
-									<i-option value="district">所属市县</i-option>
+									<i-option value="area">所属地区</i-option>
 									<i-option value="status">数据状态</i-option>
-									<i-option value="enterprise_kind">单位性质</i-option>
+									<i-option value="enterprise_kind">企业性质</i-option>
 									<i-option value="belong_to">所属行业</i-option>
 									<i-option value="start_at">起始日期</i-option>
 									<i-option value="end_at">结束日期</i-option>
@@ -204,16 +203,60 @@
 									<i-option value="season">统计季度</i-option>
 								</i-select>
 							</Form-Item>
-							<Form-Item prop="condition" v-if="formInline.select!='' &&formInline.select!='start_at' &&formInline.select!='end_at' &&formInline.select!='month' &&formInline.select!='season'">
+							<!-- “企业名称”和“登陆账号” 显示输入框-->
+							<Form-Item prop="condition" v-if="formInline.select!='' && (formInline.select=='name' ||formInline.select=='user_name' ) ">
 								<i-input type="text"  v-model="formInline.condition" placeholder="查询条件" clearable style="width: 300px">
 								</i-input>
+								<i-button type="primary" @click="postCondition()">查询</i-button>
+							</Form-Item>
+							<!-- “用户类型” 显示单个多选框-->
+							<Form-Item v-if="formInline.select!='' && formInline.select=='user_is_admin' ">
+								<i-select v-model="formInline.condition" placeholder="查询条件" clearable style="width:300px">
+									<i-option value="0">企业用户</i-option>
+									<i-option value="1">市级管理员</i-option>
+									<i-option value="2">省级管理员</i-option>
+								</i-select>
+								<i-button type="primary" @click="postCondition()">查询</i-button>
+							</Form-Item>
+							<!-- “所属地区” 显示两级选择框-->
+							<Form-Item v-if="formInline.select!='' && formInline.select=='area' ">
+								<Cascader :data="area" v-model="formInline.area" placeholder="市/区" clearable style="width: 300px">
+								</Cascader>
+								<i-button type="primary" @click="postArea()">查询</i-button>
+							</Form-Item>
+							<!-- “数据状态” 显示单个多选框-->
+							<Form-Item v-if="formInline.select=='status' ">
+								<i-select v-model="formInline.condition" placeholder="查询条件" clearable style="width:300px">
+									<i-option value="0">保存未上报</i-option>
+									<i-option value="1">上报未审核</i-option>
+									<i-option value="2">通过审核</i-option>
+									<i-option value="3">通过不审核</i-option>
+								</i-select>
+								<i-button type="primary" @click="postCondition()">查询</i-button>
+							</Form-Item>
+							<!-- “企业性质” 显示单个多选框-->
+							<Form-Item v-if="formInline.select=='enterprise_kind' ">
+								<i-select v-model="formInline.enterprise_kind" placeholder="企业经济类型" clearable style="width:300px">
+									<i-option v-for="item in enterprisetype2" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+								</i-select>
 								<i-button type="primary" @click="postData()">查询</i-button>
 							</Form-Item>
-							<Form-Item v-if="formInline.select=='start_at' ||formInline.select=='end_at'||formInline.select=='month' ||formInline.select=='season'">
+							<!-- “所属行业” 显示两级选择框-->
+							<Form-Item v-if="formInline.select=='belong_to' ">
+								<Cascader :data="belong_to" v-model="formInline.belong_to" placeholder="所属行业" clearable style="width: 300px">
+								</Cascader>
+								<i-button type="primary" @click="postBelongto()">查询</i-button>
+							</Form-Item>
+							<!-- “起始日期”、“结束日期” 显示日期选择框-->
+							<Form-Item v-if="formInline.select=='start_at' ||formInline.select=='end_at'">
 								<Date-Picker v-model="formInline.time" type="date" split-panels format="yyyy-MM-dd" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
-								<i-button type="primary" @click="postData()">查询</i-button>
+								<i-button type="primary" @click="postTime()">查询</i-button>
 							</Form-Item>
-							
+							<!-- “统计月份”、“统计季度” 显示日期选择框-->
+							<Form-Item v-if="formInline.select=='month' ||formInline.select=='season'">
+								<Date-Picker v-model="formInline.time" type="date" split-panels format="yyyy-MM-dd" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
+								<i-button type="primary" @click="postMonth()">查询</i-button>
+							</Form-Item>
 						</i-form>
                         <i-table border :columns="columns1" :data="data1" height="700px" ref="table"></i-table>
 						<i-button type="primary" size="large" @click="exportData()"><icon type="ios-download-outline"></icon> 导出表格</i-button>
@@ -290,10 +333,96 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
+					enterprisetype2: [
+						{
+							value: 'type1',
+							label: '国有经济'
+						},{
+							value: 'type2',
+							label: '集体所有制经济'
+						},{
+							value: 'type3',
+							label: '私营经济'
+						},{
+							value: 'type4',
+							label: '联营经济'
+						},{
+							value: 'type5',
+							label: '股份制经济'
+						},
+						{
+							value: 'type6',
+							label: '涉外经济'
+						}
+					],
+					belong_to: [{
+        							value: 'a1',
+        							label: '农、林、牧、渔业',
+        							children: [
+        								{
+        									value: '1',
+        									label: '农业'
+        								},{
+        									value: '2',
+        									label: '林业'
+        								},{
+        									value: '3',
+        									label: '畜牧业'
+        								},{
+        									value: '4',
+        									label: '渔业'
+        								},{
+        									value: 'type5',
+        									label: '农、林、牧、渔专业及辅助性活动'
+        								}
+        							]
+        						}],
+					area: [{
+								value: '0531',
+								label: '济南',
+								children: [
+									{
+										value: '1',
+										label: '历下区'
+									},{
+										value: '2',
+										label: '市中区'
+									},{
+										value: '3',
+										label: '槐荫区'
+									},{
+										value: '4',
+										label: '天桥区'
+									},{
+										value: '5',
+										label: '历城区'
+									},{
+										value: '6',
+										label: '长清区'
+									},{
+										value: '7',
+										label: '章丘区'
+									},{
+										value: '8',
+										label: '平阴县'
+									},{
+										value: '9',
+										label: '济阳县'
+									},{
+										value: '10',
+										label: '商河县'
+									}
+								]
+							}],
+					
                     formInline: {
-						condition: '',//输入框所填
-						select: '',//下拉框中所选
-						time:'',//一个时间
+						select: '',
+						condition: '',
+						area: '',
+						enterprise_scale:[],
+						enterprise_kind:[],
+						belong_to:'',
+						time:'',
 					},
                     ruleInline: {
                         condition: [
@@ -403,10 +532,7 @@
                             }
                         }
                     ],
-                    data1: [{
-							filing: 'AAA',
-							check: '111'
-						}],
+                    data1: [],
                     
                 }
         },
@@ -436,7 +562,7 @@
                     this.spanRight = 19;
                 }
             },
-						
+			
             changeData () {
                 this.$refs['modal'].validate((valid) => {
                     if (valid) {
@@ -481,7 +607,148 @@
                 }, response => {
                   // error callback
                 });
-            }
+            },
+			formatDate:function(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let monthZero = month < 10 ? '0' : '';
+                let day = date.getDate();
+                let dayZero = day < 10 ? '0' : '';
+                let hour=date.getHours();
+                let hourZero = hour < 10 ? '0' : '';
+                let minute=date.getMinutes();
+                let minuteZero = minute < 10 ? '0' : '';
+                let second=date.getSeconds();
+                let secondZero = second < 10 ? '0' : '';
+                return year + '-' + monthZero + month + '-' + dayZero + day+'T'+hourZero+hour+':'+minuteZero+minute+':'+secondZero+second+'+00:00';
+        	},
+			formatMonth:function(date) {
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let monthZero = month < 10 ? '0' : '';
+                return year + '-' + monthZero + month;
+        	},
+			postCondition()
+			{
+				var name={                           
+                    select:this.formInline.select,
+                    condition:this.formInline.condition,
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postData()
+			{
+				var name={                           
+                    select:this.formInline.select,
+                    condition:this.formInline.enterprise_kind[0],
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postArea()
+			{
+				var name={                           
+                    select:this.formInline.select,
+                    condition:this.formInline.area.join('/'),
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postBelongto()
+			{
+				var name={                           
+                    select:this.formInline.select,
+                    condition:this.formInline.belong_to.join('/'),
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postTime()
+			{
+				var name={                           
+                    select:this.formatDate(this.formInline.time),
+                    time:this.formatDate(this.formInline.time),
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postMonth()
+			{
+				var name={                           
+                    select:this.formatMonth(this.formInline.time),
+                    time:this.formatMonth(this.formInline.time),
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			}
+			
         }
     })
 </script>
