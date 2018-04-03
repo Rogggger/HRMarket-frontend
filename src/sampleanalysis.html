@@ -88,8 +88,8 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
-		margin-left:30%;
+		margin-top:50px;
+		margin-left:10%;
 		text-align: center;
 	}
 </style>
@@ -220,12 +220,27 @@
                     spanLeft: 5,
                     spanRight: 19,
                     theme1: 'dark',
-                    formInline: {
-                        
-                    },
-                    ruleInline: {
-                        
-                    }
+                    bar_data1:[
+                            /*{
+                                name:'青岛',
+                                area:'5045',//地区代码
+                                sum:'450',//企业总数
+                                
+                            },
+                            {
+                                name:'上海',
+                                area:'205',//地区代码
+                                sum:'250',//企业总数
+                                
+                            },
+                            {
+                                name:'北京',
+                                area:'7024',//地区代码
+                                sum:'300',//企业总数
+                                                             
+                            },*/
+                        ],
+                        data2:[]
                 }
             },
     	computed:{
@@ -241,6 +256,9 @@
         mounted(){
             this.pie_chart();
         },
+        created: function () {
+			this.getTable();
+		},
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -251,15 +269,97 @@
                     this.spanRight = 19;
                 }
             },
-            pie_chart(){//折线图
-                var myChart = echarts.init(document.getElementById('pie_chart'));
 
+            getTable:function()
+			{
+				console.log("执行get函数");
+				var path=base_path+'admin/sample';
+				this.$http.get(path).then(response => {
+				  console.log("正常");
+				  console.log(response.body);
+                  this.bar_data1=response.body;
+                  for(var i=0;i<this.bar_data1.length;i++)
+                  {
+                    switch (this.bar_data1.area) {
+								case '0531':
+                                    this.bar_data1.name='济南';
+									break;
+								case '0532':
+								    this.bar_data1.name='青岛';
+									break;
+								case '0533':
+                                    this.bar_data1.name='淄博';
+									break;
+								case '0534':
+									this.bar_data1.name='德州';
+									break;
+								case '0535':
+									this.bar_data1.name='烟台';
+									break;
+								case '0536':
+									this.bar_data1.name='潍坊';
+									break;
+								case '0537':
+									this.bar_data1.name='济宁';
+                                    break;
+                                case '0538':
+									this.bar_data1.name='泰安';
+									break;
+								case '0539':
+									this.bar_data1.name='临沂';
+									break;
+								case '0530':
+									this.bar_data1.name='菏泽';
+									break;
+								case '0543':
+									this.bar_data1.name='滨州';
+									break;
+								case '0546':
+									this.bar_data1.name='东营';
+									break;
+								case '0631':
+									this.bar_data1.name='威海';
+									break;
+								case '0632':
+									this.bar_data1.name='枣庄';
+									break;
+								case '0633':
+									this.bar_data1.name='日照';
+									break;
+								case '0634':
+									this.bar_data1.name='莱芜';
+									break;
+								case '0635':
+									this.bar_data1.name='聊城';
+									break;
+							};
+							
+                  }
+				  console.log(this.data1);
+				}, response => {
+				console.log("异常");
+				  // error callback
+				});
+				
+			},
+            pie_chart(){//饼状图
+                for (let i=0; i<this.bar_data1.length; i++) {
+                    temp = {value:'', name:''};
+                    temp.value = this.bar_data1[i].sum;
+                    temp.name = this.bar_data1[i].name;
+                    this.data2.push(temp);
+                }
+                console.log(this.data2);
+                this.data2.sort(function (a, b) { return a.value - b.value; });
+                console.log(this.data2);
+                var myChart = echarts.init(document.getElementById('pie_chart'));
+                
                 // 指定图表的配置项和数据
                 option = {
                     backgroundColor: '#2c343c',
 
                     title: {
-                        text: 'Customized Pie',
+                        text: '全省各市企业数量占比饼状图',
                         left: 'center',
                         top: 20,
                         textStyle: {
@@ -286,13 +386,7 @@
                             type:'pie',
                             radius : '55%',
                             center: ['50%', '50%'],
-                            data:[
-                                {value:335, name:'直接访问'},
-                                {value:310, name:'邮件营销'},
-                                {value:274, name:'联盟广告'},
-                                {value:235, name:'视频广告'},
-                                {value:400, name:'搜索引擎'}
-                            ].sort(function (a, b) { return a.value - b.value; }),
+                            data:this.data2,
                             roseType: 'radius',
                             label: {
                                 normal: {
@@ -327,6 +421,7 @@
                         }
                     ]
                 };
+                
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             },

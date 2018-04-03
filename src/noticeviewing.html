@@ -86,8 +86,8 @@
 		color: #fff;
     }
     #form{
-		margin-top:100px;
-		margin-left:40%;
+		margin-top:50px;
+		margin-left:35%;
 		text-align: center;
 	}
 </style>
@@ -187,16 +187,11 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
+						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
 							<h1>浏览通知</h1>							
-							</br></br>
+							<br><br>
 						</i-form>
-						<i-table border :columns="columns" :data="formInline"></i-table>
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 200px" >
-							<a href="adminuser.html">
-								<i-button type="primary" style="width: 100px">返回</i-button>
-							</a>
-						</i-form>
+						<i-table border :columns="columns" :data="formInline" height="500"></i-table>
                     </div>
                 </div>
                 <div class="layout-copy">
