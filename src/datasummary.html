@@ -102,6 +102,12 @@
             margin-left: 35%;
             text-align: center;
         }
+
+        #form1 {
+            margin-top: 20px;
+            margin-left: 45%;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -219,6 +225,9 @@
                             </Form-Item>
                         </i-form>
                         <i-table border :columns="columns" :data="data1" height="700px" ref="table"></i-table>
+                        <i-button id="form1" type="primary" @click="handleSubmit()" style="width: 100px">上报给部级
+                        </i-button>
+
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -283,6 +292,10 @@
             }
         },
         methods: {
+            handleSubmit() {
+                this.$Message.success('成功上传到部级');
+
+            },
             toggleClick: function () {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
