@@ -12,30 +12,30 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /.vue$/,
-                use: [{
-                        loader: 'vue-loader',
-                        options: {
-                            loaders: {
-                                less: ExtractTextPlugin.extract({
-                                    use: ['css-loader?minimize', 'autoprefixer-loader', 'less-loader'],
-                                    fallback: 'vue-style-loader'
-                                }),
-                                css: ExtractTextPlugin.extract({
-                                    use: ['css-loader', 'autoprefixer-loader', 'less-loader'],
-                                    fallback: 'vue-style-loader'
-                                })
-                            }
-                        }
-                    },
-                    {
-                        loader: 'iview-loader',
-                        options: {
-                            prefix: false
-                        }
+            test: /.vue$/,
+            use: [{
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        less: ExtractTextPlugin.extract({
+                            use: ['css-loader?minimize', 'autoprefixer-loader', 'less-loader'],
+                            fallback: 'vue-style-loader'
+                        }),
+                        css: ExtractTextPlugin.extract({
+                            use: ['css-loader', 'autoprefixer-loader', 'less-loader'],
+                            fallback: 'vue-style-loader'
+                        })
                     }
-                ]
+                }
             },
+                {
+                    loader: 'iview-loader',
+                    options: {
+                        prefix: false
+                    }
+                }
+            ]
+        },
             {
                 test: /iview\/.*?js$/,
                 loader: 'babel-loader'

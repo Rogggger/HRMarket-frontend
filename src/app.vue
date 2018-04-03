@@ -6,9 +6,7 @@
 <script>
     export default {
         data() {
-            return {
-
-            };
+            return {};
         },
         mounted() {
 
@@ -16,8 +14,6 @@
         beforeDestroy() {
 
         },
-        methods: {
-
-        }
+        methods: {}
     };
 </script>

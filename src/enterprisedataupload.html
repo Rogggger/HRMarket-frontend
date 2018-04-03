@@ -1,123 +1,137 @@
 <html>
 <head>
-<meta charset="UTF-8">
-<title>企业数据填报</title>
-   <!-- import Vue.js -->
-	<script src="./vue.js"></script>
-	<script src="./vue-resource.js"></script>
-	<!-- import stylesheet -->
-	<link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
-	<!-- import iView -->
-	<script src="./iview.min.js"></script>
-	<!--import path-->
-	<script src=".\path.js"></script>
+    <meta charset="UTF-8">
+    <title>企业数据填报</title>
+    <!-- import Vue.js -->
+    <script src="./vue.js"></script>
+    <script src="./vue-resource.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+    <!-- import iView -->
+    <script src="./iview.min.js"></script>
+    <!--import path-->
+    <script src=".\path.js"></script>
 
-<style>
-    .layout{
-        *border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: relative;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-	.layout-logo{
-		width: 180px;
-		height: 30px;
-		background: #5b6270;
-		border-radius: 3px;
-		float: left;
-		position: relative;
-		top: 15px;
-		left: 20px;
-	}
-	.layout-exit{
-		width: 100px;
-		height: 30px;
-		background: #5b6270;
-		float: right;
-		position: relative;
-		top: 15px;
-		right: 20px;
-		text-align: right;
-	}
-    .layout-breadcrumb{
-        padding: 10px 15px 0;
-    }
-    .layout-content{
-        min-height: 200px;
-        margin: 15px;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 4px;
-        width:100%;
-    }
-    .layout-content-main{
-        padding: 10px;
-        width:100%;
-    }
-    .layout-copy{
-        text-align: center;
-        padding: 10px 0 20px;
-        color: #9ea7b4;
-    }
-    .layout-menu-left{
-        background: #464c5b;
-		width: 17%;
-    }
-    .layout-header{
-        height: 60px;
-        background: #313540;
-        box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    }
-    .layout-ceiling-main a{
-        color: #9ba7b5;
-    }
-    .layout-hide-text .layout-text{
-        display: none;
-    }
-    .ivu-col{
-        transition: width .2s ease-in-out;
-    }
-	.system-title{
-		letter-spacing:10px;
-		font-size:28px; 
-		font-family:"LiSu",隶书;
-		line-height:50px;
-		padding-left:230px;
-		color: #fff;
-    }
-    #form{
-		margin-top:100px;
-		margin-left:40%;
-		text-align: center;
-	}
-    #status{
-        width: 100px;
-        height:50px;
-        margin-right:20px;
-        font-size: 15px;
-        padding:5px;
-        text-align: center;
-    }
-</style>
+    <style>
+        .layout {
+            *border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-logo {
+            width: 180px;
+            height: 30px;
+            background: #5b6270;
+            border-radius: 3px;
+            float: left;
+            position: relative;
+            top: 15px;
+            left: 20px;
+        }
+
+        .layout-exit {
+            width: 100px;
+            height: 30px;
+            background: #5b6270;
+            float: right;
+            position: relative;
+            top: 15px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .layout-breadcrumb {
+            padding: 10px 15px 0;
+        }
+
+        .layout-content {
+            min-height: 200px;
+            margin: 15px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .layout-content-main {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .layout-copy {
+            text-align: center;
+            padding: 10px 0 20px;
+            color: #9ea7b4;
+        }
+
+        .layout-menu-left {
+            background: #464c5b;
+            width: 17%;
+        }
+
+        .layout-header {
+            height: 60px;
+            background: #313540;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        .layout-ceiling-main a {
+            color: #9ba7b5;
+        }
+
+        .layout-hide-text .layout-text {
+            display: none;
+        }
+
+        .ivu-col {
+            transition: width .2s ease-in-out;
+        }
+
+        .system-title {
+            letter-spacing: 10px;
+            font-size: 28px;
+            font-family: "LiSu", 隶书;
+            line-height: 50px;
+            padding-left: 230px;
+            color: #fff;
+        }
+
+        #form {
+            margin-top: 100px;
+            margin-left: 40%;
+            text-align: center;
+        }
+
+        #status {
+            width: 100px;
+            height: 50px;
+            margin-right: 20px;
+            font-size: 15px;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="app">
+<div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-		<div class="layout-exit">
-			<i-button type="primary" @click="handleSubmitExit()" style="width: 100px">退出系统</i-button>
-		</div>
-		<div class="layout-header">
-			<div class="layout-logo">
-				<a href="enterpriseuser.html">
-					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
-				</a>
-			</div>
-			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
-		</div>
+        <div class="layout-exit">
+            <i-button type="primary" @click="handleSubmitExit()" style="width: 100px">退出系统</i-button>
+        </div>
+        <div class="layout-header">
+            <div class="layout-logo">
+                <a href="enterpriseuser.html">
+                    <img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+                </a>
+            </div>
+            <h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+        </div>
 
-		<Row type="flex">
+        <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
                 <i-menu active-name="1-3" theme="dark" width="auto" :open-names="['1']">
                     <Submenu name="1">
@@ -125,15 +139,15 @@
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
                             <span class="layout-text">企业用户</span>
                         </template>
-						<a href="enterpriseinformationmanagement.html">
-							<Menu-item name="1-1">修改企业信息</Menu-item>
-						</a>
-						<a href="enterprisedataselect.html">
-							<Menu-item name="1-2">数据查询</Menu-item>
-						</a>
-						<a href="enterprisedataupload.html">
-							<Menu-item name="1-3">数据填报</Menu-item>
-						</a>
+                        <a href="enterpriseinformationmanagement.html">
+                            <Menu-item name="1-1">修改企业信息</Menu-item>
+                        </a>
+                        <a href="enterprisedataselect.html">
+                            <Menu-item name="1-2">数据查询</Menu-item>
+                        </a>
+                        <a href="enterprisedataupload.html">
+                            <Menu-item name="1-3">数据填报</Menu-item>
+                        </a>
                     </Submenu>
                 </i-menu>
             </i-col>
@@ -150,70 +164,93 @@
                             <Tag id="status"v-if =' status == 1 '>上报未审核</Tag>
                             <Tag id="status"v-if =' status == 2 '>通过审核</Tag>
                             <Tag id="status"v-if =' status == 3 '>审核不通过</Tag>
-						-->	
-						<Steps :current="status">
-							<Step title="保存未上报"></Step>
-							<Step title="上报未审核"></Step>
-							<Step title="通过审核" v-if ='status != 3 && status != 2'></Step>
-							<Step title="通过审核" v-if ='status == 2 ' status="finish"></Step>
-							<Step title="审核不通过"  v-if ='status == 3 ' status="error"></Step>
-						</Steps>
-						<i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="120" :rules="ruleInline" style="width: 300px" >
-							<h1>数据填报</h1>
+						-->
+                        <Steps :current="status">
+                            <Step title="保存未上报"></Step>
+                            <Step title="上报未审核"></Step>
+                            <Step title="通过审核" v-if='status != 3 && status != 2'></Step>
+                            <Step title="通过审核" v-if='status == 2 ' status="finish"></Step>
+                            <Step title="审核不通过" v-if='status == 3 ' status="error"></Step>
+                        </Steps>
+                        <i-form id="form" ref="formInline" :model="formInline" label-position="left" :label-width="120"
+                                :rules="ruleInline" style="width: 300px">
+                            <h1>数据填报</h1>
                             </br>
-							<Form-Item label="建档期就业人数" prop="filing" >
-								<i-input type="text" v-model="formInline.filing" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
+                            <Form-Item label="建档期就业人数" prop="filing">
+                                <i-input type="text" v-model="formInline.filing" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
                             </Form-Item>
-							<Form-Item label="调查期就业人数" prop="check">
-								<i-input type="text" v-model="formInline.check" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="其他原因" prop="other_reason" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
-								<i-input type="text" v-model="formInline.other_reason" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="就业人数减少类型" prop="decrease_type" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
-								<i-input type="text" v-model="formInline.decrease_type" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因" prop="main_reason" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
-								<i-input type="text" v-model="formInline.main_reason" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="主要原因说明" prop="main_reason_detail" v-if =' parseInt(formInline.check )< parseInt(formInline.filing) '>
-								<i-input type="text" v-model="formInline.main_reason_detail" clearable :disabled="status > 0"  style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
-								<i-input type="text" v-model="formInline.second_reason" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="次要原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
-								<i-input type="text" v-model="formInline.second_reason_detail" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
-								<i-input type="text" v-model="formInline.third_reason" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>
-							<Form-Item label="第三原因说明" v-if ="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
-								<i-input type="text" v-model="formInline.third_reason_detail" clearable :disabled="status > 0" style="width: 300px">
-								</i-input>
-							</Form-Item>						
-							<br>
-							<Form-Item>
-								<i-button type="primary" @click="handleSave('formInline',formInline)"style="width: 200px" :disabled="status > 0">保存修改</i-button>
-							</Form-Item>
-							<Form-Item>
-								<i-button type="primary" @click="handleSubmit('formInline',formInline)" style="width: 200px" :disabled="status > 0">确认上报</i-button>
-							</Form-Item>
-							<Form-Item>
-								<a href="enterpriseuser.html">
-									<i-button type="primary" style="width: 200px">放弃上报并返回</i-button>
-								</a>
-							</Form-Item>
-						</i-form>
+                            <Form-Item label="调查期就业人数" prop="check">
+                                <i-input type="text" v-model="formInline.check" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="其他原因" prop="other_reason"
+                                       v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
+                                <i-input type="text" v-model="formInline.other_reason" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="就业人数减少类型" prop="decrease_type"
+                                       v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
+                                <i-input type="text" v-model="formInline.decrease_type" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="主要原因" prop="main_reason"
+                                       v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
+                                <i-input type="text" v-model="formInline.main_reason" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="主要原因说明" prop="main_reason_detail"
+                                       v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
+                                <i-input type="text" v-model="formInline.main_reason_detail" clearable
+                                         :disabled="status > 0" style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="次要原因"
+                                       v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
+                                <i-input type="text" v-model="formInline.second_reason" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="次要原因说明"
+                                       v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
+                                <i-input type="text" v-model="formInline.second_reason_detail" clearable
+                                         :disabled="status > 0" style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="第三原因"
+                                       v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
+                                <i-input type="text" v-model="formInline.third_reason" clearable :disabled="status > 0"
+                                         style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <Form-Item label="第三原因说明"
+                                       v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
+                                <i-input type="text" v-model="formInline.third_reason_detail" clearable
+                                         :disabled="status > 0" style="width: 300px">
+                                </i-input>
+                            </Form-Item>
+                            <br>
+                            <Form-Item>
+                                <i-button type="primary" @click="handleSave('formInline',formInline)"
+                                          style="width: 200px" :disabled="status > 0">保存修改
+                                </i-button>
+                            </Form-Item>
+                            <Form-Item>
+                                <i-button type="primary" @click="handleSubmit('formInline',formInline)"
+                                          style="width: 200px" :disabled="status > 0">确认上报
+                                </i-button>
+                            </Form-Item>
+                            <Form-Item>
+                                <a href="enterpriseuser.html">
+                                    <i-button type="primary" style="width: 200px">放弃上报并返回</i-button>
+                                </a>
+                            </Form-Item>
+                        </i-form>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -222,68 +259,68 @@
             </i-col>
         </Row>
     </div>
-	<Back-Top></Back-Top>
-  </div>
+    <Back-Top></Back-Top>
+</div>
 
 <script>
-	let vm = new Vue({
+    let vm = new Vue({
         el: '#app',
-        
-        data () {
-                return {
-                    spanLeft: 5,
-                    spanRight: 19,
-                    theme1: 'dark',
-                    status:0,
-                    formInline: {
-                        filing: '',
-                        check: '',
-                        other_reason: '',
-                        decrease_type: '',
-                        main_reason: '',
-                        main_reason_detail: '',
-                        second_reason: '',
-                        second_reason_detail: '',
-                        third_reason: '',
-                        third_reason_detail: ''
-                    },
-                    ruleInline: {
-                        filing: [
-                            { required: true, message: '请输入建档期就业人数！'}
-                        ],
-                        check: [
-                            { required: true, message: '请输入调查期就业人数！'}
-                        ],
-						other_reason: [
-                            { required: true, message: '请输入其他原因！'}
-                        ],
-						decrease_type: [
-                            { required: true, message: '请输入就业人数减少类型！'}
-                        ],
-                        main_reason: [
-                            { required: true, message: '请输入调查期就业人数！'}
-                        ],
-						main_reason_detail: [
-                            { required: true, message: '请输入其他原因！'}
-                        ]
-                    }
+
+        data() {
+            return {
+                spanLeft: 5,
+                spanRight: 19,
+                theme1: 'dark',
+                status: 0,
+                formInline: {
+                    filing: '',
+                    check: '',
+                    other_reason: '',
+                    decrease_type: '',
+                    main_reason: '',
+                    main_reason_detail: '',
+                    second_reason: '',
+                    second_reason_detail: '',
+                    third_reason: '',
+                    third_reason_detail: ''
+                },
+                ruleInline: {
+                    filing: [
+                        {required: true, message: '请输入建档期就业人数！'}
+                    ],
+                    check: [
+                        {required: true, message: '请输入调查期就业人数！'}
+                    ],
+                    other_reason: [
+                        {required: true, message: '请输入其他原因！'}
+                    ],
+                    decrease_type: [
+                        {required: true, message: '请输入就业人数减少类型！'}
+                    ],
+                    main_reason: [
+                        {required: true, message: '请输入调查期就业人数！'}
+                    ],
+                    main_reason_detail: [
+                        {required: true, message: '请输入其他原因！'}
+                    ]
                 }
-            },
+            };
+        },
         created: function () {
-			this.getUsers();
-		},
-    	computed:{
-         	iconSize:function () {
+            this.getUsers();
+        },
+        computed: {
+            iconSize: function () {
                 return this.spanLeft === 5 ? 14 : 24;
             },
-            contentStyle: function(){
-           		var innerHeight = window.innerHeight;
-           		var contentHeight = innerHeight-50-110;
-            	return "min-height: "+contentHeight+"px";
+            contentStyle: function () {
+                var innerHeight = window.innerHeight;
+                var contentHeight = innerHeight - 50 - 110;
+                return 'min-height: ' + contentHeight + 'px';
             }
-    	},
+        },
         methods: {
-            toggleClick: function() {
+            toggleClick: function () {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
                     this.spanRight = 22;
@@ -292,80 +329,79 @@
                     this.spanRight = 19;
                 }
             },
-            getUsers:function()
-			  {
-                  console.log("执行get函数");
-				var path=base_path+'data/get';
-				this.$http.get(path).then(response => {
-				  console.log(response.body);
-				  this.formInline=response.body;
-                  this.status=response.body.status;
-                  console.log(this.status);
-				  // get body data
-				  //this.tasks = response.body;
-				}, response => {
-				  // error callback
-				});
-			  },
-              handleSubmit(sname,name) {//上传
+            getUsers: function () {
+                console.log('执行get函数');
+                var path = base_path + 'data/get';
+                this.$http.get(path).then(response => {
+                    console.log(response.body);
+                    this.formInline = response.body;
+                    this.status = response.body.status;
+                    console.log(this.status);
+                    // get body data
+                    //this.tasks = response.body;
+                }, response => {
+                    // error callback
+                });
+            },
+            handleSubmit(sname, name) {//上传
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        var path=base_path+'data/report';
+                        var path = base_path + 'data/report';
                         console.log(name);
-                        this.$http.post(path,name).then(response => {
-                        this.tasks=response.body;
-                        this.$Message.success('上传成功');
-                        console.log(this.tasks);
-                        // get body data
-                        //this.tasks = response.body;
+                        this.$http.post(path, name).then(response => {
+                            this.tasks = response.body;
+                            this.$Message.success('上传成功');
+                            console.log(this.tasks);
+                            // get body data
+                            //this.tasks = response.body;
                         }, response => {
-                        this.$Message.error(response.body.error);
-                        console.log(response.status);
-                        console.log(response.body);
-                        // error callback
+                            this.$Message.error(response.body.error);
+                            console.log(response.status);
+                            console.log(response.body);
+                            // error callback
                         });
                     }
-                else {
+                    else {
                         this.$Message.error('上传失败');
                     }
-                })
+                });
             },
-            handleSave(sname,name) {//保存修改
+            handleSave(sname, name) {//保存修改
                 this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        var path=base_path+'data/record';
+                        var path = base_path + 'data/record';
                         console.log(name);
-                        this.$http.post(path,name).then(response => {
-                        this.tasks=response.body;
-                        this.$Message.success('保存成功');
-                        console.log(this.tasks);
-                        // get body data
-                        //this.tasks = response.body;
+                        this.$http.post(path, name).then(response => {
+                            this.tasks = response.body;
+                            this.$Message.success('保存成功');
+                            console.log(this.tasks);
+                            // get body data
+                            //this.tasks = response.body;
                         }, response => {
-                        this.$Message.error(response.body.error);
-                        console.log(response.status);
-                        console.log(response.body);
-                        // error callback
+                            this.$Message.error(response.body.error);
+                            console.log(response.status);
+                            console.log(response.body);
+                            // error callback
                         });
                     }
                     else {
                         this.$Message.error('保存失败');
                     }
-                })
+                });
             },
-			
-			handleSubmitExit() {
-				var path=base_path+'account/logout';
+
+            handleSubmitExit() {
+                var path = base_path + 'account/logout';
                 this.$http.get(path).then(response => {
-                   window.location.href="../login.html";//跳转到登录页面
-                  // get body data
-                  //this.tasks = response.body;
+                    window.location.href = '../login.html';//跳转到登录页面
+                    // get body data
+                    //this.tasks = response.body;
                 }, response => {
-                  // error callback
+                    // error callback
                 });
             }
         }
-    })
+    });
 </script>
 </body>
 </html>

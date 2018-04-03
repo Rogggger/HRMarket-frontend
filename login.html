@@ -85,7 +85,7 @@
     </style>
 </head>
 <body>
-<div v-cloak id="app" >
+<div v-cloak id="app">
     <div class="layout">
         <Row type="flex">
             <i-col :span="24">
@@ -109,7 +109,9 @@
                                 </i-input>
                             </Form-Item>
                             <Form-Item>
-                                <i-button type="primary" @click="handleSubmit('formInline',formInline)" style="width: 100px" >登录</i-button>
+                                <i-button type="primary" @click="handleSubmit('formInline',formInline)"
+                                          style="width: 100px">登录
+                                </i-button>
                             </Form-Item>
                         </i-form>
                         <div class="layout-copy">
@@ -150,7 +152,7 @@
                         }
                     ]
                 }
-            }
+            };
         },
         computed: {
             contentStyle: function () {
@@ -173,70 +175,71 @@
                             console.log(this.tasks);
                             this.$Message.success('登录成功！');
                             switch (this.tasks.area) {
-								case '0531':
-									sessionStorage.area='济南';
-									break;
-								case '0532':
-									sessionStorage.area='青岛';
-									break;
-								case '0533':
-									sessionStorage.area='淄博';
-									break;
-								case '0534':
-									sessionStorage.area='德州';
-									break;
-								case '0535':
-									sessionStorage.area='烟台';
-									break;
-								case '0536':
-									sessionStorage.area='潍坊';
-									break;
-								case '0537':
-									sessionStorage.area='济宁';
+                                case '0531':
+                                    sessionStorage.area = '济南';
+                                    break;
+                                case '0532':
+                                    sessionStorage.area = '青岛';
+                                    break;
+                                case '0533':
+                                    sessionStorage.area = '淄博';
+                                    break;
+                                case '0534':
+                                    sessionStorage.area = '德州';
+                                    break;
+                                case '0535':
+                                    sessionStorage.area = '烟台';
+                                    break;
+                                case '0536':
+                                    sessionStorage.area = '潍坊';
+                                    break;
+                                case '0537':
+                                    sessionStorage.area = '济宁';
                                     break;
                                 case '0538':
-									sessionStorage.area='泰安';
-									break;
-								case '0539':
-									sessionStorage.area='临沂';
-									break;
-								case '0530':
-									sessionStorage.area='菏泽';
-									break;
-								case '0543':
-									sessionStorage.area='滨州';
-									break;
-								case '0546':
-									sessionStorage.area='东营';
-									break;
-								case '0631':
-									sessionStorage.area='威海';
-									break;
-								case '0632':
-									sessionStorage.area='枣庄';
-									break;
-								case '0633':
-									sessionStorage.area='日照';
-									break;
-								case '0634':
-									sessionStorage.area='莱芜';
-									break;
-								case '0635':
-									sessionStorage.area='聊城';
-									break;
-							};
-							
-							switch (this.tasks.is_admin) {
+                                    sessionStorage.area = '泰安';
+                                    break;
+                                case '0539':
+                                    sessionStorage.area = '临沂';
+                                    break;
+                                case '0530':
+                                    sessionStorage.area = '菏泽';
+                                    break;
+                                case '0543':
+                                    sessionStorage.area = '滨州';
+                                    break;
+                                case '0546':
+                                    sessionStorage.area = '东营';
+                                    break;
+                                case '0631':
+                                    sessionStorage.area = '威海';
+                                    break;
+                                case '0632':
+                                    sessionStorage.area = '枣庄';
+                                    break;
+                                case '0633':
+                                    sessionStorage.area = '日照';
+                                    break;
+                                case '0634':
+                                    sessionStorage.area = '莱芜';
+                                    break;
+                                case '0635':
+                                    sessionStorage.area = '聊城';
+                                    break;
+                            }
+                            ;
+
+                            switch (this.tasks.is_admin) {
                                 case 0://普通用户
-                                    window.location.href = "./src/enterpriseuser.html";
+                                    window.location.href = './src/enterpriseuser.html';
                                     break;
                                 case 1://市级用户
-                                    window.location.href = "./src/adminuser.html";
-									sessionStorage.is_admin=1;
+                                    window.location.href = './src/adminuser.html';
+                                    sessionStorage.is_admin = 1;
                                     break;
                                 case 2://省级用户
-                                    window.location.href = "./src/adminuser.html";
-									sessionStorage.is_admin=2;
+                                    window.location.href = './src/adminuser.html';
+                                    sessionStorage.is_admin = 2;
                                     break;
                             }
                         }, response => {
@@ -249,7 +252,7 @@
                     } else {
                         this.$Message.error('登录失败，格式不正确！');
                     }
-                })
+                });
 
             }
         }

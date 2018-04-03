@@ -1,8 +1,8 @@
 <html>
 <head>
-<meta charset="UTF-8">
-<title>上报时限</title>
-<!-- import Vue.js -->
+    <meta charset="UTF-8">
+    <title>上报时限</title>
+    <!-- import Vue.js -->
     <script src="./vue.js"></script>
     <script src="./vue-resource.js"></script>
     <!-- import stylesheet -->
@@ -12,102 +12,114 @@
     <!--import path-->
     <script src=".\path.js"></script>
 
-<style>
-    .layout{
-        *border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: relative;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-	.layout-logo{
-		width: 180px;
-		height: 30px;
-		background: #5b6270;
-		border-radius: 3px;
-		float: left;
-		position: relative;
-		top: 15px;
-		left: 20px;
-	}
-	.layout-exit{
-		width: 100px;
-		height: 30px;
-		background: #5b6270;
-		float: right;
-		position: relative;
-		top: 15px;
-		right: 20px;
-		text-align: right;
-	}
-	
-    .layout-breadcrumb{
-        padding: 10px 15px 0;
-    }
-    .layout-content{
-        min-height: 200px;
-        margin: 15px;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 4px;
-    }
-    .layout-content-main{
-        padding: 10px;
-    }
-    .layout-copy{
-        text-align: center;
-        padding: 10px 0 20px;
-        color: #9ea7b4;
-    }
-    .layout-menu-left{
-        background: #464c5b;
-		width: 17%;
-    }
-    .layout-header{
-        height: 60px;
-        background: #313540;
-        box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    }
-    .layout-ceiling-main a{
-        color: #9ba7b5;
-    }
-    .layout-hide-text .layout-text{
-        display: none;
-    }
-    .ivu-col{
-        transition: width .2s ease-in-out;
-    }
-	.system-title{
-		letter-spacing:10px;
-		font-size:28px; 
-		font-family:"LiSu",隶书;
-		line-height:50px;
-		padding-left:230px;
-		color: #fff;
-    }
-    #form{
-		margin-top:50px;
-		text-align: center;
-	}
-</style>
+    <style>
+        .layout {
+            *border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-logo {
+            width: 180px;
+            height: 30px;
+            background: #5b6270;
+            border-radius: 3px;
+            float: left;
+            position: relative;
+            top: 15px;
+            left: 20px;
+        }
+
+        .layout-exit {
+            width: 100px;
+            height: 30px;
+            background: #5b6270;
+            float: right;
+            position: relative;
+            top: 15px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .layout-breadcrumb {
+            padding: 10px 15px 0;
+        }
+
+        .layout-content {
+            min-height: 200px;
+            margin: 15px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .layout-content-main {
+            padding: 10px;
+        }
+
+        .layout-copy {
+            text-align: center;
+            padding: 10px 0 20px;
+            color: #9ea7b4;
+        }
+
+        .layout-menu-left {
+            background: #464c5b;
+            width: 17%;
+        }
+
+        .layout-header {
+            height: 60px;
+            background: #313540;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        .layout-ceiling-main a {
+            color: #9ba7b5;
+        }
+
+        .layout-hide-text .layout-text {
+            display: none;
+        }
+
+        .ivu-col {
+            transition: width .2s ease-in-out;
+        }
+
+        .system-title {
+            letter-spacing: 10px;
+            font-size: 28px;
+            font-family: "LiSu", 隶书;
+            line-height: 50px;
+            padding-left: 230px;
+            color: #fff;
+        }
+
+        #form {
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="app">
+<div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-		<div class="layout-exit">
-			<i-button type="primary" @click="handleExit()" style="width: 100px">退出系统</i-button>
-		</div>
-		<div class="layout-header">
+        <div class="layout-exit">
+            <i-button type="primary" @click="handleExit()" style="width: 100px">退出系统</i-button>
+        </div>
+        <div class="layout-header">
             <div class="layout-logo">
                 <a href="adminuser.html">
                     <img src="../images/logo.jpg" style="width:190px;height:35px;"/>
                 </a>
             </div>
-			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
-		</div>
+            <h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+        </div>
 
-		<Row type="flex">
+        <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
                 <i-menu active-name="4-1" theme="dark" width="auto" :open-names="['4']">
                     <Submenu name="1">
@@ -160,7 +172,7 @@
                         <a href="reportingdeadline.html">
                             <Menu-item name="4-1">上报时限</Menu-item>
                         </a>
-                        <a href="createnewuser.html" >
+                        <a href="createnewuser.html">
                             <Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
                         </a>
                         <a href="usermanagement.html">
@@ -179,23 +191,27 @@
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
-                        <Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
-						<Breadcrumb-item>系统管理</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>
+                            <script>document.write(sessionStorage.area);</script>
+                            市管理员用户
+                        </Breadcrumb-item>
+                        <Breadcrumb-item>系统管理</Breadcrumb-item>
                         <Breadcrumb-item>上报时限</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle" id="form">
                         <i-form style="text-align:center">
-							<h2>新增调查期</h2>
-							<br>                   
-							<Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
-							<i-button type="primary" @click="addDate()" style="width: 100px">确定新增</i-button>	
-							<br><br>
-							<h2>所有调查期</h2>		
-							<br>				
-							<i-table border :columns="columns" :data="formInline" height="600"></i-table>
-						</i-form>
+                            <h2>新增调查期</h2>
+                            <br>
+                            <Date-Picker v-model="date_value" type="daterange" split-panels format="yyyy-MM-dd"
+                                         placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>
+                            <i-button type="primary" @click="addDate()" style="width: 100px">确定新增</i-button>
+                            <br><br>
+                            <h2>所有调查期</h2>
+                            <br>
+                            <i-table border :columns="columns" :data="formInline" height="600"></i-table>
+                        </i-form>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -205,98 +221,98 @@
         </Row>
     </div>
     <Modal title="修改调查期" width="550" v-model="modal.show" @on-ok="changeNotice()">
-        <Date-Picker v-model="modal.time_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end" placeholder="请选择日期" style="width: 250px"></Date-Picker>  
+        <Date-Picker v-model="modal.time_value" type="daterange" split-panels format="yyyy-MM-dd" placement="bottom-end"
+                     placeholder="请选择日期" style="width: 250px"></Date-Picker>
     </Modal>
-	<Back-Top></Back-Top>
-  </div>
-
+    <Back-Top></Back-Top>
+</div>
 
 
 <script>
-	new Vue({
+    new Vue({
         el: '#app',
-        data () {
-                return {
-                    flag:sessionStorage.is_admin,
-					modal: {
-                        show: false,
-                        index: 0,
-                        time_value: []
+        data() {
+            return {
+                flag: sessionStorage.is_admin,
+                modal: {
+                    show: false,
+                    index: 0,
+                    time_value: []
+                },
+                spanLeft: 5,
+                spanRight: 19,
+                theme1: 'dark',
+                formInline: [],
+                columns: [
+                    {
+                        title: '开始时间',
+                        key: 'start_time'
                     },
-                    spanLeft: 5,
-                    spanRight: 19,
-                    theme1: 'dark',
-                    formInline: [],
-					columns: [
-						{
-							title: '开始时间',
-							key: 'start_time'
-						},
-						{
-							title: '结束时间',
-							key: 'end_time'
-                        },
-                        {
-							title: '操作',
-							key: 'action',
-							width: 140,
-							align: 'center',
-							render: (h, params) => {
-								return h('div', [
-									h('Button', {
-										props: {
-											type: 'primary',
-											size: 'small'
-										},
-										style: {
-											marginRight: '5px'
-										},
-										on: {
-											click: () => {
-                                                this.modal.show=true;
-                                                this.modal.time_value = [];
-                                                this.modal.index = params.index;
-											}
-										}
-									}, '修改')
-								]);
-							}
-						}
-                	],
-					date_value: ['2018-01-26', '2018-04-15'],
-                    date_change:[]
-                }
-            },
+                    {
+                        title: '结束时间',
+                        key: 'end_time'
+                    },
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 140,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.modal.show = true;
+                                            this.modal.time_value = [];
+                                            this.modal.index = params.index;
+                                        }
+                                    }
+                                }, '修改')
+                            ]);
+                        }
+                    }
+                ],
+                date_value: ['2018-01-26', '2018-04-15'],
+                date_change: []
+            };
+        },
         created: function () {
-			this.getDate();
-		},
-    	computed:{
-         	iconSize:function () {
+            this.getDate();
+        },
+        computed: {
+            iconSize: function () {
                 return this.spanLeft === 5 ? 14 : 24;
             },
-            contentStyle: function(){
-           		var innerHeight = window.innerHeight;
-           		var contentHeight = innerHeight-50-110;
-            	return "min-height: "+contentHeight+"px";
+            contentStyle: function () {
+                var innerHeight = window.innerHeight;
+                var contentHeight = innerHeight - 50 - 110;
+                return 'min-height: ' + contentHeight + 'px';
             }
-    	},
+        },
         methods: {
-                formatDate:function(date) {
+            formatDate: function (date) {
                 let year = date.getFullYear();
                 let month = date.getMonth() + 1;
                 let monthZero = month < 10 ? '0' : '';
                 let day = date.getDate();
                 let dayZero = day < 10 ? '0' : '';
-                let hour=date.getHours();
+                let hour = date.getHours();
                 let hourZero = hour < 10 ? '0' : '';
-                let minute=date.getMinutes();
+                let minute = date.getMinutes();
                 let minuteZero = minute < 10 ? '0' : '';
-                let second=date.getSeconds();
+                let second = date.getSeconds();
                 let secondZero = second < 10 ? '0' : '';
-                return year + '-' + monthZero + month + '-' + dayZero + day+'T'+hourZero+hour+':'+minuteZero+minute+':'+secondZero+second+'+00:00';
-        	},
-            
-            toggleClick: function() {
+                return year + '-' + monthZero + month + '-' + dayZero + day + 'T' + hourZero + hour + ':' + minuteZero + minute + ':' + secondZero + second + '+00:00';
+            },
+
+            toggleClick: function () {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
                     this.spanRight = 22;
@@ -305,73 +321,72 @@
                     this.spanRight = 19;
                 }
             },
-			handleExit() {
-				var path=base_path+'account/logout';
+            handleExit() {
+                var path = base_path + 'account/logout';
                 this.$http.get(path).then(response => {
-                   window.location.href="../login.html";//跳转到登录页面
-                  // get body data
-                  //this.tasks = response.body;
+                    window.location.href = '../login.html';//跳转到登录页面
+                    // get body data
+                    //this.tasks = response.body;
                 }, response => {
-                  // error callback
+                    // error callback
                 });
             },
-            changeNotice () {				
-                var name={                           
-                    start_time:this.formatDate(this.modal.time_value[0]),
-                    end_time:this.formatDate(this.modal.time_value[1]),
-                }
-                var id=this.formInline[this.modal.index].id;
-                console.log('id:'+id);
+            changeNotice() {
+                var name = {
+                    start_time: this.formatDate(this.modal.time_value[0]),
+                    end_time: this.formatDate(this.modal.time_value[1]),
+                };
+                var id = this.formInline[this.modal.index].id;
+                console.log('id:' + id);
                 console.log(name);
-                var path=base_path+'admin/time/'+id;
-                console.log()
-                this.$http.post(path,name).then(response => {
+                var path = base_path + 'admin/time/' + id;
+                console.log();
+                this.$http.post(path, name).then(response => {
                     this.$Message.success('修改成功');
-                    console.log("正常");
+                    console.log('正常');
                 }, response => {
                     this.$Message.error('修改失败');
-                    console.log("异常");
+                    console.log('异常');
                     console.log(response.body);
-                // error callback
+                    // error callback
                 });
-			},
-            getDate()
-            {
-                console.log("执行get函数");
-				var path=base_path+'admin/time/';
-				this.$http.get(path).then(response => {
-				  console.log(response.body);
-				  this.formInline=response.body;
-                  this.status=response.body.status;
-                  console.log(this.status);
-				  // get body data
-				  //this.tasks = response.body;
-				}, response => {
-                    console.log(response.body);
-				  // error callback
-				});
             },
-			
-			addDate:function(){
+            getDate() {
+                console.log('执行get函数');
+                var path = base_path + 'admin/time/';
+                this.$http.get(path).then(response => {
+                    console.log(response.body);
+                    this.formInline = response.body;
+                    this.status = response.body.status;
+                    console.log(this.status);
+                    // get body data
+                    //this.tasks = response.body;
+                }, response => {
+                    console.log(response.body);
+                    // error callback
+                });
+            },
 
-                var path=base_path+'admin/time/';
-                var date={
-					start_time:this.formatDate(this.date_value[0]),
-                    end_time:this.formatDate(this.date_value[1])
-                    
-                }
+            addDate: function () {
+
+                var path = base_path + 'admin/time/';
+                var date = {
+                    start_time: this.formatDate(this.date_value[0]),
+                    end_time: this.formatDate(this.date_value[1])
+
+                };
                 console.log(this.date_value);
                 console.log(date);
-                this.$http.post(path,date).then(response => {
-					this.$Message.success("新增成功");
-                    console.log("正常");
-                    this.tasks=response.body;
-                  console.log(this.tasks);
+                this.$http.post(path, date).then(response => {
+                    this.$Message.success('新增成功');
+                    console.log('正常');
+                    this.tasks = response.body;
+                    console.log(this.tasks);
                 }, response => {
-					this.$Message.error(response.body.error);
-					console.log(response.body);
-                    console.log("异常");
-                  // error callback
+                    this.$Message.error(response.body.error);
+                    console.log(response.body);
+                    console.log('异常');
+                    // error callback
                 });
                 /*this.$http.post(path,body).then(response => {
                     console.log("正常");
@@ -382,9 +397,9 @@
                     console.log("异常");
                   // error callback
                 });*/
-              },
+            },
         }
-    })
+    });
 </script>
 </body>
 </html>
