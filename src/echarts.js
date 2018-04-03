@@ -29714,7 +29714,7 @@ var ONE_MINUTE = ONE_SECOND * 60;
 var ONE_HOUR = ONE_MINUTE * 60;
 var ONE_DAY = ONE_HOUR * 24;
 
-// FIXME 鍏敤锛�
+// FIXME å…¬ç”¨ï¼Ÿ
 var bisect = function (a, x, lo, hi) {
     while (lo < hi) {
         var mid = lo + hi >>> 1;
@@ -30775,7 +30775,7 @@ function symbolPathSetColor(color, innerColor) {
             symbolStyle.fill = innerColor || '#fff';
         }
         else {
-            // FIXME 鍒ゆ柇鍥惧舰榛樿鏄～鍏呰繕鏄弿杈癸紝浣跨敤 onlyStroke ?
+            // FIXME åˆ¤æ–­å›¾å½¢é»˜è®¤æ˜¯å¡«å……è¿˜æ˜¯æè¾¹ï¼Œä½¿ç”¨ onlyStroke ?
             symbolStyle.fill && (symbolStyle.fill = color);
             symbolStyle.stroke && (symbolStyle.stroke = color);
         }
@@ -31542,8 +31542,8 @@ SeriesModel.extend({
     },
 
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
         coordinateSystem: 'cartesian2d',
         legendHoverLink: true,
 
@@ -31581,22 +31581,22 @@ SeriesModel.extend({
         // Disabled if step is true
         smooth: false,
         smoothMonotone: null,
-        // 鎷愮偣鍥惧舰绫诲瀷
+        // æ‹ç‚¹å›¾å½¢ç±»åž‹
         symbol: 'emptyCircle',
-        // 鎷愮偣鍥惧舰澶у皬
+        // æ‹ç‚¹å›¾å½¢å¤§å°
         symbolSize: 4,
-        // 鎷愮偣鍥惧舰鏃嬭浆鎺у埗
+        // æ‹ç‚¹å›¾å½¢æ—‹è½¬æŽ§åˆ¶
         symbolRotate: null,
 
-        // 鏄惁鏄剧ず symbol, 鍙湁鍦� tooltip hover 鐨勬椂鍊欐樉绀�
+        // æ˜¯å¦æ˜¾ç¤º symbol, åªæœ‰åœ¨ tooltip hover çš„æ—¶å€™æ˜¾ç¤º
         showSymbol: true,
-        // 鏍囧織鍥惧舰榛樿鍙湁涓昏酱鏄剧ず锛堥殢涓昏酱鏍囩闂撮殧闅愯棌绛栫暐锛�
+        // æ ‡å¿—å›¾å½¢é»˜è®¤åªæœ‰ä¸»è½´æ˜¾ç¤ºï¼ˆéšä¸»è½´æ ‡ç­¾é—´éš”éšè—ç­–ç•¥ï¼‰
         showAllSymbol: false,
 
-        // 鏄惁杩炴帴鏂偣
+        // æ˜¯å¦è¿žæŽ¥æ–­ç‚¹
         connectNulls: false,
 
-        // 鏁版嵁杩囨护锛�'average', 'max', 'min', 'sum'
+        // æ•°æ®è¿‡æ»¤ï¼Œ'average', 'max', 'min', 'sum'
         sampling: 'none',
 
         animationEasing: 'linear',
@@ -34007,25 +34007,25 @@ inherits(Axis2D, Axis);
 
 var defaultOption = {
     show: true,
-    zlevel: 0,                  // 涓€绾у眰鍙�
-    z: 0,                       // 浜岀骇灞傚彔
-    // 鍙嶅悜鍧愭爣杞�
+    zlevel: 0,                  // ä¸€çº§å±‚å 
+    z: 0,                       // äºŒçº§å±‚å 
+    // åå‘åæ ‡è½´
     inverse: false,
 
-    // 鍧愭爣杞村悕瀛楋紝榛樿涓虹┖
+    // åæ ‡è½´åå­—ï¼Œé»˜è®¤ä¸ºç©º
     name: '',
-    // 鍧愭爣杞村悕瀛椾綅缃紝鏀寔'start' | 'middle' | 'end'
+    // åæ ‡è½´åå­—ä½ç½®ï¼Œæ”¯æŒ'start' | 'middle' | 'end'
     nameLocation: 'end',
-    // 鍧愭爣杞村悕瀛楁棆杞紝degree銆�
+    // åæ ‡è½´åå­—æ—‹è½¬ï¼Œdegreeã€‚
     nameRotate: null, // Adapt to axis rotate, when nameLocation is 'middle'.
     nameTruncate: {
         maxWidth: null,
         ellipsis: '...',
         placeholder: '.'
     },
-    // 鍧愭爣杞存枃瀛楁牱寮忥紝榛樿鍙栧叏灞€鏍峰紡
+    // åæ ‡è½´æ–‡å­—æ ·å¼ï¼Œé»˜è®¤å–å…¨å±€æ ·å¼
     nameTextStyle: {},
-    // 鏂囧瓧涓庤酱绾胯窛绂�
+    // æ–‡å­—ä¸Žè½´çº¿è·ç¦»
     nameGap: 15,
 
     silent: false, // Default false to support tooltip.
@@ -34037,64 +34037,64 @@ var defaultOption = {
 
     axisPointer: {},
 
-    // 鍧愭爣杞寸嚎
+    // åæ ‡è½´çº¿
     axisLine: {
-        // 榛樿鏄剧ず锛屽睘鎬how鎺у埗鏄剧ず涓庡惁
+        // é»˜è®¤æ˜¾ç¤ºï¼Œå±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦
         show: true,
         onZero: true,
         onZeroAxisIndex: null,
-        // 灞炴€ineStyle鎺у埗绾挎潯鏍峰紡
+        // å±žæ€§lineStyleæŽ§åˆ¶çº¿æ¡æ ·å¼
         lineStyle: {
             color: '#333',
             width: 1,
             type: 'solid'
         },
-        // 鍧愭爣杞翠袱绔殑绠ご
+        // åæ ‡è½´ä¸¤ç«¯çš„ç®­å¤´
         symbol: ['none', 'none'],
         symbolSize: [10, 15]
     },
-    // 鍧愭爣杞村皬鏍囪
+    // åæ ‡è½´å°æ ‡è®°
     axisTick: {
-        // 灞炴€how鎺у埗鏄剧ず涓庡惁锛岄粯璁ゆ樉绀�
+        // å±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦ï¼Œé»˜è®¤æ˜¾ç¤º
         show: true,
-        // 鎺у埗灏忔爣璁版槸鍚﹀湪grid閲�
+        // æŽ§åˆ¶å°æ ‡è®°æ˜¯å¦åœ¨gridé‡Œ
         inside: false,
-        // 灞炴€ength鎺у埗绾块暱
+        // å±žæ€§lengthæŽ§åˆ¶çº¿é•¿
         length: 5,
-        // 灞炴€ineStyle鎺у埗绾挎潯鏍峰紡
+        // å±žæ€§lineStyleæŽ§åˆ¶çº¿æ¡æ ·å¼
         lineStyle: {
             width: 1
         }
     },
-    // 鍧愭爣杞存枃鏈爣绛撅紝璇﹁axis.axisLabel
+    // åæ ‡è½´æ–‡æœ¬æ ‡ç­¾ï¼Œè¯¦è§axis.axisLabel
     axisLabel: {
         show: true,
-        // 鎺у埗鏂囨湰鏍囩鏄惁鍦╣rid閲�
+        // æŽ§åˆ¶æ–‡æœ¬æ ‡ç­¾æ˜¯å¦åœ¨gridé‡Œ
         inside: false,
         rotate: 0,
         showMinLabel: null, // true | false | null (auto)
         showMaxLabel: null, // true | false | null (auto)
         margin: 8,
         // formatter: null,
-        // 鍏朵綑灞炴€ч粯璁や娇鐢ㄥ叏灞€鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+        // å…¶ä½™å±žæ€§é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
         fontSize: 12
     },
-    // 鍒嗛殧绾�
+    // åˆ†éš”çº¿
     splitLine: {
-        // 榛樿鏄剧ず锛屽睘鎬how鎺у埗鏄剧ず涓庡惁
+        // é»˜è®¤æ˜¾ç¤ºï¼Œå±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦
         show: true,
-        // 灞炴€ineStyle锛堣瑙乴ineStyle锛夋帶鍒剁嚎鏉℃牱寮�
+        // å±žæ€§lineStyleï¼ˆè¯¦è§lineStyleï¼‰æŽ§åˆ¶çº¿æ¡æ ·å¼
         lineStyle: {
             color: ['#ccc'],
             width: 1,
             type: 'solid'
         }
     },
-    // 鍒嗛殧鍖哄煙
+    // åˆ†éš”åŒºåŸŸ
     splitArea: {
-        // 榛樿涓嶆樉绀猴紝灞炴€how鎺у埗鏄剧ず涓庡惁
+        // é»˜è®¤ä¸æ˜¾ç¤ºï¼Œå±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦
         show: false,
-        // 灞炴€reaStyle锛堣瑙乤reaStyle锛夋帶鍒跺尯鍩熸牱寮�
+        // å±žæ€§areaStyleï¼ˆè¯¦è§areaStyleï¼‰æŽ§åˆ¶åŒºåŸŸæ ·å¼
         areaStyle: {
             color: ['rgba(250,250,250,0.3)','rgba(200,200,200,0.3)']
         }
@@ -34104,7 +34104,7 @@ var defaultOption = {
 var axisDefault = {};
 
 axisDefault.categoryAxis = merge({
-    // 绫荤洰璧峰鍜岀粨鏉熶袱绔┖鐧界瓥鐣�
+    // ç±»ç›®èµ·å§‹å’Œç»“æŸä¸¤ç«¯ç©ºç™½ç­–ç•¥
     boundaryGap: true,
     // Set false to faster category collection.
     // Only usefull in the case like: category is
@@ -34120,36 +34120,36 @@ axisDefault.categoryAxis = merge({
     splitLine: {
         show: false
     },
-    // 鍧愭爣杞村皬鏍囪
+    // åæ ‡è½´å°æ ‡è®°
     axisTick: {
         // If tick is align with label when boundaryGap is true
         alignWithLabel: false,
         interval: 'auto'
     },
-    // 鍧愭爣杞存枃鏈爣绛撅紝璇﹁axis.axisLabel
+    // åæ ‡è½´æ–‡æœ¬æ ‡ç­¾ï¼Œè¯¦è§axis.axisLabel
     axisLabel: {
         interval: 'auto'
     }
 }, defaultOption);
 
 axisDefault.valueAxis = merge({
-    // 鏁板€艰捣濮嬪拰缁撴潫涓ょ绌虹櫧绛栫暐
+    // æ•°å€¼èµ·å§‹å’Œç»“æŸä¸¤ç«¯ç©ºç™½ç­–ç•¥
     boundaryGap: [0, 0],
 
     // TODO
     // min/max: [30, datamin, 60] or [20, datamin] or [datamin, 60]
 
-    // 鏈€灏忓€�, 璁剧疆鎴� 'dataMin' 鍒欎粠鏁版嵁涓绠楁渶灏忓€�
+    // æœ€å°å€¼, è®¾ç½®æˆ 'dataMin' åˆ™ä»Žæ•°æ®ä¸­è®¡ç®—æœ€å°å€¼
     // min: null,
-    // 鏈€澶у€硷紝璁剧疆鎴� 'dataMax' 鍒欎粠鏁版嵁涓绠楁渶澶у€�
+    // æœ€å¤§å€¼ï¼Œè®¾ç½®æˆ 'dataMax' åˆ™ä»Žæ•°æ®ä¸­è®¡ç®—æœ€å¤§å€¼
     // max: null,
     // Readonly prop, specifies start value of the range when using data zoom.
     // rangeStart: null
     // Readonly prop, specifies end value of the range when using data zoom.
     // rangeEnd: null
-    // 鑴辩0鍊兼瘮渚嬶紝鏀惧ぇ鑱氱劍鍒版渶缁坃min锛宊max鍖洪棿
+    // è„±ç¦»0å€¼æ¯”ä¾‹ï¼Œæ”¾å¤§èšç„¦åˆ°æœ€ç»ˆ_minï¼Œ_maxåŒºé—´
     // scale: false,
-    // 鍒嗗壊娈垫暟锛岄粯璁や负5
+    // åˆ†å‰²æ®µæ•°ï¼Œé»˜è®¤ä¸º5
     splitNumber: 5
     // Minimum interval
     // minInterval: null
@@ -34313,8 +34313,8 @@ var extraOption = {
 axisModelCreator('x', AxisModel, getAxisType, extraOption);
 axisModelCreator('y', AxisModel, getAxisType, extraOption);
 
-// Grid 鏄湪鏈夌洿瑙掑潗鏍囩郴鐨勬椂鍊欏繀椤昏瀛樺湪鐨�
-// 鎵€浠ヨ繖閲屼篃瑕佽 Cartesian2D 渚濊禆
+// Grid æ˜¯åœ¨æœ‰ç›´è§’åæ ‡ç³»çš„æ—¶å€™å¿…é¡»è¦å­˜åœ¨çš„
+// æ‰€ä»¥è¿™é‡Œä¹Ÿè¦è¢« Cartesian2D ä¾èµ–
 
 ComponentModel.extend({
 
@@ -36517,8 +36517,8 @@ var BaseBarSeries = SeriesModel.extend({
     },
 
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
         coordinateSystem: 'cartesian2d',
         legendHoverLink: true,
         // stack: null
@@ -36527,18 +36527,18 @@ var BaseBarSeries = SeriesModel.extend({
         // xAxisIndex: 0,
         // yAxisIndex: 0,
 
-        // 鏈€灏忛珮搴︽敼涓�0
+        // æœ€å°é«˜åº¦æ”¹ä¸º0
         barMinHeight: 0,
-        // 鏈€灏忚搴︿负0锛屼粎瀵规瀬鍧愭爣绯讳笅鐨勬煴鐘跺浘鏈夋晥
+        // æœ€å°è§’åº¦ä¸º0ï¼Œä»…å¯¹æžåæ ‡ç³»ä¸‹çš„æŸ±çŠ¶å›¾æœ‰æ•ˆ
         barMinAngle: 0,
         // cursor: null,
 
         // barMaxWidth: null,
-        // 榛樿鑷€傚簲
+        // é»˜è®¤è‡ªé€‚åº”
         // barWidth: null,
-        // 鏌遍棿璺濈锛岄粯璁や负鏌卞舰瀹藉害鐨�30%锛屽彲璁惧浐瀹氬€�
+        // æŸ±é—´è·ç¦»ï¼Œé»˜è®¤ä¸ºæŸ±å½¢å®½åº¦çš„30%ï¼Œå¯è®¾å›ºå®šå€¼
         // barGap: '30%',
-        // 绫荤洰闂存煴褰㈣窛绂伙紝榛樿涓虹被鐩棿璺濈殑20%锛屽彲璁惧浐瀹氬€�
+        // ç±»ç›®é—´æŸ±å½¢è·ç¦»ï¼Œé»˜è®¤ä¸ºç±»ç›®é—´è·çš„20%ï¼Œå¯è®¾å›ºå®šå€¼
         // barCategoryGap: '20%',
         // label: {
         //      show: false
@@ -37102,24 +37102,24 @@ var PieSeries = extendSeriesModel({
         legendHoverLink: true,
 
         hoverAnimation: true,
-        // 榛樿鍏ㄥ眬灞呬腑
+        // é»˜è®¤å…¨å±€å±…ä¸­
         center: ['50%', '50%'],
         radius: [0, '75%'],
-        // 榛樿椤烘椂閽�
+        // é»˜è®¤é¡ºæ—¶é’ˆ
         clockwise: true,
         startAngle: 90,
-        // 鏈€灏忚搴︽敼涓�0
+        // æœ€å°è§’åº¦æ”¹ä¸º0
         minAngle: 0,
-        // 閫変腑鏃舵墖鍖哄亸绉婚噺
+        // é€‰ä¸­æ—¶æ‰‡åŒºåç§»é‡
         selectedOffset: 10,
-        // 楂樹寒鎵囧尯鍋忕Щ閲�
+        // é«˜äº®æ‰‡åŒºåç§»é‡
         hoverOffset: 10,
 
         // If use strategy to avoid label overlapping
         avoidLabelOverlap: true,
-        // 閫夋嫨妯″紡锛岄粯璁ゅ叧闂紝鍙€塻ingle锛宮ultiple
+        // é€‰æ‹©æ¨¡å¼ï¼Œé»˜è®¤å…³é—­ï¼Œå¯é€‰singleï¼Œmultiple
         // selectedMode: false,
-        // 鍗椾竵鏍煎皵鐜懓鍥炬ā寮忥紝'radius'锛堝崐寰勶級 | 'area'锛堥潰绉級
+        // å—ä¸æ ¼å°”çŽ«ç‘°å›¾æ¨¡å¼ï¼Œ'radius'ï¼ˆåŠå¾„ï¼‰ | 'area'ï¼ˆé¢ç§¯ï¼‰
         // roseType: null,
 
         percentPrecision: 2,
@@ -37135,20 +37135,20 @@ var PieSeries = extendSeriesModel({
             show: true,
             // 'outer', 'inside', 'center'
             position: 'outer'
-            // formatter: 鏍囩鏂囨湰鏍煎紡鍣紝鍚孴ooltip.formatter锛屼笉鏀寔寮傛鍥炶皟
-            // 榛樿浣跨敤鍏ㄥ眬鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
-            // distance: 褰損osition涓篿nner鏃舵湁鏁堬紝涓簂abel浣嶇疆鍒板渾蹇冪殑璺濈涓庡渾鍗婂緞(鐜姸鍥句负鍐呭鍗婂緞鍜�)鐨勬瘮渚嬬郴鏁�
+            // formatter: æ ‡ç­¾æ–‡æœ¬æ ¼å¼å™¨ï¼ŒåŒTooltip.formatterï¼Œä¸æ”¯æŒå¼‚æ­¥å›žè°ƒ
+            // é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
+            // distance: å½“positionä¸ºinneræ—¶æœ‰æ•ˆï¼Œä¸ºlabelä½ç½®åˆ°åœ†å¿ƒçš„è·ç¦»ä¸Žåœ†åŠå¾„(çŽ¯çŠ¶å›¾ä¸ºå†…å¤–åŠå¾„å’Œ)çš„æ¯”ä¾‹ç³»æ•°
         },
         // Enabled when label.normal.position is 'outer'
         labelLine: {
             show: true,
-            // 寮曞绾夸袱娈典腑鐨勭涓€娈甸暱搴�
+            // å¼•å¯¼çº¿ä¸¤æ®µä¸­çš„ç¬¬ä¸€æ®µé•¿åº¦
             length: 15,
-            // 寮曞绾夸袱娈典腑鐨勭浜屾闀垮害
+            // å¼•å¯¼çº¿ä¸¤æ®µä¸­çš„ç¬¬äºŒæ®µé•¿åº¦
             length2: 15,
             smooth: false,
             lineStyle: {
-                // color: 鍚勫紓,
+                // color: å„å¼‚,
                 width: 1,
                 type: 'solid'
             }
@@ -37659,7 +37659,7 @@ function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
         return a.y - b.y;
     });
 
-    // 鍘�
+    // åŽ‹
     function shiftDown(start, end, delta, dir) {
         for (var j = start; j < end; j++) {
             list[j].y += delta;
@@ -37675,7 +37675,7 @@ function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
         shiftUp(end - 1, delta / 2);
     }
 
-    // 寮�
+    // å¼¹
     function shiftUp(end, delta) {
         for (var j = end; j >= 0; j--) {
             list[j].y -= delta;
@@ -37689,12 +37689,12 @@ function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
 
     function changeX(list, isDownList, cx, cy, r, dir) {
         var lastDeltaX = dir > 0
-            ? isDownList                // 鍙充晶
-                ? Number.MAX_VALUE      // 涓�
-                : 0                     // 涓�
-            : isDownList                // 宸︿晶
-                ? Number.MAX_VALUE      // 涓�
-                : 0;                    // 涓�
+            ? isDownList                // å³ä¾§
+                ? Number.MAX_VALUE      // ä¸‹
+                : 0                     // ä¸Š
+            : isDownList                // å·¦ä¾§
+                ? Number.MAX_VALUE      // ä¸‹
+                : 0;                    // ä¸Š
 
         for (var i = 0, l = list.length; i < l; i++) {
             // Not change x for center label
@@ -37711,11 +37711,11 @@ function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight) {
                     )
                 : Math.abs(list[i].x - cx);
             if (isDownList && deltaX >= lastDeltaX) {
-                // 鍙充笅锛屽乏涓�
+                // å³ä¸‹ï¼Œå·¦ä¸‹
                 deltaX = lastDeltaX - 10;
             }
             if (!isDownList && deltaX <= lastDeltaX) {
-                // 鍙充笂锛屽乏涓�
+                // å³ä¸Šï¼Œå·¦ä¸Š
                 deltaX = lastDeltaX + 10;
             }
 
@@ -37947,7 +37947,7 @@ var pieLayout = function (seriesType, ecModel, api, payload) {
                 return;
             }
 
-            // FIXME 鍏煎 2.0 浣嗘槸 roseType 鏄� area 鐨勬椂鍊欐墠鏄繖鏍凤紵
+            // FIXME å…¼å®¹ 2.0 ä½†æ˜¯ roseType æ˜¯ area çš„æ—¶å€™æ‰æ˜¯è¿™æ ·ï¼Ÿ
             if (roseType !== 'area') {
                 angle = (sum === 0 && stillShowZeroSum)
                     ? unitRadian : (value * unitRadian);
@@ -38107,9 +38107,9 @@ SeriesModel.extend({
         // Geo coordinate system
         // geoIndex: 0,
 
-        // symbol: null,        // 鍥惧舰绫诲瀷
-        symbolSize: 10,          // 鍥惧舰澶у皬锛屽崐瀹斤紙鍗婂緞锛夊弬鏁帮紝褰撳浘褰负鏂瑰悜鎴栬彵褰㈠垯鎬诲搴︿负symbolSize * 2
-        // symbolRotate: null,  // 鍥惧舰鏃嬭浆鎺у埗
+        // symbol: null,        // å›¾å½¢ç±»åž‹
+        symbolSize: 10,          // å›¾å½¢å¤§å°ï¼ŒåŠå®½ï¼ˆåŠå¾„ï¼‰å‚æ•°ï¼Œå½“å›¾å½¢ä¸ºæ–¹å‘æˆ–è±å½¢åˆ™æ€»å®½åº¦ä¸ºsymbolSize * 2
+        // symbolRotate: null,  // å›¾å½¢æ—‹è½¬æŽ§åˆ¶
 
         large: false,
         // Available when large is true
@@ -38119,14 +38119,14 @@ SeriesModel.extend({
         // label: {
             // show: false
             // distance: 5,
-            // formatter: 鏍囩鏂囨湰鏍煎紡鍣紝鍚孴ooltip.formatter锛屼笉鏀寔寮傛鍥炶皟
-            // position: 榛樿鑷€傚簲锛屾按骞冲竷灞€涓�'top'锛屽瀭鐩村竷灞€涓�'right'锛屽彲閫変负
+            // formatter: æ ‡ç­¾æ–‡æœ¬æ ¼å¼å™¨ï¼ŒåŒTooltip.formatterï¼Œä¸æ”¯æŒå¼‚æ­¥å›žè°ƒ
+            // position: é»˜è®¤è‡ªé€‚åº”ï¼Œæ°´å¹³å¸ƒå±€ä¸º'top'ï¼Œåž‚ç›´å¸ƒå±€ä¸º'right'ï¼Œå¯é€‰ä¸º
             //           'inside'|'left'|'right'|'top'|'bottom'
-            // 榛樿浣跨敤鍏ㄥ眬鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+            // é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
         // },
         itemStyle: {
             opacity: 0.8
-            // color: 鍚勫紓
+            // color: å„å¼‚
         },
 
         progressive: null
@@ -39669,7 +39669,7 @@ function doConvert$1(methodName, ecModel, finder, value) {
     return coordSys === this ? coordSys[methodName](value) : null;
 }
 
-// Fix for 鍗楁捣璇稿矝
+// Fix for å—æµ·è¯¸å²›
 
 var geoCoord = [126, 25];
 
@@ -39703,7 +39703,7 @@ for (var i$1 = 0; i$1 < points$1.length; i$1++) {
 var fixNanhai = function (geo) {
     if (geo.map === 'china') {
         geo.regions.push(new Region(
-            '鍗楁捣璇稿矝',
+            'å—æµ·è¯¸å²›',
             map(points$1, function (exterior) {
                 return {
                     type: 'polygon',
@@ -39715,13 +39715,13 @@ var fixNanhai = function (geo) {
 };
 
 var coordsOffsetMap = {
-    '鍗楁捣璇稿矝' : [32, 80],
-    // 鍏ㄥ浗
-    '骞夸笢': [0, -10],
-    '棣欐腐': [10, 5],
-    '婢抽棬': [-10, 10],
-    //'鍖椾含': [-10, 0],
-    '澶╂触': [5, 5]
+    'å—æµ·è¯¸å²›' : [32, 80],
+    // å…¨å›½
+    'å¹¿ä¸œ': [0, -10],
+    'é¦™æ¸¯': [10, 5],
+    'æ¾³é—¨': [-10, 10],
+    //'åŒ—äº¬': [-10, 0],
+    'å¤©æ´¥': [5, 5]
 };
 
 var fixTextCoord = function (geo) {
@@ -39752,7 +39752,7 @@ var fixGeoCoord = function (geo) {
     });
 };
 
-// Fix for 閽撻奔宀�
+// Fix for é’“é±¼å²›
 
 // var Region = require('../Region');
 // var zrUtil = require('zrender/src/core/util');
@@ -39772,7 +39772,7 @@ var points$2 = [
 var fixDiaoyuIsland = function (geo) {
     if (geo.map === 'china') {
         for (var i = 0, len = geo.regions.length; i < len; ++i) {
-            if (geo.regions[i].name === '鍙版咕') {
+            if (geo.regions[i].name === 'å°æ¹¾') {
                 geo.regions[i].geometries.push({
                     type: 'polygon',
                     exterior: points$2[0]
@@ -40399,9 +40399,9 @@ var MapSeries = SeriesModel.extend({
     },
 
     defaultOption: {
-        // 涓€绾у眰鍙�
+        // ä¸€çº§å±‚å 
         zlevel: 0,
-        // 浜岀骇灞傚彔
+        // äºŒçº§å±‚å 
         z: 2,
 
         coordinateSystem: 'geo',
@@ -40434,19 +40434,19 @@ var MapSeries = SeriesModel.extend({
         // layoutSize: 100
 
 
-        // 鏁板€煎悎骞舵柟寮忥紝榛樿鍔犲拰锛屽彲閫変负锛�
+        // æ•°å€¼åˆå¹¶æ–¹å¼ï¼Œé»˜è®¤åŠ å’Œï¼Œå¯é€‰ä¸ºï¼š
         // 'sum' | 'average' | 'max' | 'min'
         // mapValueCalculation: 'sum',
-        // 鍦板浘鏁板€艰绠楃粨鏋滃皬鏁扮簿搴�
+        // åœ°å›¾æ•°å€¼è®¡ç®—ç»“æžœå°æ•°ç²¾åº¦
         // mapValuePrecision: 0,
 
 
-        // 鏄剧ず鍥句緥棰滆壊鏍囪瘑锛堢郴鍒楁爣璇嗙殑灏忓渾鐐癸級锛屽浘渚嬪紑鍚椂鏈夋晥
+        // æ˜¾ç¤ºå›¾ä¾‹é¢œè‰²æ ‡è¯†ï¼ˆç³»åˆ—æ ‡è¯†çš„å°åœ†ç‚¹ï¼‰ï¼Œå›¾ä¾‹å¼€å¯æ—¶æœ‰æ•ˆ
         showLegendSymbol: true,
-        // 閫夋嫨妯″紡锛岄粯璁ゅ叧闂紝鍙€塻ingle锛宮ultiple
+        // é€‰æ‹©æ¨¡å¼ï¼Œé»˜è®¤å…³é—­ï¼Œå¯é€‰singleï¼Œmultiple
         // selectedMode: false,
         dataRangeHoverLink: true,
-        // 鏄惁寮€鍚缉鏀惧強婕父妯″紡
+        // æ˜¯å¦å¼€å¯ç¼©æ”¾åŠæ¼«æ¸¸æ¨¡å¼
         // roam: false,
 
         // Define left-top, right-bottom coords to control view
@@ -41466,7 +41466,7 @@ var mapVisual = function (ecModel) {
     });
 };
 
-// FIXME 鍏敤锛�
+// FIXME å…¬ç”¨ï¼Ÿ
 /**
  * @param {Array.<module:echarts/data/List>} datas
  * @param {string} statisticType 'average' 'sum'
@@ -42572,7 +42572,7 @@ function nextLeft(node) {
 }
 
 /**
- * If nodeInLeft鈥檚 ancestor is a sibling of node, returns nodeInLeft鈥檚 ancestor.
+ * If nodeInLeftâ€™s ancestor is a sibling of node, returns nodeInLeftâ€™s ancestor.
  * Otherwise, returns the specified ancestor.
  * @param  {module:echarts/data/Tree~TreeNode} nodeInLeft
  * @param  {module:echarts/data/Tree~TreeNode} node
@@ -43180,8 +43180,8 @@ SeriesModel.extend({
         squareRatio: 0.5 * (1 + Math.sqrt(5)), // golden ratio
         leafDepth: null,                    // Nodes on depth from root are regarded as leaves.
                                             // Count from zero (zero represents only view root).
-        drillDownIcon: '鈻�',                 // Use html character temporarily because it is complicated
-                                            // to align specialized icon. 鈻封柖鉂掆潗鈻尖湚
+        drillDownIcon: 'â–¶',                 // Use html character temporarily because it is complicated
+                                            // to align specialized icon. â–·â–¶â’ââ–¼âœš
 
         zoomToNodeRatio: 0.32 * 0.32,       // Be effective when using zoomToNode. Specify the proportion of the
                                             // target node area in the view area.
@@ -43889,7 +43889,7 @@ extendChartView({
         var containerGroup = this._containerGroup;
         if (!containerGroup) {
             // FIXME
-            // 鍔犱竴灞俢ontainerGroup鏄负浜哻lip锛屼絾鏄幇鍦╟lip鍔熻兘骞舵病鏈夊疄鐜般€�
+            // åŠ ä¸€å±‚containerGroupæ˜¯ä¸ºäº†clipï¼Œä½†æ˜¯çŽ°åœ¨clipåŠŸèƒ½å¹¶æ²¡æœ‰å®žçŽ°ã€‚
             containerGroup = this._containerGroup = new Group$2();
             this._initEvents(containerGroup);
             this.group.add(containerGroup);
@@ -45629,7 +45629,7 @@ var treemapLayout = {
         seriesModel.setLayoutInfo(layoutInfo);
 
         // FIXME
-        // 鐜板湪娌℃湁clip鍔熻兘锛屾殏鏃跺彇ec楂樺銆�
+        // çŽ°åœ¨æ²¡æœ‰clipåŠŸèƒ½ï¼Œæš‚æ—¶å–ecé«˜å®½ã€‚
         prunning(
             treeRoot,
             // Transform to base element coordinate system.
@@ -46104,7 +46104,7 @@ function generateNodeKey (id) {
  */
 var Graph = function(directed) {
     /**
-     * 鏄惁鏄湁鍚戝浘
+     * æ˜¯å¦æ˜¯æœ‰å‘å›¾
      * @type {boolean}
      * @private
      */
@@ -46498,7 +46498,7 @@ Node.prototype = {
 };
 
 /**
- * 鍥捐竟
+ * å›¾è¾¹
  * @alias module:echarts/data/Graph.Edge
  * @param {module:echarts/data/Graph.Node} n1
  * @param {module:echarts/data/Graph.Node} n2
@@ -46507,13 +46507,13 @@ Node.prototype = {
 function Edge(n1, n2, dataIndex) {
 
     /**
-     * 鑺傜偣1锛屽鏋滄槸鏈夊悜鍥惧垯涓烘簮鑺傜偣
+     * èŠ‚ç‚¹1ï¼Œå¦‚æžœæ˜¯æœ‰å‘å›¾åˆ™ä¸ºæºèŠ‚ç‚¹
      * @type {module:echarts/data/Graph.Node}
      */
     this.node1 = n1;
 
     /**
-     * 鑺傜偣2锛屽鏋滄槸鏈夊悜鍥惧垯涓虹洰鏍囪妭鐐�
+     * èŠ‚ç‚¹2ï¼Œå¦‚æžœæ˜¯æœ‰å‘å›¾åˆ™ä¸ºç›®æ ‡èŠ‚ç‚¹
      * @type {module:echarts/data/Graph.Node}
      */
     this.node2 = n2;
@@ -47511,7 +47511,7 @@ function intersectCurveCircle(curvePoints, center, radius) {
         }
     }
 
-    // Assume the segment is monotone锛孎ind root through Bisection method
+    // Assume the segment is monotoneï¼ŒFind root through Bisection method
     // At most 32 iteration
     for (var i = 0; i < 32; i++) {
         // var prev = t - interval;
@@ -48683,50 +48683,50 @@ var GaugeSeries = SeriesModel.extend({
     defaultOption: {
         zlevel: 0,
         z: 2,
-        // 榛樿鍏ㄥ眬灞呬腑
+        // é»˜è®¤å…¨å±€å±…ä¸­
         center: ['50%', '50%'],
         legendHoverLink: true,
         radius: '75%',
         startAngle: 225,
         endAngle: -45,
         clockwise: true,
-        // 鏈€灏忓€�
+        // æœ€å°å€¼
         min: 0,
-        // 鏈€澶у€�
+        // æœ€å¤§å€¼
         max: 100,
-        // 鍒嗗壊娈垫暟锛岄粯璁や负10
+        // åˆ†å‰²æ®µæ•°ï¼Œé»˜è®¤ä¸º10
         splitNumber: 10,
-        // 鍧愭爣杞寸嚎
+        // åæ ‡è½´çº¿
         axisLine: {
-            // 榛樿鏄剧ず锛屽睘鎬how鎺у埗鏄剧ず涓庡惁
+            // é»˜è®¤æ˜¾ç¤ºï¼Œå±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦
             show: true,
-            lineStyle: {       // 灞炴€ineStyle鎺у埗绾挎潯鏍峰紡
+            lineStyle: {       // å±žæ€§lineStyleæŽ§åˆ¶çº¿æ¡æ ·å¼
                 color: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']],
                 width: 30
             }
         },
-        // 鍒嗛殧绾�
+        // åˆ†éš”çº¿
         splitLine: {
-            // 榛樿鏄剧ず锛屽睘鎬how鎺у埗鏄剧ず涓庡惁
+            // é»˜è®¤æ˜¾ç¤ºï¼Œå±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦
             show: true,
-            // 灞炴€ength鎺у埗绾块暱
+            // å±žæ€§lengthæŽ§åˆ¶çº¿é•¿
             length: 30,
-            // 灞炴€ineStyle锛堣瑙乴ineStyle锛夋帶鍒剁嚎鏉℃牱寮�
+            // å±žæ€§lineStyleï¼ˆè¯¦è§lineStyleï¼‰æŽ§åˆ¶çº¿æ¡æ ·å¼
             lineStyle: {
                 color: '#eee',
                 width: 2,
                 type: 'solid'
             }
         },
-        // 鍧愭爣杞村皬鏍囪
+        // åæ ‡è½´å°æ ‡è®°
         axisTick: {
-            // 灞炴€how鎺у埗鏄剧ず涓庡惁锛岄粯璁や笉鏄剧ず
+            // å±žæ€§showæŽ§åˆ¶æ˜¾ç¤ºä¸Žå¦ï¼Œé»˜è®¤ä¸æ˜¾ç¤º
             show: true,
-            // 姣忎唤split缁嗗垎澶氬皯娈�
+            // æ¯ä»½splitç»†åˆ†å¤šå°‘æ®µ
             splitNumber: 5,
-            // 灞炴€ength鎺у埗绾块暱
+            // å±žæ€§lengthæŽ§åˆ¶çº¿é•¿
             length: 8,
-            // 灞炴€ineStyle鎺у埗绾挎潯鏍峰紡
+            // å±žæ€§lineStyleæŽ§åˆ¶çº¿æ¡æ ·å¼
             lineStyle: {
                 color: '#eee',
                 width: 1,
@@ -48749,9 +48749,9 @@ var GaugeSeries = SeriesModel.extend({
         },
         title: {
             show: true,
-            // x, y锛屽崟浣峱x
+            // x, yï¼Œå•ä½px
             offsetCenter: [0, '-40%'],
-            // 鍏朵綑灞炴€ч粯璁や娇鐢ㄥ叏灞€鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+            // å…¶ä½™å±žæ€§é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
             color: '#333',
             fontSize: 15
         },
@@ -48763,10 +48763,10 @@ var GaugeSeries = SeriesModel.extend({
             width: 100,
             height: null, // self-adaption
             padding: [5, 10],
-            // x, y锛屽崟浣峱x
+            // x, yï¼Œå•ä½px
             offsetCenter: [0, '40%'],
             // formatter: null,
-            // 鍏朵綑灞炴€ч粯璁や娇鐢ㄥ叏灞€鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+            // å…¶ä½™å±žæ€§é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
             color: 'auto',
             fontSize: 30
         }
@@ -49267,8 +49267,8 @@ var FunnelSeries = extendSeriesModel({
     },
 
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
         legendHoverLink: true,
         left: 80,
         top: 60,
@@ -49277,7 +49277,7 @@ var FunnelSeries = extendSeriesModel({
         // width: {totalWidth} - left - right,
         // height: {totalHeight} - top - bottom,
 
-        // 榛樿鍙栨暟鎹渶灏忔渶澶у€�
+        // é»˜è®¤å–æ•°æ®æœ€å°æœ€å¤§å€¼
         // min: 0,
         // max: 100,
         minSize: '0%',
@@ -49288,19 +49288,19 @@ var FunnelSeries = extendSeriesModel({
         label: {
             show: true,
             position: 'outer'
-            // formatter: 鏍囩鏂囨湰鏍煎紡鍣紝鍚孴ooltip.formatter锛屼笉鏀寔寮傛鍥炶皟
+            // formatter: æ ‡ç­¾æ–‡æœ¬æ ¼å¼å™¨ï¼ŒåŒTooltip.formatterï¼Œä¸æ”¯æŒå¼‚æ­¥å›žè°ƒ
         },
         labelLine: {
             show: true,
             length: 20,
             lineStyle: {
-                // color: 鍚勫紓,
+                // color: å„å¼‚,
                 width: 1,
                 type: 'solid'
             }
         },
         itemStyle: {
-            // color: 鍚勫紓,
+            // color: å„å¼‚,
             borderColor: '#fff',
             borderWidth: 1
         },
@@ -50163,10 +50163,10 @@ Parallel.prototype = {
             translate(transform, transform, position);
 
             // TODO
-            // tick绛夋帓甯冧俊鎭€�
+            // tickç­‰æŽ’å¸ƒä¿¡æ¯ã€‚
 
             // TODO
-            // 鏍规嵁axis order 鏇存柊 dimensions椤哄簭銆�
+            // æ ¹æ®axis order æ›´æ–° dimensionsé¡ºåºã€‚
 
             this._axesLayout[dim] = {
                 position: position,
@@ -52027,8 +52027,8 @@ SeriesModel.extend({
     },
 
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
 
         coordinateSystem: 'parallel',
         parallelIndex: 0,
@@ -52313,7 +52313,7 @@ function updateElCommon(data, smooth) {
 // }
 
 // FIXME
-// 鍏敤鏂规硶?
+// å…¬ç”¨æ–¹æ³•?
 function isEmptyValue(val, axisType) {
     return axisType === 'category'
         ? val == null
@@ -53423,7 +53423,7 @@ var seriesModelMixin = {
         var addOrdinal;
 
         // FIXME
-        // 鑰冭檻鏃堕棿杞�
+        // è€ƒè™‘æ—¶é—´è½´
 
         if (xAxisType === 'category') {
             option.layout = 'horizontal';
@@ -53563,8 +53563,8 @@ var BoxplotSeries = SeriesModel.extend({
      * @override
      */
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
         coordinateSystem: 'cartesian2d',
         legendHoverLink: true,
 
@@ -53884,8 +53884,8 @@ var CandlestickSeries = SeriesModel.extend({
      * @override
      */
     defaultOption: {
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 2,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 2,                       // äºŒçº§å±‚å 
         coordinateSystem: 'cartesian2d',
         legendHoverLink: true,
 
@@ -53897,11 +53897,11 @@ var CandlestickSeries = SeriesModel.extend({
         layout: null, // 'horizontal' or 'vertical'
 
         itemStyle: {
-            color: '#c23531', // 闃崇嚎 positive
-            color0: '#314656', // 闃寸嚎 negative     '#c23531', '#314656'
+            color: '#c23531', // é˜³çº¿ positive
+            color0: '#314656', // é˜´çº¿ negative     '#c23531', '#314656'
             borderWidth: 1,
             // FIXME
-            // ec2涓娇鐢ㄧ殑鏄痩ineStyle.color 鍜� lineStyle.color0
+            // ec2ä¸­ä½¿ç”¨çš„æ˜¯lineStyle.color å’Œ lineStyle.color0
             borderColor: '#c23531',
             borderColor0: '#314656'
         },
@@ -54253,9 +54253,9 @@ SeriesModel.extend({
         // Geo coordinate system
         // geoIndex: 0,
 
-        // symbol: null,        // 鍥惧舰绫诲瀷
-        symbolSize: 10          // 鍥惧舰澶у皬锛屽崐瀹斤紙鍗婂緞锛夊弬鏁帮紝褰撳浘褰负鏂瑰悜鎴栬彵褰㈠垯鎬诲搴︿负symbolSize * 2
-        // symbolRotate: null,  // 鍥惧舰鏃嬭浆鎺у埗
+        // symbol: null,        // å›¾å½¢ç±»åž‹
+        symbolSize: 10          // å›¾å½¢å¤§å°ï¼ŒåŠå®½ï¼ˆåŠå¾„ï¼‰å‚æ•°ï¼Œå½“å›¾å½¢ä¸ºæ–¹å‘æˆ–è±å½¢åˆ™æ€»å®½åº¦ä¸ºsymbolSize * 2
+        // symbolRotate: null,  // å›¾å½¢æ—‹è½¬æŽ§åˆ¶
 
         // large: false,
         // Available when large is true
@@ -54821,7 +54821,7 @@ var LinesSeries = SeriesModel.extend({
             show: false,
             position: 'end'
             // distance: 5,
-            // formatter: 鏍囩鏂囨湰鏍煎紡鍣紝鍚孴ooltip.formatter锛屼笉鏀寔寮傛鍥炶皟
+            // formatter: æ ‡ç­¾æ–‡æœ¬æ ¼å¼å™¨ï¼ŒåŒTooltip.formatterï¼Œä¸æ”¯æŒå¼‚æ­¥å›žè°ƒ
         },
 
         lineStyle: {
@@ -60006,13 +60006,13 @@ SeriesModel.extend({
         zlevel: 0,
         z: 2,
 
-        // 榛樿鍏ㄥ眬灞呬腑
+        // é»˜è®¤å…¨å±€å±…ä¸­
         center: ['50%', '50%'],
         radius: [0, '75%'],
-        // 榛樿椤烘椂閽�
+        // é»˜è®¤é¡ºæ—¶é’ˆ
         clockwise: true,
         startAngle: 90,
-        // 鏈€灏忚搴︽敼涓�0
+        // æœ€å°è§’åº¦æ”¹ä¸º0
         minAngle: 0,
 
         percentPrecision: 2,
@@ -62418,13 +62418,13 @@ var LegendModel = extendComponentModel({
     },
 
     defaultOption: {
-        // 涓€绾у眰鍙�
+        // ä¸€çº§å±‚å 
         zlevel: 0,
-        // 浜岀骇灞傚彔
+        // äºŒçº§å±‚å 
         z: 4,
         show: true,
 
-        // 甯冨眬鏂瑰紡锛岄粯璁や负姘村钩甯冨眬锛屽彲閫変负锛�
+        // å¸ƒå±€æ–¹å¼ï¼Œé»˜è®¤ä¸ºæ°´å¹³å¸ƒå±€ï¼Œå¯é€‰ä¸ºï¼š
         // 'horizontal' | 'vertical'
         orient: 'horizontal',
 
@@ -62434,44 +62434,44 @@ var LegendModel = extendComponentModel({
         top: 0,
         // bottom: null,
 
-        // 姘村钩瀵归綈
+        // æ°´å¹³å¯¹é½
         // 'auto' | 'left' | 'right'
-        // 榛樿涓� 'auto', 鏍规嵁 x 鐨勪綅缃垽鏂槸宸﹀榻愯繕鏄彸瀵归綈
+        // é»˜è®¤ä¸º 'auto', æ ¹æ® x çš„ä½ç½®åˆ¤æ–­æ˜¯å·¦å¯¹é½è¿˜æ˜¯å³å¯¹é½
         align: 'auto',
 
         backgroundColor: 'rgba(0,0,0,0)',
-        // 鍥句緥杈规棰滆壊
+        // å›¾ä¾‹è¾¹æ¡†é¢œè‰²
         borderColor: '#ccc',
         borderRadius: 0,
-        // 鍥句緥杈规绾垮锛屽崟浣峱x锛岄粯璁や负0锛堟棤杈规锛�
+        // å›¾ä¾‹è¾¹æ¡†çº¿å®½ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º0ï¼ˆæ— è¾¹æ¡†ï¼‰
         borderWidth: 0,
-        // 鍥句緥鍐呰竟璺濓紝鍗曚綅px锛岄粯璁ゅ悇鏂瑰悜鍐呰竟璺濅负5锛�
-        // 鎺ュ彈鏁扮粍鍒嗗埆璁惧畾涓婂彸涓嬪乏杈硅窛锛屽悓css
+        // å›¾ä¾‹å†…è¾¹è·ï¼Œå•ä½pxï¼Œé»˜è®¤å„æ–¹å‘å†…è¾¹è·ä¸º5ï¼Œ
+        // æŽ¥å—æ•°ç»„åˆ†åˆ«è®¾å®šä¸Šå³ä¸‹å·¦è¾¹è·ï¼ŒåŒcss
         padding: 5,
-        // 鍚勪釜item涔嬮棿鐨勯棿闅旓紝鍗曚綅px锛岄粯璁や负10锛�
-        // 妯悜甯冨眬鏃朵负姘村钩闂撮殧锛岀旱鍚戝竷灞€鏃朵负绾靛悜闂撮殧
+        // å„ä¸ªitemä¹‹é—´çš„é—´éš”ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º10ï¼Œ
+        // æ¨ªå‘å¸ƒå±€æ—¶ä¸ºæ°´å¹³é—´éš”ï¼Œçºµå‘å¸ƒå±€æ—¶ä¸ºçºµå‘é—´éš”
         itemGap: 10,
-        // 鍥句緥鍥惧舰瀹藉害
+        // å›¾ä¾‹å›¾å½¢å®½åº¦
         itemWidth: 25,
-        // 鍥句緥鍥惧舰楂樺害
+        // å›¾ä¾‹å›¾å½¢é«˜åº¦
         itemHeight: 14,
 
-        // 鍥句緥鍏抽棴鏃跺€欑殑棰滆壊
+        // å›¾ä¾‹å…³é—­æ—¶å€™çš„é¢œè‰²
         inactiveColor: '#ccc',
 
         textStyle: {
-            // 鍥句緥鏂囧瓧棰滆壊
+            // å›¾ä¾‹æ–‡å­—é¢œè‰²
             color: '#333'
         },
         // formatter: '',
-        // 閫夋嫨妯″紡锛岄粯璁ゅ紑鍚浘渚嬪紑鍏�
+        // é€‰æ‹©æ¨¡å¼ï¼Œé»˜è®¤å¼€å¯å›¾ä¾‹å¼€å…³
         selectedMode: true,
-        // 閰嶇疆榛樿閫変腑鐘舵€侊紝鍙厤鍚圠EGEND.SELECTED浜嬩欢鍋氬姩鎬佹暟鎹浇鍏�
+        // é…ç½®é»˜è®¤é€‰ä¸­çŠ¶æ€ï¼Œå¯é…åˆLEGEND.SELECTEDäº‹ä»¶åšåŠ¨æ€æ•°æ®è½½å…¥
         // selected: null,
-        // 鍥句緥鍐呭锛堣瑙乴egend.data锛屾暟缁勪腑姣忎竴椤逛唬琛ㄤ竴涓猧tem
+        // å›¾ä¾‹å†…å®¹ï¼ˆè¯¦è§legend.dataï¼Œæ•°ç»„ä¸­æ¯ä¸€é¡¹ä»£è¡¨ä¸€ä¸ªitem
         // data: [],
 
-        // Tooltip 鐩稿叧閰嶇疆
+        // Tooltip ç›¸å…³é…ç½®
         tooltip: {
             show: false
         }
@@ -63465,7 +63465,7 @@ extendComponentModel({
 
         show: true,
 
-        // tooltip涓讳綋鍐呭
+        // tooltipä¸»ä½“å†…å®¹
         showContent: true,
 
         // 'trigger' only works on coordinate system.
@@ -63479,57 +63479,57 @@ extendComponentModel({
 
         displayMode: 'single', // 'single' | 'multipleByCoordSys'
 
-        // 浣嶇疆 {Array} | {Function}
+        // ä½ç½® {Array} | {Function}
         // position: null
         // Consider triggered from axisPointer handle, verticalAlign should be 'middle'
         // align: null,
         // verticalAlign: null,
 
-        // 鏄惁绾︽潫 content 鍦� viewRect 涓€傞粯璁� false 鏄负浜嗗吋瀹逛互鍓嶇増鏈€�
+        // æ˜¯å¦çº¦æŸ content åœ¨ viewRect ä¸­ã€‚é»˜è®¤ false æ˜¯ä¸ºäº†å…¼å®¹ä»¥å‰ç‰ˆæœ¬ã€‚
         confine: false,
 
-        // 鍐呭鏍煎紡鍣細{string}锛圱emplate锛� 娄 {Function}
+        // å†…å®¹æ ¼å¼å™¨ï¼š{string}ï¼ˆTemplateï¼‰ Â¦ {Function}
         // formatter: null
 
         showDelay: 0,
 
-        // 闅愯棌寤惰繜锛屽崟浣峬s
+        // éšè—å»¶è¿Ÿï¼Œå•ä½ms
         hideDelay: 100,
 
-        // 鍔ㄧ敾鍙樻崲鏃堕棿锛屽崟浣峴
+        // åŠ¨ç”»å˜æ¢æ—¶é—´ï¼Œå•ä½s
         transitionDuration: 0.4,
 
         enterable: false,
 
-        // 鎻愮ず鑳屾櫙棰滆壊锛岄粯璁や负閫忔槑搴︿负0.7鐨勯粦鑹�
+        // æç¤ºèƒŒæ™¯é¢œè‰²ï¼Œé»˜è®¤ä¸ºé€æ˜Žåº¦ä¸º0.7çš„é»‘è‰²
         backgroundColor: 'rgba(50,50,50,0.7)',
 
-        // 鎻愮ず杈规棰滆壊
+        // æç¤ºè¾¹æ¡†é¢œè‰²
         borderColor: '#333',
 
-        // 鎻愮ず杈规鍦嗚锛屽崟浣峱x锛岄粯璁や负4
+        // æç¤ºè¾¹æ¡†åœ†è§’ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º4
         borderRadius: 4,
 
-        // 鎻愮ず杈规绾垮锛屽崟浣峱x锛岄粯璁や负0锛堟棤杈规锛�
+        // æç¤ºè¾¹æ¡†çº¿å®½ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º0ï¼ˆæ— è¾¹æ¡†ï¼‰
         borderWidth: 0,
 
-        // 鎻愮ず鍐呰竟璺濓紝鍗曚綅px锛岄粯璁ゅ悇鏂瑰悜鍐呰竟璺濅负5锛�
-        // 鎺ュ彈鏁扮粍鍒嗗埆璁惧畾涓婂彸涓嬪乏杈硅窛锛屽悓css
+        // æç¤ºå†…è¾¹è·ï¼Œå•ä½pxï¼Œé»˜è®¤å„æ–¹å‘å†…è¾¹è·ä¸º5ï¼Œ
+        // æŽ¥å—æ•°ç»„åˆ†åˆ«è®¾å®šä¸Šå³ä¸‹å·¦è¾¹è·ï¼ŒåŒcss
         padding: 5,
 
         // Extra css text
         extraCssText: '',
 
-        // 鍧愭爣杞存寚绀哄櫒锛屽潗鏍囪酱瑙﹀彂鏈夋晥
+        // åæ ‡è½´æŒ‡ç¤ºå™¨ï¼Œåæ ‡è½´è§¦å‘æœ‰æ•ˆ
         axisPointer: {
-            // 榛樿涓虹洿绾�
-            // 鍙€変负锛�'line' | 'shadow' | 'cross'
+            // é»˜è®¤ä¸ºç›´çº¿
+            // å¯é€‰ä¸ºï¼š'line' | 'shadow' | 'cross'
             type: 'line',
 
-            // type 涓� line 鐨勬椂鍊欐湁鏁堬紝鎸囧畾 tooltip line 鎵€鍦ㄧ殑杞达紝鍙€�
-            // 鍙€� 'x' | 'y' | 'angle' | 'radius' | 'auto'
-            // 榛樿 'auto'锛屼細閫夋嫨绫诲瀷涓� category 鐨勮酱锛屽浜庡弻鏁板€艰酱锛岀瑳鍗″皵鍧愭爣绯讳細榛樿閫夋嫨 x 杞�
-            // 鏋佸潗鏍囩郴浼氶粯璁ら€夋嫨 angle 杞�
+            // type ä¸º line çš„æ—¶å€™æœ‰æ•ˆï¼ŒæŒ‡å®š tooltip line æ‰€åœ¨çš„è½´ï¼Œå¯é€‰
+            // å¯é€‰ 'x' | 'y' | 'angle' | 'radius' | 'auto'
+            // é»˜è®¤ 'auto'ï¼Œä¼šé€‰æ‹©ç±»åž‹ä¸º category çš„è½´ï¼Œå¯¹äºŽåŒæ•°å€¼è½´ï¼Œç¬›å¡å°”åæ ‡ç³»ä¼šé»˜è®¤é€‰æ‹© x è½´
+            // æžåæ ‡ç³»ä¼šé»˜è®¤é€‰æ‹© angle è½´
             axis: 'auto',
 
             animation: 'auto',
@@ -65296,7 +65296,7 @@ extendComponentModel({
 
 // TODO Axis scale
 
-// 渚濊禆 PolarModel 鍋氶澶勭悊
+// ä¾èµ– PolarModel åšé¢„å¤„ç†
 /**
  * Resize method bound to the polar
  * @param {module:echarts/coord/polar/PolarModel} polarModel
@@ -66024,7 +66024,7 @@ var GeoModel = ComponentModel.extend({
         },
 
         itemStyle: {
-            // color: 鍚勫紓,
+            // color: å„å¼‚,
             borderWidth: 0.5,
             borderColor: '#444',
             color: '#eee'
@@ -67054,13 +67054,13 @@ registerVisual(PRIORITY_BRUSH, function (ecModel, api, payload) {
         /**
          * Logic for each series: (If the logic has to be modified one day, do it carefully!)
          *
-         * ( brushed 鈹� && 鈹琱asBrushExist 鈹� && linkOthers  ) => StepA: 鈹瑀ecord, 鈹� StepB: 鈹瑅isualByRecord.
-         *   !brushed鈹�    鈹渉asBrushExist 鈹�                            鈹攏othing,鈹�        鈹渧isualByRecord.
-         *                鈹�!hasBrushExist鈹�                                              鈹攏othing.
-         * ( !brushed  && 鈹琱asBrushExist 鈹� && linkOthers  ) => StepA:  nothing,  StepB: 鈹瑅isualByRecord.
-         *                鈹�!hasBrushExist鈹�                                              鈹攏othing.
-         * ( brushed 鈹� &&                     !linkOthers ) => StepA:  nothing,  StepB: 鈹瑅isualByCheck.
-         *   !brushed鈹�                                                                  鈹攏othing.
+         * ( brushed â”¬ && â”¬hasBrushExist â”¬ && linkOthers  ) => StepA: â”¬record, â”¬ StepB: â”¬visualByRecord.
+         *   !brushedâ”˜    â”œhasBrushExist â”¤                            â””nothing,â”˜        â”œvisualByRecord.
+         *                â””!hasBrushExistâ”˜                                              â””nothing.
+         * ( !brushed  && â”¬hasBrushExist â”¬ && linkOthers  ) => StepA:  nothing,  StepB: â”¬visualByRecord.
+         *                â””!hasBrushExistâ”˜                                              â””nothing.
+         * ( brushed â”¬ &&                     !linkOthers ) => StepA:  nothing,  StepB: â”¬visualByCheck.
+         *   !brushedâ”˜                                                                  â””nothing.
          * ( !brushed  &&                     !linkOthers ) => StepA:  nothing,  StepB:  nothing.
          */
 
@@ -67314,7 +67314,7 @@ var BrushModel = extendComponentModel({
         throttleDelay: 0,       // Unit: ms, 0 means every event will be triggered.
 
         // FIXME
-        // 璇曢獙鏁堟灉
+        // è¯•éªŒæ•ˆæžœ
         removeOnClick: true,
 
         z: 10000
@@ -68274,16 +68274,16 @@ var MONTH_TEXT = {
         'Oct', 'Nov', 'Dec'
     ],
     CN: [
-        '涓€鏈�', '浜屾湀', '涓夋湀',
-        '鍥涙湀', '浜旀湀', '鍏湀',
-        '涓冩湀', '鍏湀', '涔濇湀',
-        '鍗佹湀', '鍗佷竴鏈�', '鍗佷簩鏈�'
+        'ä¸€æœˆ', 'äºŒæœˆ', 'ä¸‰æœˆ',
+        'å››æœˆ', 'äº”æœˆ', 'å…­æœˆ',
+        'ä¸ƒæœˆ', 'å…«æœˆ', 'ä¹æœˆ',
+        'åæœˆ', 'åä¸€æœˆ', 'åäºŒæœˆ'
     ]
 };
 
 var WEEK_TEXT = {
     EN: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    CN: ['鏃�', '涓€', '浜�', '涓�', '鍥�', '浜�', '鍏�']
+    CN: ['æ—¥', 'ä¸€', 'äºŒ', 'ä¸‰', 'å››', 'äº”', 'å…­']
 };
 
 extendComponentView({
@@ -68751,54 +68751,54 @@ extendComponentModel({
     layoutMode: {type: 'box', ignoreSize: true},
 
     defaultOption: {
-        // 涓€绾у眰鍙�
+        // ä¸€çº§å±‚å 
         zlevel: 0,
-        // 浜岀骇灞傚彔
+        // äºŒçº§å±‚å 
         z: 6,
         show: true,
 
         text: '',
-        // 瓒呴摼鎺ヨ烦杞�
+        // è¶…é“¾æŽ¥è·³è½¬
         // link: null,
-        // 浠呮敮鎸乻elf | blank
+        // ä»…æ”¯æŒself | blank
         target: 'blank',
         subtext: '',
 
-        // 瓒呴摼鎺ヨ烦杞�
+        // è¶…é“¾æŽ¥è·³è½¬
         // sublink: null,
-        // 浠呮敮鎸乻elf | blank
+        // ä»…æ”¯æŒself | blank
         subtarget: 'blank',
 
-        // 'center' 娄 'left' 娄 'right'
-        // 娄 {number}锛坸鍧愭爣锛屽崟浣峱x锛�
+        // 'center' Â¦ 'left' Â¦ 'right'
+        // Â¦ {number}ï¼ˆxåæ ‡ï¼Œå•ä½pxï¼‰
         left: 0,
-        // 'top' 娄 'bottom' 娄 'center'
-        // 娄 {number}锛坹鍧愭爣锛屽崟浣峱x锛�
+        // 'top' Â¦ 'bottom' Â¦ 'center'
+        // Â¦ {number}ï¼ˆyåæ ‡ï¼Œå•ä½pxï¼‰
         top: 0,
 
-        // 姘村钩瀵归綈
+        // æ°´å¹³å¯¹é½
         // 'auto' | 'left' | 'right' | 'center'
-        // 榛樿鏍规嵁 left 鐨勪綅缃垽鏂槸宸﹀榻愯繕鏄彸瀵归綈
+        // é»˜è®¤æ ¹æ® left çš„ä½ç½®åˆ¤æ–­æ˜¯å·¦å¯¹é½è¿˜æ˜¯å³å¯¹é½
         // textAlign: null
         //
-        // 鍨傜洿瀵归綈
+        // åž‚ç›´å¯¹é½
         // 'auto' | 'top' | 'bottom' | 'middle'
-        // 榛樿鏍规嵁 top 浣嶇疆鍒ゆ柇鏄笂瀵归綈杩樻槸涓嬪榻�
+        // é»˜è®¤æ ¹æ® top ä½ç½®åˆ¤æ–­æ˜¯ä¸Šå¯¹é½è¿˜æ˜¯ä¸‹å¯¹é½
         // textBaseline: null
 
         backgroundColor: 'rgba(0,0,0,0)',
 
-        // 鏍囬杈规棰滆壊
+        // æ ‡é¢˜è¾¹æ¡†é¢œè‰²
         borderColor: '#ccc',
 
-        // 鏍囬杈规绾垮锛屽崟浣峱x锛岄粯璁や负0锛堟棤杈规锛�
+        // æ ‡é¢˜è¾¹æ¡†çº¿å®½ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º0ï¼ˆæ— è¾¹æ¡†ï¼‰
         borderWidth: 0,
 
-        // 鏍囬鍐呰竟璺濓紝鍗曚綅px锛岄粯璁ゅ悇鏂瑰悜鍐呰竟璺濅负5锛�
-        // 鎺ュ彈鏁扮粍鍒嗗埆璁惧畾涓婂彸涓嬪乏杈硅窛锛屽悓css
+        // æ ‡é¢˜å†…è¾¹è·ï¼Œå•ä½pxï¼Œé»˜è®¤å„æ–¹å‘å†…è¾¹è·ä¸º5ï¼Œ
+        // æŽ¥å—æ•°ç»„åˆ†åˆ«è®¾å®šä¸Šå³ä¸‹å·¦è¾¹è·ï¼ŒåŒcss
         padding: 5,
 
-        // 涓诲壇鏍囬绾靛悜闂撮殧锛屽崟浣峱x锛岄粯璁や负10锛�
+        // ä¸»å‰¯æ ‡é¢˜çºµå‘é—´éš”ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º10ï¼Œ
         itemGap: 10,
         textStyle: {
             fontSize: 18,
@@ -69834,8 +69834,8 @@ var DataZoomModel = extendComponentModel({
 
         if (autoAxisIndex) {
             // FIXME
-            // 杩欓噷鏄吋瀹筫c2鐨勫啓娉曪紙娌℃寚瀹歺AxisIndex鍜寉AxisIndex鏃舵妸scatter鍜屽弻鏁板€艰酱鎶樻煴绾冲叆dataZoom鎺у埗锛夛紝
-            // 浣嗘槸瀹為檯鏄惁闇€瑕丟rid.js#getScaleByOption鏉ュ垽鏂紙鑰冭檻time锛宭og绛塧xis type锛夛紵
+            // è¿™é‡Œæ˜¯å…¼å®¹ec2çš„å†™æ³•ï¼ˆæ²¡æŒ‡å®šxAxisIndexå’ŒyAxisIndexæ—¶æŠŠscatterå’ŒåŒæ•°å€¼è½´æŠ˜æŸ±çº³å…¥dataZoomæŽ§åˆ¶ï¼‰ï¼Œ
+            // ä½†æ˜¯å®žé™…æ˜¯å¦éœ€è¦Grid.js#getScaleByOptionæ¥åˆ¤æ–­ï¼ˆè€ƒè™‘timeï¼Œlogç­‰axis typeï¼‰ï¼Ÿ
 
             // If both dataZoom.xAxisIndex and dataZoom.yAxisIndex is not specified,
             // dataZoom component auto adopts series that reference to
@@ -69895,8 +69895,8 @@ var DataZoomModel = extendComponentModel({
      */
     _isSeriesHasAllAxesTypeOf: function (seriesModel, axisType) {
         // FIXME
-        // 闇€瑕乻eries鐨剎AxisIndex鍜寉AxisIndex閮介鍏堣嚜鍔ㄨ缃笂銆�
-        // 渚嬪series.type === scatter鏃躲€�
+        // éœ€è¦seriesçš„xAxisIndexå’ŒyAxisIndexéƒ½é¦–å…ˆè‡ªåŠ¨è®¾ç½®ä¸Šã€‚
+        // ä¾‹å¦‚series.type === scatteræ—¶ã€‚
 
         var is = true;
         eachAxisDim(function (dimNames) {
@@ -70558,7 +70558,7 @@ var SliderZoomView = DataZoomView.extend({
             // Should consider axis.min/axis.max when drawing dataShadow.
 
             // FIXME
-            // 搴旇浣跨敤缁熶竴鐨勭┖鍒ゆ柇锛熻繕鏄湪list閲岃繘琛岀┖鍒ゆ柇锛�
+            // åº”è¯¥ä½¿ç”¨ç»Ÿä¸€çš„ç©ºåˆ¤æ–­ï¼Ÿè¿˜æ˜¯åœ¨listé‡Œè¿›è¡Œç©ºåˆ¤æ–­ï¼Ÿ
             var isEmpty = value == null || isNaN(value) || value === '';
             // See #4235.
             var otherCoord = isEmpty
@@ -70831,7 +70831,7 @@ var SliderZoomView = DataZoomView.extend({
         var labelTexts = ['', ''];
 
         // FIXME
-        // date鍨嬶紝鏀寔formatter锛宎utoformatter锛坋c2 date.getAutoFormatter锛�
+        // dateåž‹ï¼Œæ”¯æŒformatterï¼Œautoformatterï¼ˆec2 date.getAutoFormatterï¼‰
         if (dataZoomModel.get('showDetail')) {
             var axisProxy = dataZoomModel.findRepresentativeAxisProxy();
 
@@ -71016,7 +71016,7 @@ var SliderZoomView = DataZoomView.extend({
 
 function getOtherDim(thisDim) {
     // FIXME
-    // 杩欎釜閫昏緫鍜実etOtherAxis閲屼竴鑷达紝浣嗘槸鍐欏湪杩欓噷鏄惁涓嶅ソ
+    // è¿™ä¸ªé€»è¾‘å’ŒgetOtherAxisé‡Œä¸€è‡´ï¼Œä½†æ˜¯å†™åœ¨è¿™é‡Œæ˜¯å¦ä¸å¥½
     var map$$1 = {x: 'y', y: 'x', radius: 'angle', angle: 'radius'};
     return map$$1[thisDim];
 }
@@ -71837,31 +71837,31 @@ var VisualMapModel = extendComponentModel({
                                 // 'colorLightness', 'colorAlpha',
                                 // 'symbol', 'symbolSize'
 
-        left: 0,                // 'center' 娄 'left' 娄 'right' 娄 {number} (px)
+        left: 0,                // 'center' Â¦ 'left' Â¦ 'right' Â¦ {number} (px)
         right: null,            // The same as left.
-        top: null,              // 'top' 娄 'bottom' 娄 'center' 娄 {number} (px)
+        top: null,              // 'top' Â¦ 'bottom' Â¦ 'center' Â¦ {number} (px)
         bottom: 0,              // The same as top.
 
         itemWidth: null,
         itemHeight: null,
         inverse: false,
-        orient: 'vertical',        // 'horizontal' 娄 'vertical'
+        orient: 'vertical',        // 'horizontal' Â¦ 'vertical'
 
         backgroundColor: 'rgba(0,0,0,0)',
-        borderColor: '#ccc',       // 鍊煎煙杈规棰滆壊
+        borderColor: '#ccc',       // å€¼åŸŸè¾¹æ¡†é¢œè‰²
         contentColor: '#5793f3',
         inactiveColor: '#aaa',
-        borderWidth: 0,            // 鍊煎煙杈规绾垮锛屽崟浣峱x锛岄粯璁や负0锛堟棤杈规锛�
-        padding: 5,                // 鍊煎煙鍐呰竟璺濓紝鍗曚綅px锛岄粯璁ゅ悇鏂瑰悜鍐呰竟璺濅负5锛�
-                                    // 鎺ュ彈鏁扮粍鍒嗗埆璁惧畾涓婂彸涓嬪乏杈硅窛锛屽悓css
+        borderWidth: 0,            // å€¼åŸŸè¾¹æ¡†çº¿å®½ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º0ï¼ˆæ— è¾¹æ¡†ï¼‰
+        padding: 5,                // å€¼åŸŸå†…è¾¹è·ï¼Œå•ä½pxï¼Œé»˜è®¤å„æ–¹å‘å†…è¾¹è·ä¸º5ï¼Œ
+                                    // æŽ¥å—æ•°ç»„åˆ†åˆ«è®¾å®šä¸Šå³ä¸‹å·¦è¾¹è·ï¼ŒåŒcss
         textGap: 10,               //
-        precision: 0,              // 灏忔暟绮惧害锛岄粯璁や负0锛屾棤灏忔暟鐐�
-        color: null,               //棰滆壊锛坉eprecated锛屽吋瀹筫c2锛岄『搴忓悓pieces锛屼笉鍚屼簬inRange/outOfRange锛�
+        precision: 0,              // å°æ•°ç²¾åº¦ï¼Œé»˜è®¤ä¸º0ï¼Œæ— å°æ•°ç‚¹
+        color: null,               //é¢œè‰²ï¼ˆdeprecatedï¼Œå…¼å®¹ec2ï¼Œé¡ºåºåŒpiecesï¼Œä¸åŒäºŽinRange/outOfRangeï¼‰
 
         formatter: null,
-        text: null,                // 鏂囨湰锛屽['楂�', '浣�']锛屽吋瀹筫c2锛宼ext[0]瀵瑰簲楂樺€硷紝text[1]瀵瑰簲浣庡€�
+        text: null,                // æ–‡æœ¬ï¼Œå¦‚['é«˜', 'ä½Ž']ï¼Œå…¼å®¹ec2ï¼Œtext[0]å¯¹åº”é«˜å€¼ï¼Œtext[1]å¯¹åº”ä½Žå€¼
         textStyle: {
-            color: '#333'          // 鍊煎煙鏂囧瓧棰滆壊
+            color: '#333'          // å€¼åŸŸæ–‡å­—é¢œè‰²
         }
     },
 
@@ -72913,7 +72913,7 @@ var ContinuousView = VisualMapView.extend({
             bind(this._dragHandle, this, 'all', true)
         ));
 
-        var textRect = visualMapModel.textStyleModel.getTextRect('鍥�');
+        var textRect = visualMapModel.textStyleModel.getTextRect('å›½');
         var textSize = mathMax$7(textRect.width, textRect.height);
 
         // Handle
@@ -73398,7 +73398,7 @@ var ContinuousView = VisualMapView.extend({
                 this._showIndicator(cursorValue, valueRange[0], '> ', halfHoverLinkSize);
             }
             else {
-                this._showIndicator(cursorValue, cursorValue, '鈮� ', halfHoverLinkSize);
+                this._showIndicator(cursorValue, cursorValue, 'â‰ˆ ', halfHoverLinkSize);
             }
         }
 
@@ -74003,8 +74003,8 @@ var resetMethods = {
     categories: function () {
         var thisOption = this.option;
         each$1(thisOption.categories, function (cate) {
-            // FIXME category妯″紡涔熶娇鐢╬ieceList锛屼絾鍦╲isualMapping涓笉鏄娇鐢╬ieceList銆�
-            // 鏄惁鏀逛竴鑷淬€�
+            // FIXME categoryæ¨¡å¼ä¹Ÿä½¿ç”¨pieceListï¼Œä½†åœ¨visualMappingä¸­ä¸æ˜¯ä½¿ç”¨pieceListã€‚
+            // æ˜¯å¦æ”¹ä¸€è‡´ã€‚
             this._pieceList.push({
                 text: this.formatValueText(cate, true),
                 value: cate
@@ -74087,7 +74087,7 @@ var resetMethods = {
 
         each$1(pieceList, function (piece) {
             var close = piece.close;
-            var edgeSymbols = [['<', '鈮�'][close[1]], ['>', '鈮�'][close[0]]];
+            var edgeSymbols = [['<', 'â‰¤'][close[1]], ['>', 'â‰¥'][close[0]]];
             piece.text = piece.text || this.formatValueText(
                 piece.value != null ? piece.value : piece.interval,
                 false,
@@ -74804,7 +74804,7 @@ MarkerView.extend({
             var itemModel = mpData.getItemModel(idx);
             var symbolSize = itemModel.getShallow('symbolSize');
             if (typeof symbolSize === 'function') {
-                // FIXME 杩欓噷涓嶅吋瀹� ECharts 2.x锛�2.x 璨屼技鍙傛暟鏄暣涓暟鎹紵
+                // FIXME è¿™é‡Œä¸å…¼å®¹ ECharts 2.xï¼Œ2.x è²Œä¼¼å‚æ•°æ˜¯æ•´ä¸ªæ•°æ®ï¼Ÿ
                 symbolSize = symbolSize(
                     mpModel.getRawValue(idx), mpModel.getDataParams(idx)
                 );
@@ -75775,11 +75775,11 @@ var TimelineModel = ComponentModel.extend({
      */
     defaultOption: {
 
-        zlevel: 0,                  // 涓€绾у眰鍙�
-        z: 4,                       // 浜岀骇灞傚彔
+        zlevel: 0,                  // ä¸€çº§å±‚å 
+        z: 4,                       // äºŒçº§å±‚å 
         show: true,
 
-        axisType: 'time',  // 妯″紡鏄椂闂寸被鍨嬶紝鏀寔 value, category
+        axisType: 'time',  // æ¨¡å¼æ˜¯æ—¶é—´ç±»åž‹ï¼Œæ”¯æŒ value, category
 
         realtime: true,
 
@@ -75793,9 +75793,9 @@ var TimelineModel = ComponentModel.extend({
 
         controlPosition: 'left',           // 'left' 'right' 'top' 'bottom' 'none'
         autoPlay: false,
-        rewind: false,                     // 鍙嶅悜鎾斁
+        rewind: false,                     // åå‘æ’­æ”¾
         loop: true,
-        playInterval: 2000,                // 鎾斁鏃堕棿闂撮殧锛屽崟浣峬s
+        playInterval: 2000,                // æ’­æ”¾æ—¶é—´é—´éš”ï¼Œå•ä½ms
 
         currentIndex: 0,
 
@@ -75950,9 +75950,9 @@ var SliderTimelineModel = TimelineModel.extend({
      */
     defaultOption: {
 
-        backgroundColor: 'rgba(0,0,0,0)',   // 鏃堕棿杞磋儗鏅鑹�
-        borderColor: '#ccc',               // 鏃堕棿杞磋竟妗嗛鑹�
-        borderWidth: 0,                    // 鏃堕棿杞磋竟妗嗙嚎瀹斤紝鍗曚綅px锛岄粯璁や负0锛堟棤杈规锛�
+        backgroundColor: 'rgba(0,0,0,0)',   // æ—¶é—´è½´èƒŒæ™¯é¢œè‰²
+        borderColor: '#ccc',               // æ—¶é—´è½´è¾¹æ¡†é¢œè‰²
+        borderWidth: 0,                    // æ—¶é—´è½´è¾¹æ¡†çº¿å®½ï¼Œå•ä½pxï¼Œé»˜è®¤ä¸º0ï¼ˆæ— è¾¹æ¡†ï¼‰
 
         orient: 'horizontal',              // 'vertical'
         inverse: false,
@@ -75969,7 +75969,7 @@ var SliderTimelineModel = TimelineModel.extend({
             width: 2,
             color: '#304654'
         },
-        label: {                            // 鏂囨湰鏍囩
+        label: {                            // æ–‡æœ¬æ ‡ç­¾
             position: 'auto',           // auto left right top bottom
                                         // When using number, label position is not
                                         // restricted by viewRect.
@@ -75978,7 +75978,7 @@ var SliderTimelineModel = TimelineModel.extend({
             interval: 'auto',
             rotate: 0,
             // formatter: null,
-            // 鍏朵綑灞炴€ч粯璁や娇鐢ㄥ叏灞€鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+            // å…¶ä½™å±žæ€§é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
             color: '#304654'
         },
         itemStyle: {
@@ -76018,7 +76018,7 @@ var SliderTimelineModel = TimelineModel.extend({
         emphasis: {
             label: {
                 show: true,
-                // 鍏朵綑灞炴€ч粯璁や娇鐢ㄥ叏灞€鏂囨湰鏍峰紡锛岃瑙乀EXTSTYLE
+                // å…¶ä½™å±žæ€§é»˜è®¤ä½¿ç”¨å…¨å±€æ–‡æœ¬æ ·å¼ï¼Œè¯¦è§TEXTSTYLE
                 color: '#c23531'
             },
 
@@ -78351,7 +78351,7 @@ if (!env$1.canvasSupported) {
     };
 
     var getZIndex = function (zlevel, z, z2) {
-        // z 鐨勫彇鍊艰寖鍥翠负 [0, 1000]
+        // z çš„å–å€¼èŒƒå›´ä¸º [0, 1000]
         return (parseFloat(zlevel) || 0) * ZLEVEL_BASE + (parseFloat(z) || 0) * Z_BASE$1 + z2;
     };
 
@@ -78729,7 +78729,7 @@ if (!env$1.canvasSupported) {
                     var p = points$3[k];
 
                     m && applyTransform(p, p, m);
-                    // 涓� round 浼氶潪甯告參
+                    // ä¸ round ä¼šéžå¸¸æ…¢
                     str.push(
                         round$3(p[0] * Z - Z2), comma, round$3(p[1] * Z - Z2),
                         k < nPoint - 1 ? comma : ''
@@ -78810,7 +78810,7 @@ if (!env$1.canvasSupported) {
      * IMAGE
      **************************************************/
     var isImage = function (img) {
-        // FIXME img instanceof Image 濡傛灉 img 鏄竴涓瓧绗︿覆鐨勬椂鍊欙紝IE8 涓嬩細鎶ラ敊
+        // FIXME img instanceof Image å¦‚æžœ img æ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²çš„æ—¶å€™ï¼ŒIE8 ä¸‹ä¼šæŠ¥é”™
         return (typeof img === 'object') && img.tagName && img.tagName.toUpperCase() === 'IMG';
         // return img instanceof Image;
     };
@@ -78877,7 +78877,7 @@ if (!env$1.canvasSupported) {
 
         var vmlEl = this._vmlEl;
         if (!vmlEl) {
-            // FIXME 浣跨敤 group 鍦� left, top 閮戒笉鏄� 0 鐨勬椂鍊欏氨鏃犳硶鏄剧ず浜嗐€�
+            // FIXME ä½¿ç”¨ group åœ¨ left, top éƒ½ä¸æ˜¯ 0 çš„æ—¶å€™å°±æ— æ³•æ˜¾ç¤ºäº†ã€‚
             // vmlEl = vmlCore.createNode('group');
             vmlEl = doc.createElement('div');
             initRootElStyle(vmlEl);
@@ -78924,7 +78924,7 @@ if (!env$1.canvasSupported) {
                         'Dy=', round$3(y * scaleY + m[5]));
 
             vmlElStyle.padding = '0 ' + round$3(maxX) + 'px ' + round$3(maxY) + 'px 0';
-            // FIXME DXImageTransform 鍦� IE11 鐨勫吋瀹规ā寮忎笅涓嶈捣浣滅敤
+            // FIXME DXImageTransform åœ¨ IE11 çš„å…¼å®¹æ¨¡å¼ä¸‹ä¸èµ·ä½œç”¨
             vmlElStyle.filter = imageTransformPrefix + '.Matrix('
                 + transformFilter.join('') + ', SizingMethod=clip)';
 
@@ -79259,7 +79259,7 @@ if (!env$1.canvasSupported) {
             this._textVmlEl = textVmlEl;
         }
         else {
-            // 杩欓噷鏄湪鍓嶉潰 appendChild 淇濊瘉椤哄簭鐨勫墠鎻愪笅
+            // è¿™é‡Œæ˜¯åœ¨å‰é¢ appendChild ä¿è¯é¡ºåºçš„å‰æä¸‹
             skewEl = textVmlEl.firstChild;
             pathEl = skewEl.nextSibling;
             textPathEl = pathEl.nextSibling;
@@ -79438,7 +79438,7 @@ VMLPainter.prototype = {
     },
 
     /**
-     * 鍒锋柊
+     * åˆ·æ–°
      */
     refresh: function () {
 
@@ -79476,7 +79476,7 @@ VMLPainter.prototype = {
             // Detached from document at first time
             // to avoid page refreshing too many times
 
-            // FIXME 濡傛灉姣忔閮藉厛 removeChild 鍙兘浼氬鑷翠竴浜涘～鍏呭拰鎻忚竟鐨勬晥鏋滄敼鍙�
+            // FIXME å¦‚æžœæ¯æ¬¡éƒ½å…ˆ removeChild å¯èƒ½ä¼šå¯¼è‡´ä¸€äº›å¡«å……å’Œæè¾¹çš„æ•ˆæžœæ”¹å˜
             this._vmlViewport.appendChild(vmlRoot);
             this._firstPaint = false;
         }
@@ -80071,7 +80071,7 @@ svgText.drawRectText = svgTextDrawRectText;
 svgText.brush = function (el) {
     var style = el.style;
     if (style.text != null) {
-        // 寮哄埗璁剧疆 textPosition
+        // å¼ºåˆ¶è®¾ç½® textPosition
         style.textPosition = [0, 0];
         svgTextDrawRectText(el, {
             x: style.x || 0, y: style.y || 0,
@@ -81145,7 +81145,7 @@ function getSvgElement(displayable) {
 /**
  * @alias module:zrender/svg/Painter
  * @constructor
- * @param {HTMLElement} root 缁樺浘瀹瑰櫒
+ * @param {HTMLElement} root ç»˜å›¾å®¹å™¨
  * @param {module:zrender/Storage} storage
  * @param {Object} opts
  */
@@ -81399,14 +81399,14 @@ SVGPainter.prototype = {
     },
 
     /**
-     * 鑾峰彇缁樺浘鍖哄煙瀹藉害
+     * èŽ·å–ç»˜å›¾åŒºåŸŸå®½åº¦
      */
     getWidth: function () {
         return this._width;
     },
 
     /**
-     * 鑾峰彇缁樺浘鍖哄煙楂樺害
+     * èŽ·å–ç»˜å›¾åŒºåŸŸé«˜åº¦
      */
     getHeight: function () {
         return this._height;
