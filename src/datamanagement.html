@@ -247,10 +247,15 @@
 								</Cascader>
 								<i-button type="primary" @click="postBelongto()">查询</i-button>
 							</Form-Item>
-							<!-- “起始日期”、“结束日期”、“统计月份”、“统计季度” 显示日期选择框-->
-							<Form-Item v-if="formInline.select=='start_at' ||formInline.select=='end_at'||formInline.select=='month' ||formInline.select=='season'">
+							<!-- “起始日期”、“结束日期” 显示日期选择框-->
+							<Form-Item v-if="formInline.select=='start_at' ||formInline.select=='end_at'">
 								<Date-Picker v-model="formInline.time" type="date" split-panels format="yyyy-MM-dd" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
 								<i-button type="primary" @click="postTime()">查询</i-button>
+							</Form-Item>
+							<!-- “统计月份”、“统计季度” 显示日期选择框-->
+							<Form-Item v-if="formInline.select=='month' ||formInline.select=='season'">
+								<Date-Picker v-model="formInline.time" type="date" split-panels format="yyyy-MM-dd" placeholder="请选择日期" style="width: 250px"></Date-Picker>                   
+								<i-button type="primary" @click="postMonth()">查询</i-button>
 							</Form-Item>
 						</i-form>
                         <i-table border :columns="columns1" :data="data1" height="700px" ref="table"></i-table>
@@ -350,6 +355,65 @@
 							label: '涉外经济'
 						}
 					],
+					belong_to: [{
+        							value: 'a1',
+        							label: '农、林、牧、渔业',
+        							children: [
+        								{
+        									value: '1',
+        									label: '农业'
+        								},{
+        									value: '2',
+        									label: '林业'
+        								},{
+        									value: '3',
+        									label: '畜牧业'
+        								},{
+        									value: '4',
+        									label: '渔业'
+        								},{
+        									value: 'type5',
+        									label: '农、林、牧、渔专业及辅助性活动'
+        								}
+        							]
+        						}],
+					area: [{
+								value: '0531',
+								label: '济南',
+								children: [
+									{
+										value: '1',
+										label: '历下区'
+									},{
+										value: '2',
+										label: '市中区'
+									},{
+										value: '3',
+										label: '槐荫区'
+									},{
+										value: '4',
+										label: '天桥区'
+									},{
+										value: '5',
+										label: '历城区'
+									},{
+										value: '6',
+										label: '长清区'
+									},{
+										value: '7',
+										label: '章丘区'
+									},{
+										value: '8',
+										label: '平阴县'
+									},{
+										value: '9',
+										label: '济阳县'
+									},{
+										value: '10',
+										label: '商河县'
+									}
+								]
+							}],
 					
                     formInline: {
 						select: '',
@@ -584,6 +648,26 @@
                 // error callback
                 });
 			},
+			postData()
+			{
+				var name={                           
+                    select:this.formInline.select,
+                    condition:this.formInline.enterprise_kind[0],
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
 			postArea()
 			{
 				var name={                           
@@ -629,6 +713,26 @@
 				var name={                           
                     select:this.formatDate(this.formInline.time),
                     time:this.formatDate(this.formInline.time),
+                }
+				console.log(name);
+                var path=base_path+'admin/data/';
+                console.log()
+                this.$http.post(path,name).then(response => {
+                    console.log("正常");
+					console.log(response.body);
+					this.data1=response.body;
+					console.log(this.data1);
+                }, response => {
+                    console.log("异常");
+                    console.log(response.body);
+                // error callback
+                });
+			},
+			postMonth()
+			{
+				var name={                           
+                    select:this.formatMonth(this.formInline.time),
+                    time:this.formatMonth(this.formInline.time),
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
