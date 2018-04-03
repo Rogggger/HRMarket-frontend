@@ -241,7 +241,7 @@
 </div>
 
 <script>
-    new Vue({
+    let vm = new Vue({
         el: '#app',
         data() {
             return {
@@ -249,6 +249,7 @@
                 spanLeft: 5,
                 spanRight: 19,
                 theme1: 'dark',
+                modal1: false,
                 formInline: {
                     name: ''
                 },
@@ -294,8 +295,9 @@
         },
         methods: {
             handleSubmit() {
-                this.$Message.success('成功上传到部级');
-
+                let title = '上报给部的json格式',
+                    content = JSON.stringify(this.data1);
+                this.$Modal.success({title:title, content:content});
             },
             toggleClick: function () {
                 if (this.spanLeft === 5) {
