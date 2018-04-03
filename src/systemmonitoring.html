@@ -187,26 +187,23 @@
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 300px" >
+						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 450px" >
 							<h1>系统监控</h1>
 							<br>
 							<Form-Item>
 								各种系统信息：
                             </Form-Item>
-                            <Form-Item label="CPU">
-								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" readonly style="width: 400px">
-								</i-input>
+                            <Form-Item label="CPU占用率">
+								<i-progress :percent=formInline.cpu :stroke-width="20"></i-progress>
 							</Form-Item>
 							<Form-Item label="内存占用率">
-								<i-input type="text" v-model="formInline.memory" placeholder="内存" readonly style="width: 400px">
-								</i-input>
+								<i-progress :percent=formInline.memory :stroke-width="20"></i-progress>
                             </Form-Item>
                             <Form-Item label="硬盘占用率">
-								<i-input type="text" v-model="formInline.hard_disk" placeholder="硬盘" readonly style="width: 400px">
-								</i-input>
+								<i-progress :percent=formInline.hard_disk :stroke-width="20"></i-progress>
                             </Form-Item>
                             <Form-Item label="应用系统">
-								<i-input type="text" v-model="formInline.system" placeholder="应用系统" readonly style="width: 400px">
+								<i-input type="text" v-model="formInline.system" placeholder="应用系统" readonly style="width: 450px">
 								</i-input>
 							</Form-Item>
 							<Form-Item>
