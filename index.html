@@ -1,68 +1,78 @@
 <html>
 <head>
-<meta charset="UTF-8">
-<title>山东省人力资源市场数据采集系统主页</title>
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
+    <meta charset="UTF-8">
+    <title>山东省人力资源市场数据采集系统主页</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/iview@2.0.0-rc.5/dist/styles/iview.css">
+    <!-- 先引入 Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/iview@2.0.0-rc.5/dist/iview.min.js"></script>
 
-<style>
-    .layout{
-        *border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: relative;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-    .layout-breadcrumb{
-        padding: 10px 15px 0;
-    }
-    .layout-content{
-        min-height: 200px;
-        margin: 15px;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 4px;
-    }
-    .layout-content-main{
-        padding: 10px;
-    }
-    .layout-copy{
-        text-align: center;
-        padding: 10px 0 20px;
-        color: #9ea7b4;
-    }
-    .layout-menu-left{
-        background: #464c5b;
-    }
-    .layout-header{
-        height: 50px;
-        background: #fff;
-        box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    }
-    .layout-ceiling-main a{
-        color: #9ba7b5;
-    }
-    .layout-hide-text .layout-text{
-        display: none;
-    }
-    .ivu-col{
-        transition: width .2s ease-in-out;
-    }
-	.system-title{
-		letter-spacing:10px;
-		font-size:28px; 
-		font-family:"LiSu",隶书;
-		line-height:50px;
-    }
-</style>
+    <style>
+        .layout {
+            *border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-breadcrumb {
+            padding: 10px 15px 0;
+        }
+
+        .layout-content {
+            min-height: 200px;
+            margin: 15px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .layout-content-main {
+            padding: 10px;
+        }
+
+        .layout-copy {
+            text-align: center;
+            padding: 10px 0 20px;
+            color: #9ea7b4;
+        }
+
+        .layout-menu-left {
+            background: #464c5b;
+        }
+
+        .layout-header {
+            height: 50px;
+            background: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        .layout-ceiling-main a {
+            color: #9ba7b5;
+        }
+
+        .layout-hide-text .layout-text {
+            display: none;
+        }
+
+        .ivu-col {
+            transition: width .2s ease-in-out;
+        }
+
+        .system-title {
+            letter-spacing: 10px;
+            font-size: 28px;
+            font-family: "LiSu", 隶书;
+            line-height: 50px;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="app">
+<div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
         <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
@@ -99,8 +109,8 @@
                     <i-button type="text" @click="toggleClick">
                         <Icon type="navicon" size="32"></Icon>
                     </i-button>
-					<span class="system-title">山东省人力资源市场数据采集系统</span>
-					
+                    <span class="system-title">山东省人力资源市场数据采集系统</span>
+
                 </div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
@@ -118,28 +128,28 @@
             </i-col>
         </Row>
     </div>
-  </div>
+</div>
 
 <script>
-	new Vue({
+    new Vue({
         el: '#app',
         data: {
-          spanLeft: 5,
-          spanRight: 19,
-          theme1: 'dark'
+            spanLeft: 5,
+            spanRight: 19,
+            theme1: 'dark'
         },
-    	computed:{
-         	iconSize:function () {
+        computed: {
+            iconSize: function () {
                 return this.spanLeft === 5 ? 14 : 24;
             },
-            contentStyle: function(){
-           		var innerHeight = window.innerHeight;
-           		var contentHeight = innerHeight-50-110;
-            	return "min-height: "+contentHeight+"px";
+            contentStyle: function () {
+                var innerHeight = window.innerHeight;
+                var contentHeight = innerHeight - 50 - 110;
+                return 'min-height: ' + contentHeight + 'px';
             }
-    	},
+        },
         methods: {
-            toggleClick: function() {
+            toggleClick: function () {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
                     this.spanRight = 22;
@@ -149,7 +159,7 @@
                 }
             }
         }
-    })
+    });
 </script>
 </body>
 </html>

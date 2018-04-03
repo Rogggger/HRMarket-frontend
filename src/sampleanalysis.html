@@ -1,205 +1,220 @@
 <html>
 <head>
-<meta charset="UTF-8">
-<title>取样分析</title>
-<!-- import Vue.js -->
-	<script src="./vue.js"></script>
-	<script src="./vue-resource.js"></script>
-	<!-- import stylesheet -->
-	<link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
-	<!-- import iView -->
-	<script src="./iview.min.js"></script>
-<!-- import ECHART -->
-<script src="./echarts.js"></script>
-<!--import path-->
-<script src=".\path.js"></script>
+    <meta charset="UTF-8">
+    <title>取样分析</title>
+    <!-- import Vue.js -->
+    <script src="./vue.js"></script>
+    <script src="./vue-resource.js"></script>
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+    <!-- import iView -->
+    <script src="./iview.min.js"></script>
+    <!-- import ECHART -->
+    <script src="./echarts.js"></script>
+    <!--import path-->
+    <script src=".\path.js"></script>
 
-<style>
-    .layout{
-        *border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: relative;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-	.layout-logo{
-		width: 180px;
-		height: 30px;
-		background: #5b6270;
-		border-radius: 3px;
-		float: left;
-		position: relative;
-		top: 15px;
-		left: 20px;
-	}
-	.layout-exit{
-		width: 100px;
-		height: 30px;
-		background: #5b6270;
-		float: right;
-		position: relative;
-		top: 15px;
-		right: 20px;
-		text-align: right;
-	}
-	
-    .layout-breadcrumb{
-        padding: 10px 15px 0;
-    }
-    .layout-content{
-        min-height: 200px;
-        margin: 15px;
-        overflow: hidden;
-        background: #fff;
-        border-radius: 4px;
-    }
-    .layout-content-main{
-        padding: 10px;
-    }
-    .layout-copy{
-        text-align: center;
-        padding: 10px 0 20px;
-        color: #9ea7b4;
-    }
-    .layout-menu-left{
-        background: #464c5b;
-		width: 17%;
-    }
-    .layout-header{
-        height: 60px;
-        background: #313540;
-        box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    }
-    .layout-ceiling-main a{
-        color: #9ba7b5;
-    }
-    .layout-hide-text .layout-text{
-        display: none;
-    }
-    .ivu-col{
-        transition: width .2s ease-in-out;
-    }
-	.system-title{
-		letter-spacing:10px;
-		font-size:28px; 
-		font-family:"LiSu",隶书;
-		line-height:50px;
-		padding-left:230px;
-		color: #fff;
-    }
-    #form{
-		margin-top:50px;
-		margin-left:10%;
-		text-align: center;
-	}
-</style>
+    <style>
+        .layout {
+            *border: 1px solid #d7dde4;
+            background: #f5f7f9;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .layout-logo {
+            width: 180px;
+            height: 30px;
+            background: #5b6270;
+            border-radius: 3px;
+            float: left;
+            position: relative;
+            top: 15px;
+            left: 20px;
+        }
+
+        .layout-exit {
+            width: 100px;
+            height: 30px;
+            background: #5b6270;
+            float: right;
+            position: relative;
+            top: 15px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .layout-breadcrumb {
+            padding: 10px 15px 0;
+        }
+
+        .layout-content {
+            min-height: 200px;
+            margin: 15px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .layout-content-main {
+            padding: 10px;
+        }
+
+        .layout-copy {
+            text-align: center;
+            padding: 10px 0 20px;
+            color: #9ea7b4;
+        }
+
+        .layout-menu-left {
+            background: #464c5b;
+            width: 17%;
+        }
+
+        .layout-header {
+            height: 60px;
+            background: #313540;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        .layout-ceiling-main a {
+            color: #9ba7b5;
+        }
+
+        .layout-hide-text .layout-text {
+            display: none;
+        }
+
+        .ivu-col {
+            transition: width .2s ease-in-out;
+        }
+
+        .system-title {
+            letter-spacing: 10px;
+            font-size: 28px;
+            font-family: "LiSu", 隶书;
+            line-height: 50px;
+            padding-left: 230px;
+            color: #fff;
+        }
+
+        #form {
+            margin-top: 50px;
+            margin-left: 10%;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="app">
+<div id="app">
     <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-		<div class="layout-exit">
-			<i-button type="primary" @click="handleExit()" style="width: 100px">退出系统</i-button>
-		</div>
-		<div class="layout-header">
-			<div class="layout-logo">
-				<a href="adminuser.html">
-					<img src="../images/logo.jpg" style="width:190px;height:35px;"/>
-				</a>
-			</div>
-			<h1 class="system-title">山东省人力资源市场数据采集系统</h1>
-		</div>
+        <div class="layout-exit">
+            <i-button type="primary" @click="handleExit()" style="width: 100px">退出系统</i-button>
+        </div>
+        <div class="layout-header">
+            <div class="layout-logo">
+                <a href="adminuser.html">
+                    <img src="../images/logo.jpg" style="width:190px;height:35px;"/>
+                </a>
+            </div>
+            <h1 class="system-title">山东省人力资源市场数据采集系统</h1>
+        </div>
 
-		<Row type="flex">
+        <Row type="flex">
             <i-col :span="spanLeft" class="layout-menu-left">
                 <i-menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-					<Submenu name="1">
-						<template slot="title">
-							<Icon type="ios-navigate" :size="iconSize"></Icon>
-							<span class="layout-text">企业管理</span>
-						</template>
-						<a href="adminenterpriseselect.html">
-							<Menu-item name="1-1">企业查询</Menu-item>
-						</a>
-						<a href="sampleanalysis.html">
-							<Menu-item name="1-2">取样分析</Menu-item>
-						</a>
-					</Submenu>
-					<Submenu name="2">
-						<template slot="title">
-							<Icon type="ios-navigate" :size="iconSize"></Icon>
-							<span class="layout-text">数据管理</span>
-						</template>
-						<a href="datamanagement.html">
-							<Menu-item name="2-1">数据处理</Menu-item>
-						</a>
-						<a href="dataaudit.html">
-							<Menu-item name="2-2">数据审核</Menu-item>
-						</a>
-						<a href="datasummary.html">
-							<Menu-item name="2-3">数据汇总</Menu-item>
-						</a>
-						<a href="graph.html">
-							<Menu-item name="2-4">图表分析</Menu-item>
-						</a>
-					</Submenu>
-					<Submenu name="3">
-						<template slot="title">
-							<Icon type="ios-navigate" :size="iconSize"></Icon>
-							<span class="layout-text">通知中心</span>
-						</template>
-						<a href="notice.html">
-							<Menu-item name="3-1">发布通知</Menu-item>
-						</a>
-						<a href="noticeviewing.html">
-							<Menu-item name="3-2">浏览通知</Menu-item>
-						</a>
-					</Submenu>
-					<Submenu name="4">
-						<template slot="title">
-							<Icon type="ios-navigate" :size="iconSize"></Icon>
-							<span class="layout-text">系统管理</span>
-						</template>
-						<a href="reportingdeadline.html">
-							<Menu-item name="4-1">上报时限</Menu-item>
-						</a>
-						<a href="createnewuser.html" >
-							<Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
-						</a>
-						<a href="usermanagement.html">
-							<Menu-item name="4-3" v-if=' flag==2 '>用户管理</Menu-item>
-						</a>
-						<a href="charactermanagement.html">
-							<Menu-item name="4-4" v-if=' flag==2 '>角色管理</Menu-item>
-						</a>
-						<a href="systemmonitoring.html">
-							<Menu-item name="4-5">系统监控</Menu-item>
-						</a>
-					</Submenu>
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">企业管理</span>
+                        </template>
+                        <a href="adminenterpriseselect.html">
+                            <Menu-item name="1-1">企业查询</Menu-item>
+                        </a>
+                        <a href="sampleanalysis.html">
+                            <Menu-item name="1-2">取样分析</Menu-item>
+                        </a>
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">数据管理</span>
+                        </template>
+                        <a href="datamanagement.html">
+                            <Menu-item name="2-1">数据处理</Menu-item>
+                        </a>
+                        <a href="dataaudit.html">
+                            <Menu-item name="2-2">数据审核</Menu-item>
+                        </a>
+                        <a href="datasummary.html">
+                            <Menu-item name="2-3">数据汇总</Menu-item>
+                        </a>
+                        <a href="graph.html">
+                            <Menu-item name="2-4">图表分析</Menu-item>
+                        </a>
+                    </Submenu>
+                    <Submenu name="3">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">通知中心</span>
+                        </template>
+                        <a href="notice.html">
+                            <Menu-item name="3-1">发布通知</Menu-item>
+                        </a>
+                        <a href="noticeviewing.html">
+                            <Menu-item name="3-2">浏览通知</Menu-item>
+                        </a>
+                    </Submenu>
+                    <Submenu name="4">
+                        <template slot="title">
+                            <Icon type="ios-navigate" :size="iconSize"></Icon>
+                            <span class="layout-text">系统管理</span>
+                        </template>
+                        <a href="reportingdeadline.html">
+                            <Menu-item name="4-1">上报时限</Menu-item>
+                        </a>
+                        <a href="createnewuser.html">
+                            <Menu-item name="4-2" v-if=' flag==2 '>创建新用户</Menu-item>
+                        </a>
+                        <a href="usermanagement.html">
+                            <Menu-item name="4-3" v-if=' flag==2 '>用户管理</Menu-item>
+                        </a>
+                        <a href="charactermanagement.html">
+                            <Menu-item name="4-4" v-if=' flag==2 '>角色管理</Menu-item>
+                        </a>
+                        <a href="systemmonitoring.html">
+                            <Menu-item name="4-5">系统监控</Menu-item>
+                        </a>
+                    </Submenu>
                 </i-menu>
             </i-col>
             <i-col :span="spanRight">
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
-						<Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
-						<Breadcrumb-item href="adminuser.html" v-if=' flag==1 '><script>document.write(sessionStorage.area)</script>市管理员用户</Breadcrumb-item>
-						<Breadcrumb-item>企业管理</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html" v-if=' flag==2 '>省级管理员用户</Breadcrumb-item>
+                        <Breadcrumb-item href="adminuser.html" v-if=' flag==1 '>
+                            <script>document.write(sessionStorage.area);</script>
+                            市管理员用户
+                        </Breadcrumb-item>
+                        <Breadcrumb-item>企业管理</Breadcrumb-item>
                         <Breadcrumb-item>取样分析</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
                 <div class="layout-content">
                     <div class="layout-content-main" :style="contentStyle">
-						<i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 800px" >
-							<h1>取样分析</h1>
-							</br>
-							<Form-Item>
-								全省各市企业的数量合占比的饼图
+                        <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 800px">
+                            <h1>取样分析</h1>
+                            </br>
+                            <Form-Item>
+                                全省各市企业的数量合占比的饼图
                             </Form-Item>
                             <Form-Item id="pie_chart" style="width:800px;height:600px;">
-								<!-- <div id="pie_chart" style="width:600px;height:400px;"></div> -->
+                                <!-- <div id="pie_chart" style="width:600px;height:400px;"></div> -->
                             </Form-Item>
 
-						</i-form>
+                        </i-form>
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -208,62 +223,62 @@
             </i-col>
         </Row>
     </div>
-	<Back-Top></Back-Top>
-  </div>
+    <Back-Top></Back-Top>
+</div>
 
 <script>
-	new Vue({
+    new Vue({
         el: '#app',
-        data () {
-                return {
-                    flag:sessionStorage.is_admin,
-                    spanLeft: 5,
-                    spanRight: 19,
-                    theme1: 'dark',
-                    bar_data1:[
-                            /*{
-                                name:'青岛',
-                                area:'5045',//地区代码
-                                sum:'450',//企业总数
-                                
-                            },
-                            {
-                                name:'上海',
-                                area:'205',//地区代码
-                                sum:'250',//企业总数
-                                
-                            },
-                            {
-                                name:'北京',
-                                area:'7024',//地区代码
-                                sum:'300',//企业总数
-                                                             
-                            },*/
-                        ],
-                        data2:[]
-                }
-            },
-    	computed:{
-         	iconSize:function () {
+        data() {
+            return {
+                flag: sessionStorage.is_admin,
+                spanLeft: 5,
+                spanRight: 19,
+                theme1: 'dark',
+                bar_data1: [
+                    /*{
+                        name:'青岛',
+                        area:'5045',//地区代码
+                        sum:'450',//企业总数
+
+                    },
+                    {
+                        name:'上海',
+                        area:'205',//地区代码
+                        sum:'250',//企业总数
+
+                    },
+                    {
+                        name:'北京',
+                        area:'7024',//地区代码
+                        sum:'300',//企业总数
+
+                    },*/
+                ],
+                data2: []
+            };
+        },
+        computed: {
+            iconSize: function () {
                 return this.spanLeft === 5 ? 14 : 24;
             },
-            contentStyle: function(){
-           		var innerHeight = window.innerHeight;
-           		var contentHeight = innerHeight-50-110;
-            	return "min-height: "+contentHeight+"px";
+            contentStyle: function () {
+                var innerHeight = window.innerHeight;
+                var contentHeight = innerHeight - 50 - 110;
+                return 'min-height: ' + contentHeight + 'px';
             }
         },
         created: function () {
-			this.getTable();
-		},
+            this.getTable();
+        },
         // mounted: function(){
         //     this.$nextTick(function(){
         //         this.pie_chart();
         //     });
         // },
-        
+
         methods: {
-            toggleClick: function() {
+            toggleClick: function () {
                 if (this.spanLeft === 5) {
                     this.spanLeft = 2;
                     this.spanRight = 22;
@@ -273,89 +288,90 @@
                 }
             },
 
-            getTable:function()
-			{
-				console.log("执行get函数");
-				var path=base_path+'admin/sample/';
-				this.$http.get(path).then(response => {
-				  console.log("正常");
-				  console.log(response.body);
-                  this.bar_data1=response.body;
-                  for(var i=0;i<this.bar_data1.length;i++)
-                  {
-                    switch (this.bar_data1[i].area) {
-								case '0531':
-                                    this.bar_data1[i].name='济南';
-									break;
-								case '0532':
-								    this.bar_data1[i].name='青岛';
-									break;
-								case '0533':
-                                    this.bar_data1[i].name='淄博';
-									break;
-								case '0534':
-									this.bar_data1[i].name='德州';
-									break;
-								case '0535':
-									this.bar_data1[i].name='烟台';
-									break;
-								case '0536':
-									this.bar_data1[i].name='潍坊';
-									break;
-								case '0537':
-									this.bar_data1[i].name='济宁';
-                                    break;
-                                case '0538':
-									this.bar_data1[i].name='泰安';
-									break;
-								case '0539':
-									this.bar_data1[i].name='临沂';
-									break;
-								case '0530':
-									this.bar_data1[i].name='菏泽';
-									break;
-								case '0543':
-									this.bar_data1[i].name='滨州';
-									break;
-								case '0546':
-									this.bar_data1[i].name='东营';
-									break;
-								case '0631':
-									this.bar_data1[i].name='威海';
-									break;
-								case '0632':
-									this.bar_data1[i].name='枣庄';
-									break;
-								case '0633':
-									this.bar_data1[i].name='日照';
-									break;
-								case '0634':
-									this.bar_data1[i].name='莱芜';
-									break;
-								case '0635':
-									this.bar_data1[i].name='聊城';
-									break;
-							};
-							
-                  }
-                  for (let i=0; i<this.bar_data1.length; i++) {
-                    temp = {value:'', name:''};
-                    temp.value = this.bar_data1[i].sum;
-                    temp.name = this.bar_data1[i].name;
-                    this.data2.push(temp);
-                }
-                console.log(this.bar_data1);
-                this.data2.sort(function (a, b) { return a.value - b.value; });
-                console.log(this.data2);
-                this.pie_chart();
-				}, response => {
-				console.log("异常");
-				  // error callback
+            getTable: function () {
+                console.log('执行get函数');
+                var path = base_path + 'admin/sample/';
+                this.$http.get(path).then(response => {
+                    console.log('正常');
+                    console.log(response.body);
+                    this.bar_data1 = response.body;
+                    for (var i = 0; i < this.bar_data1.length; i++) {
+                        switch (this.bar_data1[i].area) {
+                            case '0531':
+                                this.bar_data1[i].name = '济南';
+                                break;
+                            case '0532':
+                                this.bar_data1[i].name = '青岛';
+                                break;
+                            case '0533':
+                                this.bar_data1[i].name = '淄博';
+                                break;
+                            case '0534':
+                                this.bar_data1[i].name = '德州';
+                                break;
+                            case '0535':
+                                this.bar_data1[i].name = '烟台';
+                                break;
+                            case '0536':
+                                this.bar_data1[i].name = '潍坊';
+                                break;
+                            case '0537':
+                                this.bar_data1[i].name = '济宁';
+                                break;
+                            case '0538':
+                                this.bar_data1[i].name = '泰安';
+                                break;
+                            case '0539':
+                                this.bar_data1[i].name = '临沂';
+                                break;
+                            case '0530':
+                                this.bar_data1[i].name = '菏泽';
+                                break;
+                            case '0543':
+                                this.bar_data1[i].name = '滨州';
+                                break;
+                            case '0546':
+                                this.bar_data1[i].name = '东营';
+                                break;
+                            case '0631':
+                                this.bar_data1[i].name = '威海';
+                                break;
+                            case '0632':
+                                this.bar_data1[i].name = '枣庄';
+                                break;
+                            case '0633':
+                                this.bar_data1[i].name = '日照';
+                                break;
+                            case '0634':
+                                this.bar_data1[i].name = '莱芜';
+                                break;
+                            case '0635':
+                                this.bar_data1[i].name = '聊城';
+                                break;
+                        }
+                        ;
+
+                    }
+                    for (let i = 0; i < this.bar_data1.length; i++) {
+                        temp = {value: '', name: ''};
+                        temp.value = this.bar_data1[i].sum;
+                        temp.name = this.bar_data1[i].name;
+                        this.data2.push(temp);
+                    }
+                    console.log(this.bar_data1);
+                    this.data2.sort(function (a, b) {
+                        return a.value - b.value;
+                    });
+                    console.log(this.data2);
+                    this.pie_chart();
+                }, response => {
+                    console.log('异常');
+                    // error callback
                 });
-				
-			},
-            pie_chart(){//饼状图
-                
+
+            },
+            pie_chart() {//饼状图
+
                 var myChart = echarts.init(document.getElementById('pie_chart'));
                 console.log(this.data2);
                 // 指定图表的配置项和数据
@@ -371,9 +387,9 @@
                         }
                     },
 
-                    tooltip : {
+                    tooltip: {
                         trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
                     },
 
                     visualMap: {
@@ -384,13 +400,13 @@
                             colorLightness: [0.5, 1]
                         }
                     },
-                    series : [
+                    series: [
                         {
-                            name:'访问来源',
-                            type:'pie',
-                            radius : '55%',
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: '55%',
                             center: ['50%', '50%'],
-                            data:this.data2,
+                            data: this.data2,
                             roseType: 'radius',
                             label: {
                                 normal: {
@@ -425,22 +441,22 @@
                         }
                     ]
                 };
-                
+
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             },
-			handleExit() {
-				var path=base_path+'account/logout';
+            handleExit() {
+                var path = base_path + 'account/logout';
                 this.$http.get(path).then(response => {
-                   window.location.href="../login.html";//跳转到登录页面
-                  // get body data
-                  //this.tasks = response.body;
+                    window.location.href = '../login.html';//跳转到登录页面
+                    // get body data
+                    //this.tasks = response.body;
                 }, response => {
-                  // error callback
+                    // error callback
                 });
             }
         }
-    })
+    });
 </script>
 </body>
 </html>

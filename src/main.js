@@ -14,7 +14,6 @@ Vue.use(VueRouter);
 Vue.use(iView);
 
 
-
 // 路由配置
 const RouterConfig = {
     mode: 'history',
@@ -32,7 +31,6 @@ router.afterEach(() => {
     iView.LoadingBar.finish();
     window.scrollTo(0, 0);
 });
-
 
 
 new Vue({
