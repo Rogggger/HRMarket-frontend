@@ -633,6 +633,7 @@
 				var name={                           
                     select:this.formInline.select,
                     condition:this.formInline.condition,
+                    time:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
@@ -653,6 +654,7 @@
 				var name={                           
                     select:this.formInline.select,
                     condition:this.formInline.enterprise_kind[0],
+                    time:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
@@ -673,6 +675,7 @@
 				var name={                           
                     select:this.formInline.select,
                     condition:this.formInline.area.join('/'),
+                    time:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
@@ -693,6 +696,7 @@
 				var name={                           
                     select:this.formInline.select,
                     condition:this.formInline.belong_to.join('/'),
+                    time:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
@@ -713,6 +717,7 @@
 				var name={                           
                     select:this.formatDate(this.formInline.time),
                     time:this.formatDate(this.formInline.time),
+                    condition:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
@@ -733,6 +738,7 @@
 				var name={                           
                     select:this.formatMonth(this.formInline.time),
                     time:this.formatMonth(this.formInline.time),
+                    condition:''
                 }
 				console.log(name);
                 var path=base_path+'admin/data/';
