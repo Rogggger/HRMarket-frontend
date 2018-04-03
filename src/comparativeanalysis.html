@@ -271,7 +271,7 @@
                     }
                     ],
                     data1: [
-                        {
+                      /*  {
                             start:'2016-7-7',
                             end:'2019-7-4',
                             id:'1'
@@ -290,9 +290,9 @@
                             start:'2019-7-7',
                             end:'2019-7-4',
                             id:'4'
-                        }
+                        }*/
                     ],
-                    data2: [
+                    data2: [/*
                         {
                             sum:'45',
                             filing:'46',
@@ -308,7 +308,7 @@
                             diff:'78',
                             percent:'76'
                             
-                        }
+                        }*/
                     ],
 
                 }
@@ -326,9 +326,9 @@
         created: function () {
 			this.getTable();
         },
-        mounted(){
-            this.bar_chart();
-        },
+        // mounted(){
+        //     this.bar_chart();
+        // },
         methods: {
             select: function(e) {
                 console.log(e);
@@ -342,12 +342,12 @@
                         id_1:e[0].id,
                         id_2:e[1].id
                     }
-                    var path=base_path+'admin/compare';
+                    var path=base_path+'admin/compare/';
                     console.log(name);
                     this.$http.post(path,name).then(response => {
                         this.data2=response.body;
-                        this.$Message.success('修改成功');
                         console.log("正常");
+                        this.bar_chart();
                     }, response => {
                         this.$Message.error('修改失败');
                         console.log("异常");
@@ -370,7 +370,7 @@
             getTable:function()
 			{
 				console.log("执行get函数");
-				var path=base_path+'admin/compare';
+				var path=base_path+'admin/compare/';
 				this.$http.get(path).then(response => {
 				  
 				  this.data1=response.body;

@@ -256,9 +256,9 @@
             	return "min-height: "+contentHeight+"px";
             }
         },
-        mounted(){
-            this.line_chart();
-        },
+        // mounted(){
+        //     this.line_chart();
+        // },
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -274,13 +274,14 @@
                 this.$refs['formInline'].validate((valid) => {
                     if (valid) {
                         console.log("执行post函数");
-                        var path=base_path+'trend_analysis';
+                        var path=base_path+'admin/trend/';
                         this.$http.post(path,this.formInline).then(response => {
                             this.$Message.sucess('查询成功！');
                             console.log("正常");
                             console.log(response.body);
                             this.data1=response.body;
                             console.log(this.data1);
+                            this.line_chart();
                         }, response => {
                             this.$Message.error(response.body.error);
                         console.log("异常");

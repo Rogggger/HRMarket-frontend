@@ -253,12 +253,15 @@
             	return "min-height: "+contentHeight+"px";
             }
         },
-        mounted(){
-            this.pie_chart();
-        },
         created: function () {
 			this.getTable();
 		},
+        // mounted: function(){
+        //     this.$nextTick(function(){
+        //         this.pie_chart();
+        //     });
+        // },
+        
         methods: {
             toggleClick: function() {
                 if (this.spanLeft === 5) {
@@ -273,90 +276,91 @@
             getTable:function()
 			{
 				console.log("执行get函数");
-				var path=base_path+'admin/sample';
+				var path=base_path+'admin/sample/';
 				this.$http.get(path).then(response => {
 				  console.log("正常");
 				  console.log(response.body);
                   this.bar_data1=response.body;
                   for(var i=0;i<this.bar_data1.length;i++)
                   {
-                    switch (this.bar_data1.area) {
+                    switch (this.bar_data1[i].area) {
 								case '0531':
-                                    this.bar_data1.name='济南';
+                                    this.bar_data1[i].name='济南';
 									break;
 								case '0532':
-								    this.bar_data1.name='青岛';
+								    this.bar_data1[i].name='青岛';
 									break;
 								case '0533':
-                                    this.bar_data1.name='淄博';
+                                    this.bar_data1[i].name='淄博';
 									break;
 								case '0534':
-									this.bar_data1.name='德州';
+									this.bar_data1[i].name='德州';
 									break;
 								case '0535':
-									this.bar_data1.name='烟台';
+									this.bar_data1[i].name='烟台';
 									break;
 								case '0536':
-									this.bar_data1.name='潍坊';
+									this.bar_data1[i].name='潍坊';
 									break;
 								case '0537':
-									this.bar_data1.name='济宁';
+									this.bar_data1[i].name='济宁';
                                     break;
                                 case '0538':
-									this.bar_data1.name='泰安';
+									this.bar_data1[i].name='泰安';
 									break;
 								case '0539':
-									this.bar_data1.name='临沂';
+									this.bar_data1[i].name='临沂';
 									break;
 								case '0530':
-									this.bar_data1.name='菏泽';
+									this.bar_data1[i].name='菏泽';
 									break;
 								case '0543':
-									this.bar_data1.name='滨州';
+									this.bar_data1[i].name='滨州';
 									break;
 								case '0546':
-									this.bar_data1.name='东营';
+									this.bar_data1[i].name='东营';
 									break;
 								case '0631':
-									this.bar_data1.name='威海';
+									this.bar_data1[i].name='威海';
 									break;
 								case '0632':
-									this.bar_data1.name='枣庄';
+									this.bar_data1[i].name='枣庄';
 									break;
 								case '0633':
-									this.bar_data1.name='日照';
+									this.bar_data1[i].name='日照';
 									break;
 								case '0634':
-									this.bar_data1.name='莱芜';
+									this.bar_data1[i].name='莱芜';
 									break;
 								case '0635':
-									this.bar_data1.name='聊城';
+									this.bar_data1[i].name='聊城';
 									break;
 							};
 							
                   }
-				  console.log(this.data1);
-				}, response => {
-				console.log("异常");
-				  // error callback
-				});
-				
-			},
-            pie_chart(){//饼状图
-                for (let i=0; i<this.bar_data1.length; i++) {
+                  for (let i=0; i<this.bar_data1.length; i++) {
                     temp = {value:'', name:''};
                     temp.value = this.bar_data1[i].sum;
                     temp.name = this.bar_data1[i].name;
                     this.data2.push(temp);
                 }
-                console.log(this.data2);
+                console.log(this.bar_data1);
                 this.data2.sort(function (a, b) { return a.value - b.value; });
                 console.log(this.data2);
-                var myChart = echarts.init(document.getElementById('pie_chart'));
+                this.pie_chart();
+				}, response => {
+				console.log("异常");
+				  // error callback
+                });
+				
+			},
+            pie_chart(){//饼状图
                 
+                var myChart = echarts.init(document.getElementById('pie_chart'));
+                console.log(this.data2);
                 // 指定图表的配置项和数据
                 option = {
-                    backgroundColor: '#2c343c',
+                    backgroundColor: '#fff',
 
                     title: {
                         text: '全省各市企业数量占比饼状图',
@@ -377,7 +381,7 @@
                         min: 80,
                         max: 600,
                         inRange: {
-                            colorLightness: [0, 1]
+                            colorLightness: [0.5, 1]
                         }
                     },
                     series : [
@@ -407,9 +411,9 @@
                             },
                             itemStyle: {
                                 normal: {
-                                    color: '#c23531',
-                                    shadowBlur: 200,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    color: '#c24531',
+                                    shadowBlur: 100,
+                                    shadowColor: 'rgba(0, 0, 0, 0.1)'
                                 }
                             },
 
