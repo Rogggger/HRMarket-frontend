@@ -289,7 +289,7 @@
             search(){
                 this.$refs['formInline'].validate((valid) => {
                     if (valid) {
-                        var path=base_path+'admin/summary';
+                        var path=base_path+'admin/summary/';
                         this.$http.post(path,this.formInline).then(response => {
                         this.data1=response.body;
                         console.log(this.tasks);

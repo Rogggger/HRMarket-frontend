@@ -87,7 +87,7 @@
     }
     #form{
 		margin-top:50px;
-		margin-left:40%;
+		margin-left:35%;
 		text-align: center;
 	}
 </style>
@@ -193,6 +193,7 @@
 							<Form-Item>
 								各种系统信息：
                             </Form-Item>
+<<<<<<< HEAD
                             <Form-Item label="CPU">
 								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" readonly style="width: 300px">
 								</i-input>
@@ -207,6 +208,22 @@
                             </Form-Item>
                             <Form-Item label="应用系统">
 								<i-input type="text" v-model="formInline.system" placeholder="应用系统" readonly style="width: 300px">
+=======
+                            <Form-Item label="CPU占用率">
+								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" disabled style="width: 500px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="内存占用率">
+								<i-input type="text" v-model="formInline.memory" placeholder="内存" disabled style="width: 500px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="硬盘占用率">
+								<i-input type="text" v-model="formInline.hard_disk" placeholder="硬盘" disabled style="width: 500px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="应用系统">
+								<i-input type="text" v-model="formInline.system" placeholder="应用系统" disabled style="width: 500px">
+>>>>>>> 5a95c688105ba858b530cb764a4449fa664d6a5e
 								</i-input>
 							</Form-Item>
 							<Form-Item>
@@ -278,7 +295,7 @@
             },
             getInfo:function()
             {
-                var path=base_path+'system_info';
+                var path=base_path+'admin/system_info/';
                 this.$http.get(path).then(response => {
                     console.log(this.tasks);
                     this.formInline=response.body;

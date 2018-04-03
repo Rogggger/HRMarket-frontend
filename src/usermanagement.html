@@ -191,7 +191,7 @@
                     <div class="layout-content-main" :style="contentStyle">
 						<br>
 						<h1>用户管理</h1>
-						<i-table border height="350" :columns="columns" :data="data1" ></i-table>
+						<i-table border height="650" :columns="columns" :data="data1" ></i-table>
 						
                     </div>
 					<Modal title="修改用户信息" width="550" v-model="modal.show" @on-ok="changeUser()">
@@ -232,12 +232,13 @@
 					columns: [
 						{
 							title: '用户名',
-							key: 'username'
+							key: 'email'
 						},
 						{
-							title: '角色',
-							key: 'character'
+							title: '密码',
+							key: 'password_md5'
 						},
+						
 						{
 							title: '操作',
 							key: 'action',
@@ -339,18 +340,20 @@
 				this.$refs['modal'].validate((valid) => {
                     if (valid) {								
 						var name={
-							username:this.modal.username_value,
-							password:this.modal.password_value,
+							email:this.modal.username_value,
+							password_md5:this.modal.password_value,
 						}
 						var id=this.data1[this.modal.index].id;
 						console.log(name);
-						var path=base_path+'admin/user/'+id;
+						var path=base_path+'admin/user/'+id+'/';
 						this.$http.post(path,name).then(response => {
 							this.$Message.success('修改成功');
 							console.log("正常");
 						//	console.log(this.formInline);
 						}, response => {
-							this.$Message.error('修改失败');
+							console.log(response.body);
+							this.$Message.error(this.response.error);
+
 							console.log("异常");
 						// error callback
 						});
@@ -363,7 +366,7 @@
 			remove(index)//admin/user/<int:id> DELETE 删除第id的用户信息
 			{
 				var id=this.data1[index].id;
-				var path=base_path+'admin/user/'+id;
+				var path=base_path+'admin/user/'+id+'/';
 				console.log(path);
 				this.$http.delete(path).then(response => {
 					this.$Message.success('删除成功');

@@ -196,7 +196,9 @@
 									<icon type="ios-home-outline" slot="prepend"></icon>
 								</i-input>
                             </Form-Item>
-                            <i-button type="primary" @click="search()"  style="width: 100px" >查询</i-button>
+                            <Form-Item >
+                                <i-button type="primary" @click="search('formInline')">查询</i-button>
+                            </Form-Item>
                         </i-form>
                         <div id="form"  style="width: 800px" >
                             <!-- line_chart用来显示折线图-->
@@ -204,7 +206,7 @@
                             <div id="line_chart" style="width:600px;height:400px;"></div>
                             <i-table border :columns="columns1" :data="data1" height="480" width="600"></i-table>
                         </div>
-                        <i-form id="form" ref="formInline" :model="formInline" :rules="ruleInline" style="width: 600px" >
+                        <i-form id="form" style="width: 600px" >
                         <Form-Item>
                             <a href="graph.html">
                                 <i-button type="primary" style="width: 200px">返回</i-button>
@@ -223,7 +225,7 @@
   </div>
   
 <script>
-	new Vue({
+	let vm = new Vue({
         el: '#app',
         data () {
                 return {
@@ -276,29 +278,25 @@
                     this.spanRight = 19;
                 }
             },
-            search:function()
+            search:function(sname)
 			{
-                this.$refs['formInline'].validate((valid) => {
+                this.$refs[sname].validate((valid) => {
                     if (valid) {
-                        console.log("执行post函数");
                         var path=base_path+'admin/trend/';
+                        console.log(name);
                         this.$http.post(path,this.formInline).then(response => {
-                            this.$Message.sucess('查询成功！');
-                            console.log("正常");
-                            console.log(response.body);
                             this.data1=response.body;
-                            console.log(this.data1);
                             this.line_chart();
                         }, response => {
+                            // error callback
                             this.$Message.error(response.body.error);
-                        console.log("异常");
-                        // error callback
                         });
+
                     } else {
                         this.$Message.error('查询失败！');
                     }
                 })
-				
+                
 			},
 			handleExit() {
 				var path=base_path+'account/logout';
