@@ -193,6 +193,7 @@
 							<Form-Item>
 								各种系统信息：
                             </Form-Item>
+<<<<<<< HEAD
                             <Form-Item label="CPU占用率">
 								<i-progress :percent=formInline.cpu :stroke-width="20"></i-progress>
 							</Form-Item>
@@ -204,6 +205,22 @@
                             </Form-Item>
                             <Form-Item label="应用系统">
 								<i-input type="text" v-model="formInline.system" placeholder="应用系统" readonly style="width: 450px">
+=======
+                            <Form-Item label="CPU">
+								<i-input type="text" v-model="formInline.cpu" placeholder="CPU" readonly style="width: 400px">
+								</i-input>
+							</Form-Item>
+							<Form-Item label="内存占用率">
+								<i-input type="text" v-model="formInline.memory" placeholder="内存" readonly style="width: 400px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="硬盘占用率">
+								<i-input type="text" v-model="formInline.hard_disk" placeholder="硬盘" readonly style="width: 400px">
+								</i-input>
+                            </Form-Item>
+                            <Form-Item label="应用系统">
+								<i-input type="text" v-model="formInline.system" placeholder="应用系统" readonly style="width: 400px">
+>>>>>>> bdb1b1d7ce657955495714f8254f6514a6c852b0
 								</i-input>
 							</Form-Item>
 							<Form-Item>
