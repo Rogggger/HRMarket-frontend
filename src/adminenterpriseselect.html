@@ -315,7 +315,8 @@
 							}
 						}
 					],
-					data1: [{'0','1'}],
+					data1: [],
+					temp:[],
                     formInline: {
 						area: ''
 					}
@@ -356,64 +357,34 @@
                 }
 			},
 			postData:function(){
-				var path=base_path+'admin/search';
+				var path=base_path+'admin/info/';
 				var name={
 					area:this.formInline.area
 				}
                 console.log('name='+name);
                 this.$http.post(path,name).then(response => {
-                  this.data1=response.body;
-				  
-				  this.data1.area=dictionary.get('this.data1.area[0]')+'/'+dictionary.get('this.data1.area[1]');
-				  
+				  this.temp=response.body;
+				  console.log(this.temp);
+				  var area=[["0531","济南"],["0532","青岛"],["0533","淄博"],["0534","德州"],["0535","烟台"],["0536","潍坊"],["0537","济宁"],
+				  ["0538","泰安"],["0539","临沂"],["0530","菏泽"],["0543","滨州"],["0546","东营"],["0631","威海"],["0632","枣庄"],["0633","日照"],["0634","莱芜"],["0635","聊城"]];
+				  var myMap = new Map(area); 
+				  for(var i=0;i<this.temp.length;i++)
+				  {
+					  this.data1[i].area=myMap.get(this.temp[i].area[0]);
+				  }
+				  console.log(this.data1); 
+				//   var kvArray = [["key1", "value1"], ["key2", "value2"]];
+
+				// 	// 使用映射对象常规的构造函数将一个二维键值对数组对象转换成一个映射关系
+				// 	var myMap = new Map(kvArray);
+
+				// 	console.log(myMap.get("key1")); // 返回值为 "value1"
+					
                 }, response => {
                     console.log("异常");
                   // error callback
                 });
             },
-			// getName:function(){
-			// 	var path=base_path+'admin/info';
-            //     this.$http.get(path/*+'?this.formInline.select='+this.formInline.condition*/).then(response => {
-			// 	  console.log("正常");
-			// 	  console.log(response.body);
-			// 	  this.data=response.body;
-			// 	}, response => {
-			// 	console.log("异常");
-			// 	  // error callback
-			// 	});
-            // },
-			// postDate:function(){
-            //     var path=base_path+'admin/info';
-            //     var start=this.formatDate(this.date_value[0]);
-            //     var end=this.formatDate(this.date_value[1]);
-            //     console.log(start);
-            //     console.log(end);
-                
-            //     this.$http.get(path+'?start='+start+'&end='+end).then(response => {
-            //         console.log("正常");
-            //         this.tasks=response.body;
-            //       console.log(this.tasks);
-            //       this.formInline=response.body;
-            //     }, response => {
-            //         console.log("异常");
-            //       // error callback
-            //     });
-            // },
-			// postDay:function(){
-            //     var path=base_path+'admin/info';
-            //     var day=this.formatDate(this.time);
-            //     console.log(day);
-                
-            //     this.$http.get(path+'?date='+day).then(response => {
-            //         console.log("正常");
-            //         this.tasks=response.body;
-            //       console.log(this.tasks);
-            //       this.formInline=response.body;
-            //     }, response => {
-            //         console.log("异常");
-            //       // error callback
-            //     });
-			// },
 			
 			show (index) {
                 this.$Modal.info({
@@ -449,40 +420,8 @@
                 });
             }
         }
-    }),
-	
-	function Dictionary() {  
-            var items = {};
-			
-            this.has = function (key) {  
-                return key in items;  
-            };  
-            this.set = function (key, value) {  
-                items[key] = value;  
-            };  
-            this.get = function (key) {  
-                return this.has(key) ? items[key] : undefined;  
-            };
-			
-			this.keys = function(){
-				return Object.keys(items);
-			};
-            this.values = function () {  
-                var values = [];  
-                for (var k in items) {  
-                    if (this.has(k)) {  
-                        values.push(items[k]);  
-                    }  
-                }  
-                return values;  
-            };  
-		}
-        var dictionary = new Dictionary();  
-        dictionary.set('0', 'AAA');  
-        dictionary.set('1', 'bbb');  
-        dictionary.set('Tyrion', 'tyrion@email.com');  
+    })
 
-        console.log(dictionary.get('Tyrion')); 
 </script>
 </body>
 </html>
