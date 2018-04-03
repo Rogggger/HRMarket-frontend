@@ -1504,129 +1504,165 @@
         	},
 			postCondition()
 			{
-				var name={                           
-                    select:this.formInline.select,
-                    condition:this.formInline.condition,
-                    time:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formInline.select,
+							condition:this.formInline.condition,
+							time:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			},
 			postData()
 			{
-				var name={                           
-                    select:this.formInline.select,
-                    condition:this.formInline.enterprise_kind[0],
-                    time:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formInline.select,
+							condition:this.formInline.enterprise_kind[0],
+							time:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			},
 			postArea()
 			{
-				var name={                           
-                    select:this.formInline.select,
-                    condition:this.formInline.area.join('/'),
-                    time:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formInline.select,
+							condition:this.formInline.area.join('/'),
+							time:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			},
 			postBelongto()
 			{
-				var name={                           
-                    select:this.formInline.select,
-                    condition:this.formInline.belong_to.join('/'),
-                    time:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formInline.select,
+							condition:this.formInline.belong_to.join('/'),
+							time:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			},
 			postTime()
 			{
-				var name={                           
-                    select:this.formatDate(this.formInline.time),
-                    time:this.formatDate(this.formInline.time),
-                    condition:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formatDate(this.formInline.time),
+							time:this.formatDate(this.formInline.time),
+							condition:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			},
 			postMonth()
 			{
-				var name={                           
-                    select:this.formatMonth(this.formInline.time),
-                    time:this.formatMonth(this.formInline.time),
-                    condition:''
-                }
-				console.log(name);
-                var path=base_path+'admin/data/';
-                console.log()
-                this.$http.post(path,name).then(response => {
-                    console.log("正常");
-					console.log(response.body);
-					this.data1=response.body;
-					console.log(this.data1);
-                }, response => {
-                    console.log("异常");
-                    console.log(response.body);
-                // error callback
-                });
+				this.$refs['formInline'].validate((valid) => {
+                    if (valid) {
+						var name={                           
+							select:this.formatMonth(this.formInline.time),
+							time:this.formatMonth(this.formInline.time),
+							condition:''
+						}
+						console.log(name);
+						var path=base_path+'admin/data/';
+						console.log()
+						this.$http.post(path,name).then(response => {
+							console.log("正常");
+							console.log(response.body);
+							this.data1=response.body;
+							console.log(this.data1);
+						}, response => {
+							console.log("异常");
+							console.log(response.body);
+						// error callback
+						});
+					} else {
+                        this.$Message.error('查询失败！');
+                    }
+                })
 			}
 			
         }
