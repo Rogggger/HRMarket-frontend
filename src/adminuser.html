@@ -194,8 +194,7 @@
                         <i-form id="form" ref="formInline" :model="formInline" style="width: 300px">
                             <Form-Item>
                                 <h1 v-if=' flag==2 '>欢迎省级管理员用户</h1>
-                                <h1 v-if=' flag==1 '>欢迎
-                                    <script>document.write(sessionStorage.area);</script>
+                                <h1 v-if=' flag==1 '>欢迎<script>document.write(sessionStorage.area);</script>
                                     市管理员用户
                                 </h1>
                             </Form-Item>
