@@ -177,60 +177,60 @@
                             <h1>数据填报</h1>
                             </br>
                             <Form-Item label="建档期就业人数" prop="filing">
-                                <i-input type="text" v-model="formInline.filing" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.filing" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="调查期就业人数" prop="check">
-                                <i-input type="text" v-model="formInline.check" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.check" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="其他原因" prop="other_reason"
                                        v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
-                                <i-input type="text" v-model="formInline.other_reason" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.other_reason" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="就业人数减少类型" prop="decrease_type"
                                        v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
-                                <i-input type="text" v-model="formInline.decrease_type" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.decrease_type" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="主要原因" prop="main_reason"
                                        v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
-                                <i-input type="text" v-model="formInline.main_reason" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.main_reason" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="主要原因说明" prop="main_reason_detail"
                                        v-if=' parseInt(formInline.check )< parseInt(formInline.filing) '>
-                                <i-input type="text" v-model="formInline.main_reason_detail" clearable
+                                <i-input type="text" v-model="formInline.main_reason_detail" 
                                          :disabled="status > 0" style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="次要原因"
                                        v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
-                                <i-input type="text" v-model="formInline.second_reason" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.second_reason" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="次要原因说明"
                                        v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''">
-                                <i-input type="text" v-model="formInline.second_reason_detail" clearable
+                                <i-input type="text" v-model="formInline.second_reason_detail" 
                                          :disabled="status > 0" style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="第三原因"
                                        v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
-                                <i-input type="text" v-model="formInline.third_reason" clearable :disabled="status > 0"
+                                <i-input type="text" v-model="formInline.third_reason" :disabled="status > 0"
                                          style="width: 300px">
                                 </i-input>
                             </Form-Item>
                             <Form-Item label="第三原因说明"
                                        v-if="(parseInt(formInline.check )< parseInt(formInline.filing))&&formInline.main_reason&&formInline.main_reason!=''&&formInline.main_reason_detail&&formInline.main_reason_detail!=''&&formInline.second_reason&&formInline.second_reason!=''&&formInline.second_reason_detail&&formInline.second_reason_detail!=''">
-                                <i-input type="text" v-model="formInline.third_reason_detail" clearable
+                                <i-input type="text" v-model="formInline.third_reason_detail" 
                                          :disabled="status > 0" style="width: 300px">
                                 </i-input>
                             </Form-Item>
